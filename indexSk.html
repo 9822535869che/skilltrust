@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkillTrust Academy · ระบบใบรับรองดิจิทัลตามบทบาท</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Noto+Serif+Thai:wght@500;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b2a6f;--navy2:#081c50;--blue:#1459d9;--blue2:#0f49b8;--ink:#0f1b3d;--muted:#5b6785;--line:#e4eaf5;--bg:#f3f6fc;--gold:#b9902f;--ok:#137a43;--okbg:#e5f6ec;--bad:#b42323;--badbg:#fdeaea;--warn:#8a5a00;--warnbg:#fdf3dc}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font-family:"Noto Sans Thai",Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6}
+button,input,select{font:inherit}
+.shell{display:flex;min-height:100vh}
+.side{width:272px;flex:none;background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;padding:26px 18px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 22px}
+.brand b{display:block;font-size:17px;line-height:1.2}
+.brand span{font-size:12px;opacity:.75}
+.label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.6;padding:0 12px;margin:14px 0 8px}
+.roles{display:grid;gap:6px}
+.rbtn{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#dbe6ff;padding:10px 12px;border-radius:12px;cursor:pointer;text-align:left}
+.rbtn small{display:block;opacity:.65;font-size:11px}
+.rbtn:hover{background:rgba(255,255,255,.12)}
+.rbtn.on{background:#fff;color:var(--navy);border-color:#fff}
+.rbtn.on small{opacity:.7}
+.rbtn .ri{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.12);flex:none}
+.rbtn.on .ri{background:#e6efff;color:var(--blue)}
+.nav{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;color:#dbe6ff;padding:11px 14px;border-radius:12px;cursor:pointer;text-align:left;font-size:14.5px}
+.nav:hover{background:rgba(255,255,255,.08)}
+.nav.on{background:linear-gradient(90deg,var(--blue),#2d6cf0);color:#fff;box-shadow:0 6px 18px rgba(20,89,217,.35)}
+.foot{margin-top:auto;padding:14px 10px 4px;font-size:12px;color:#b8c9ee;display:flex;gap:8px;align-items:center}
+.main{flex:1;min-width:0;padding:22px 32px 48px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.crumb{font-size:13px;color:var(--muted)}
+.pill-role{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-weight:500}
+.pill-role i{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px}
+.wchip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 14px;cursor:pointer;color:var(--ink);font-weight:500}
+.dot{width:8px;height:8px;border-radius:50%;background:#a3aec4}
+.dot.on{background:#16a34a;box-shadow:0 0 0 4px rgba(22,163,74,.15)}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.ph h1{margin:0;font-size:26px;font-weight:700;letter-spacing:-.01em}
+.ph p{margin:4px 0 0;color:var(--muted)}
+.hero{position:relative;overflow:hidden;border-radius:22px;padding:34px 36px;color:#fff;background:radial-gradient(900px 300px at 85% -20%,rgba(120,190,255,.35),transparent 60%),linear-gradient(115deg,#0b2a6f,#0d3a9a 55%,#0e56c4);margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.hero h2{margin:0;font-size:30px;font-weight:700;line-height:1.25}
+.hero h2 em{font-style:normal;color:#9fdcff}
+.hero p{margin:10px 0 20px;opacity:.9;max-width:520px}
+.hero .deco{position:absolute;right:-30px;top:-40px;width:280px;height:280px;border-radius:50%;border:2px solid rgba(160,210,255,.25)}
+.hero .deco2{position:absolute;right:60px;bottom:-60px;width:180px;height:180px;border-radius:50%;border:2px solid rgba(160,210,255,.18)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:11px 18px;font-weight:600;cursor:pointer;box-shadow:0 6px 16px rgba(20,89,217,.25)}
+.btn:hover{background:var(--blue2)}
+.btn.white{background:#fff;color:var(--navy);box-shadow:none}
+.btn.white:hover{background:#eef4ff}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:#f6f9ff}
+.btn.danger{background:#fff;color:var(--bad);border:1px solid #f1c6c6;box-shadow:none}
+.btn.danger:hover{background:var(--badbg)}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g2{grid-template-columns:1.1fr .9fr}
+.g3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+@media (max-width:1100px){.g2{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 1px 2px rgba(15,27,61,.04),0 10px 28px rgba(15,27,61,.05);margin-bottom:16px}
+.card h3{margin:0 0 4px;font-size:17px;font-weight:700}
+.card .sub{margin:0 0 16px;color:var(--muted);font-size:13px}
+.ch{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;align-items:center;gap:16px;box-shadow:0 1px 2px rgba(15,27,61,.04)}
+.sico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;flex:none}
+.stat strong{display:block;font-size:24px;line-height:1.1;font-weight:700}
+.stat small{color:var(--muted);font-size:13px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.tag.ok{background:var(--okbg);color:var(--ok)}
+.tag.bad{background:var(--badbg);color:var(--bad)}
+.tag.warn{background:var(--warnbg);color:var(--warn)}
+.tag.off{background:#eef1f7;color:var(--muted)}
+.tag.info{background:#e6efff;color:var(--blue)}
+.bar{height:8px;border-radius:99px;background:#eef2fa;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#5aa2ff);border-radius:99px}
+.row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #eef2f9;flex-wrap:wrap}
+.row:first-child{border-top:0;padding-top:0}
+.row .t{flex:1;min-width:180px}
+.row .t b{display:block;font-weight:600}
+.row .t small{color:var(--muted)}
+.ico-sq{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff;font-weight:700;font-size:12px}
+.field label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:500}
+.inp{width:100%;border:1px solid #d6dfef;border-radius:12px;padding:11px 13px;background:#fff;color:var(--ink);font-size:14px;transition:border .15s,box-shadow .15s}
+.inp:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(20,89,217,.12)}
+.inp[readonly]{background:#f6f8fc;color:var(--muted)}
+.inp.sm{padding:7px 9px;width:86px;font-size:13px;border-radius:10px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.fgrid .full{grid-column:1/-1}
+@media (max-width:640px){.fgrid{grid-template-columns:1fr}}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin-top:10px}
+.dropzone{border:1.5px dashed #bcd0f5;border-radius:16px;padding:18px;text-align:center;background:#f8fbff;color:var(--muted);cursor:pointer;display:block}
+.dropzone:hover{border-color:var(--blue);background:#f1f7ff}
+.dropzone input{display:none}
+.dropzone b{color:var(--blue);display:block;margin-top:4px}
+.tabs{display:inline-flex;background:#eef3fb;border-radius:12px;padding:4px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{border:0;background:none;padding:9px 16px;border-radius:9px;cursor:pointer;color:var(--muted);font-weight:500;display:flex;gap:8px;align-items:center}
+.tabs button.on{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(15,27,61,.08)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th,.tbl td{padding:12px 10px;text-align:left;border-top:1px solid #eef2f9;vertical-align:middle;font-size:13.5px}
+.tbl th{color:var(--muted);font-weight:500;border-top:0;font-size:12.5px}
+.tbl .r{text-align:right}
+.scroll{overflow-x:auto}
+.empty{color:var(--muted);text-align:center;padding:26px 10px}
+.seg{display:inline-flex;gap:6px;background:#eef3fb;padding:4px;border-radius:12px;flex-wrap:wrap}
+.seg button{border:0;background:none;padding:7px 12px;border-radius:9px;cursor:pointer;color:var(--muted);font-size:13px}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(15,27,61,.08)}
+.paper{position:relative;background:linear-gradient(180deg,#fffdf8,#fbf6ea);border-radius:16px;padding:26px 26px 22px;border:1px solid #eadfc3;box-shadow:0 14px 32px rgba(40,40,20,.10);overflow:hidden}
+.paper:before{content:"";position:absolute;inset:8px;border:1px solid #d9c58f;border-radius:10px;pointer-events:none}
+.paper .top{display:flex;align-items:center;gap:8px;color:var(--navy);font-weight:700;font-size:12.5px;letter-spacing:.02em}
+.paper .kicker{font-size:11px;letter-spacing:.14em;color:#8a7440;text-transform:uppercase;margin:16px 0 2px;text-align:center}
+.paper h4{margin:0;font-family:"Noto Serif Thai",serif;font-size:21px;text-align:center;color:var(--navy);font-weight:700}
+.paper .course{text-align:center;margin:6px 0 14px;color:#3d4a6b}
+.paper .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:12px;color:var(--muted);border-top:1px dashed #dccb9c;padding-top:12px}
+.paper .meta b{display:block;color:var(--ink);font-size:13px;font-weight:600;word-break:break-all}
+.seal{position:absolute;right:18px;bottom:16px;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#2d6cf0,#0b2a6f);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 4px #fffaf0,0 0 0 5px #d9c58f}
+.paper.rev .seal{background:radial-gradient(circle at 30% 30%,#e25555,#8e1c1c)}
+.paper.rev:after{content:"REVOKED";position:absolute;left:50%;top:44%;transform:translate(-50%,-50%) rotate(-14deg);font-weight:700;font-size:30px;letter-spacing:.12em;color:rgba(180,35,35,.22);border:3px solid rgba(180,35,35,.22);padding:4px 14px;border-radius:10px;pointer-events:none}
+.certgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.certitem{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(15,27,61,.04)}
+.certitem .acts{display:flex;gap:8px;flex-wrap:wrap}
+.res{border-radius:16px;padding:18px;border:1px solid;margin-bottom:16px}
+.res.ok{background:#f2fbf6;border-color:#bfe6cf}
+.res.bad{background:#fff5f5;border-color:#f2c4c4}
+.res.warn{background:#fffaf0;border-color:#f0dca8}
+.res h4{margin:8px 0 0;font-size:17px}
+.res p{margin:4px 0 0;color:#3d4a6b;font-size:13.5px}
+.res dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 16px;margin:14px 0 0}
+.res dt{color:var(--muted);font-size:12px}
+.res dd{margin:1px 0 0;font-weight:600;word-break:break-all}
+.gate{text-align:center;padding:40px 16px}
+.gate .sico{margin:0 auto 14px;background:#e6efff;color:var(--blue)}
+.gate p{color:var(--muted);margin:0 0 16px}
+.qr{width:160px;height:160px;margin:0 auto;border-radius:16px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;cursor:pointer;position:relative}
+.qr .px{width:116px;height:116px;background:repeating-conic-gradient(var(--navy) 0 25%,#fff 0 50%) 0 0/16px 16px;border-radius:6px}
+.qr:hover{border-color:var(--blue)}
+.ccard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(15,27,61,.04)}
+.ccard .head{height:88px;padding:14px 16px;color:#fff;font-weight:700;font-size:20px;display:flex;align-items:flex-end;justify-content:space-between}
+.ccard .body{padding:16px}
+.ccard .body small{color:var(--muted);font-size:13px}
+.progress-l{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin:10px 0 6px}
+body{background-image:radial-gradient(rgba(20,89,217,.07) 1px,transparent 1.5px);background-size:22px 22px}
+.hero{animation:rise .6s both}
+.hero::after{content:"";position:absolute;right:24px;top:50%;margin-top:-130px;width:400px;height:260px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 260'%3E%3Cg fill='none' stroke='rgba(160,210,255,.5)' stroke-width='1.5'%3E%3Cpath d='M30 60L110 110L190 45L280 120L370 70'/%3E%3Cpath d='M110 110L140 215L255 200L280 120'/%3E%3C/g%3E%3Cg fill='rgba(160,210,255,.85)'%3E%3Ccircle cx='30' cy='60' r='5'/%3E%3Ccircle cx='110' cy='110' r='5'/%3E%3Ccircle cx='190' cy='45' r='5'/%3E%3Ccircle cx='280' cy='120' r='5'/%3E%3Ccircle cx='370' cy='70' r='5'/%3E%3Ccircle cx='140' cy='215' r='5'/%3E%3Ccircle cx='255' cy='200' r='5'/%3E%3C/g%3E%3Crect x='165' y='70' width='170' height='130' rx='12' fill='rgba(255,255,255,.16)' stroke='rgba(255,255,255,.55)' stroke-width='2'/%3E%3Cpath d='M190 108H312M190 128H290M190 148H305' stroke='rgba(255,255,255,.55)' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='300' cy='180' r='18' fill='%232d6cf0' stroke='white' stroke-width='2'/%3E%3Cpath d='M292 180l6 6 10-11' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/contain;pointer-events:none;animation:float 6s ease-in-out infinite;z-index:0}
+@media (max-width:900px){.hero::after{display:none}}
+.side::after{content:"";position:absolute;left:0;right:0;bottom:0;height:190px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 170'%3E%3Cg fill='none' stroke='rgba(160,210,255,.35)' stroke-width='1.2'%3E%3Cpath d='M100 20L150 50L150 110L100 140L50 110L50 50Z'/%3E%3Cpath d='M100 80L150 50M100 80L50 50M100 80L100 140M150 110L185 130M50 110L15 130'/%3E%3C/g%3E%3Cg fill='rgba(20,89,217,.55)' stroke='rgba(160,210,255,.7)' stroke-width='1.2'%3E%3Cpath d='M100 62L122 75L122 101L100 114L78 101L78 75Z'/%3E%3Cpath d='M150 50L168 40L182 62L165 72Z'/%3E%3Cpath d='M50 110L30 98L18 118L36 130Z'/%3E%3C/g%3E%3C/svg%3E") no-repeat center bottom/contain;opacity:.8;pointer-events:none}
+.side>*{position:relative;z-index:1}
+.ccard .head{position:relative;overflow:hidden}
+.ccard .head::after{content:"";position:absolute;right:-8px;bottom:-8px;width:130px;height:95px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 95'%3E%3Cg fill='none' stroke='rgba(255,255,255,.7)' stroke-width='1.5'%3E%3Cpath d='M65 10L100 30L100 65L65 85L30 65L30 30Z'/%3E%3Cpath d='M65 47L100 30M65 47L30 30M65 47L65 85'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;opacity:.45}
+.ccard .head>*{position:relative;z-index:1}
+.stat,.ccard,.certitem{transition:transform .25s ease,box-shadow .25s ease}
+.stat:hover,.ccard:hover,.certitem:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(15,27,61,.10)}
+.sico{transition:transform .3s ease}
+.stat:hover .sico{transform:rotate(-6deg) scale(1.06)}
+.seal{animation:pulse 3s ease-in-out infinite}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover::after{left:120%}
+.bar i{animation:grow .9s ease both}
+.qr{overflow:hidden}
+.qr::after{content:"";position:absolute;left:14px;right:14px;height:2px;background:var(--blue);box-shadow:0 0 10px var(--blue);top:14px;animation:scan 2.4s ease-in-out infinite}
+.qr .px{position:relative;z-index:0}
+.dot.on{animation:ring 2s ease-out infinite}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px #fffaf0,0 0 0 5px #d9c58f}50%{box-shadow:0 0 0 4px #fffaf0,0 0 0 9px rgba(217,197,143,.25)}}
+@keyframes grow{from{width:0}}
+@keyframes scan{0%,100%{top:14px}50%{top:126px}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(22,163,74,.45)}100%{box-shadow:0 0 0 9px rgba(22,163,74,0)}}
+.vcert{position:relative;background:#fffdf8;border-radius:18px;overflow:hidden;border:1px solid #eadfc3;box-shadow:0 18px 40px rgba(40,40,20,.12);animation:rise .5s both}
+.vband{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;color:#fff;background:linear-gradient(90deg,var(--tone),#0b2a6f);font-weight:600;font-size:13.5px}
+.vband span{display:flex;align-items:center;gap:8px}
+.vband b{background:rgba(255,255,255,.18);padding:3px 10px;border-radius:999px;font-size:12px}
+.vbody{padding:26px 28px 22px;text-align:center;position:relative}
+.vbody:before{content:"";position:absolute;inset:10px;border:1px solid #d9c58f;border-radius:12px;pointer-events:none}
+.vkick{font-size:11px;letter-spacing:.14em;color:#8a7440;text-transform:uppercase}
+.vbody h4{margin:10px 0 4px;font-family:"Noto Serif Thai",serif;font-size:26px;color:var(--navy);font-weight:700}
+.vcourse{color:var(--ink);font-size:15px;font-weight:500}
+.vmeta{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-top:18px;padding-top:14px;border-top:1px dashed #dccb9c;text-align:left;font-size:12px;color:var(--muted)}
+.vmeta b{display:block;color:var(--ink);font-size:13px;font-weight:600;word-break:break-all}
+.vcert .seal{position:absolute;right:20px;bottom:18px;width:60px;height:60px}
+#toast{position:fixed;right:24px;bottom:24px;background:var(--ink);color:#fff;padding:13px 18px;border-radius:14px;font-size:14px;max-width:380px;box-shadow:0 14px 34px rgba(0,0,0,.22);z-index:20;animation:up .2s ease}
+#toast[data-tone="ok"]{background:var(--ok)}
+#toast[data-tone="err"]{background:var(--bad)}
+@keyframes up{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:900px){
+ .shell{flex-direction:column}
+ .side{width:auto;height:auto;position:static}
+ .roles{grid-template-columns:1fr 1fr}
+ .main{padding:16px}
+ .hero h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">
+      <svg width="44" height="40" viewBox="0 0 24 24" fill="none" stroke="#9fdcff" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>
+      <div><b>SkillTrust</b><span>Academy · Blockchain Cert</span></div>
+    </div>
+    <div class="label">เข้าสู่ระบบในฐานะ</div>
+    <div class="roles" id="roles"></div>
+    <div class="label">เมนู</div>
+    <nav id="nav" style="display:grid;gap:4px"></nav>
+    <div class="foot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l7 10-7 4-7-4z"/><path d="M5 15l7 7 7-7-7 4z"/></svg>
+      <span>ขับเคลื่อนด้วย Ethereum Smart Contract</span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="crumb" id="crumb"></div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <button class="btn sm" id="chainPend" type="button" data-act="chainFlush" style="display:none"></button>
+        <span class="pill-role" id="rolePill"></span>
+        <button class="wchip" data-act="wallet"><span class="dot" id="wdot"></span><span id="wlabel"></span></button>
+      </div>
+    </div>
+    <div id="page"></div>
+  </div>
+</div>
+<div id="toast" hidden></div>
+
+<script>
+/* ---------- บันทึกกิจกรรมลง Smart Contract (ActivityLog บน Sepolia) ---------- */
+/* ethers v6 โหลดเมื่อผู้ใช้เชื่อม MetaMask เท่านั้น ข้อมูลเต็มไม่ถูกเก็บบน chain เก็บเฉพาะ hash */
+const SKILLTRUST_CHAIN = (() => {
+  const SEPOLIA_CHAIN_ID = 11155111n;
+  const DEFAULT_ADDRESS = '0x77F6Da4fd7FB785001CE664f2ed2239e8FDF844d'; // SkillTrustRegistry บน Sepolia (deploy ใหม่)
+  const ABI = [
+    'function createCourse(string courseCode, string name, uint64 startDate) external',
+    'function issueCertificate(string certId, string courseCode, address recipient, bytes32 fileHash, uint64 issuedAt) external',
+    'function revokeCertificate(string certId) external',
+    'function setIssuer(address issuer, bool allowed) external',
+    'function record(bytes32 kind, bytes32 dataHash) external',
+    'function verifyCertificate(string certId, bytes32 fileHash) view returns (bool valid, bool hashMatches, address recipient, address issuer, uint64 issuedAt)',
+    'function getCertificateIdsOf(address recipient) view returns (string[])',
+    'function admin() view returns (address)',
+    'function isIssuer(address) view returns (bool)',
+    'function getCourse(string courseCode) view returns (string name, uint64 startDate, bool exists)',
+    'function getCertificate(string certId) view returns (uint8 status, string courseCode, bytes32 fileHash, address recipient, address issuer, uint64 issuedAt)',
+    'function certIdByFileHash(bytes32) view returns (string)',
+    'error NotAdmin()', 'error NotIssuer()', 'error NotActive()', 'error NotAllowedToRevoke()', 'error CourseExists()', 'error CourseNotFound()',
+    'error CertificateExists()', 'error HashAlreadyUsed()', 'error FutureIssueDate()', 'error InvalidInput()', 'error UnknownCertificate()',
+  ];
+  const ADDR_RE = /^0x[0-9a-fA-F]{40}$/;
+  let address = DEFAULT_ADDRESS, provider = null, signer = null, ethersPromise = null, listening = false;
+  // แปลงเหตุที่สัญญาปฏิเสธเป็นข้อความที่อ่านรู้เรื่อง
+  const REVERT_TH = {
+    NotAdmin: 'บัญชีที่เชื่อมอยู่ไม่ใช่ผู้ดูแลระบบของสัญญา (ต้องเป็นกระเป๋าที่ deploy สัญญานี้)',
+    NotIssuer: 'บัญชีนี้ยังไม่ได้รับสิทธิ์ผู้ออกใบรับรองบน chain',
+    NotActive: 'ใบรับรองนี้ไม่อยู่ในสถานะที่ทำรายการได้',
+    NotAllowedToRevoke: 'บัญชีนี้ไม่มีสิทธิ์เพิกถอนใบรับรองนี้',
+    CourseExists: 'รหัสหลักสูตรนี้มีอยู่บน chain แล้ว ให้ใช้รหัสใหม่',
+    CourseNotFound: 'ยังไม่มีหลักสูตรนี้บน chain ต้องสร้างหลักสูตรบน chain ก่อน',
+    CertificateExists: 'รหัสใบรับรองนี้ถูกออกบน chain แล้ว',
+    HashAlreadyUsed: 'แฮชไฟล์นี้ถูกใช้กับใบรับรองอื่นบน chain แล้ว',
+    FutureIssueDate: 'วันที่ออกใบรับรองอยู่ในอนาคต',
+    InvalidInput: 'ข้อมูลไม่ครบ (รหัสหรือชื่อว่าง)',
+    UnknownCertificate: 'ไม่พบใบรับรองนี้บน chain',
+  };
+  function revertName(E, e) {
+    if (e && e.revert && e.revert.name) return e.revert.name;
+    const data = (e && (e.data || (e.error && e.error.data) || (e.info && e.info.error && e.info.error.data))) || '';
+    if (typeof data === 'string' && data.length >= 10) {
+      for (const n of Object.keys(REVERT_TH)) { if (E.id(n + '()').slice(0, 10) === data.slice(0, 10)) return n; }
+    }
+    return '';
+  }
+  async function switchToSepolia() {
+    try { await window.ethereum.request({method: 'wallet_switchEthereumChain', params: [{chainId: '0xaa36a7'}]}); }
+    catch (e) {
+      if (e && (e.code === 4902 || /unrecognized chain/i.test(String(e.message || '')))) {
+        await window.ethereum.request({method: 'wallet_addEthereumChain', params: [{chainId: '0xaa36a7', chainName: 'Sepolia', nativeCurrency: {name: 'Sepolia Ether', symbol: 'SepoliaETH', decimals: 18}, rpcUrls: ['https://ethereum-sepolia-rpc.publicnode.com'], blockExplorerUrls: ['https://sepolia.etherscan.io']}]});
+      } else throw e;
+    }
+  }
+  const coded = (code, msg, extra) => { const e = new Error(msg); e.code = code; e.shortMessage = msg; return Object.assign(e, extra || {}); };
+  let codeCheckedAt = 0, codeCheckedFor = '';
+  // ตรวจก่อนส่งทุกครั้ง: เครือข่าย, มี Contract จริงที่แอดเดรสนี้, มี Sepolia ETH จ่ายแก๊ส (อ่านอย่างเดียว ไม่เสียแก๊ส)
+  async function preflight(E) {
+    const net = await provider.getNetwork();
+    if (net.chainId !== SEPOLIA_CHAIN_ID) throw coded('WRONG_NETWORK', 'MetaMask ไม่ได้อยู่ที่เครือข่าย Sepolia (Chain ID 11155111) กรุณาสลับเครือข่ายแล้วกดส่งใหม่', {blocked: true});
+    if (codeCheckedFor !== address || Date.now() - codeCheckedAt > 60000) {
+      const code = await provider.getCode(address);
+      if (!code || code === '0x') throw coded('NO_CONTRACT', 'ไม่พบ Contract ที่แอดเดรส ' + address + ' บนเครือข่าย Sepolia (แอดเดรสผิด หรือ deploy ไว้คนละเครือข่าย)', {blocked: true});
+      codeCheckedFor = address; codeCheckedAt = Date.now();
+    }
+    const me = await signer.getAddress();
+    if ((await provider.getBalance(me)) === 0n) throw coded('NO_FUNDS', 'บัญชีนี้ไม่มี Sepolia ETH สำหรับจ่ายค่าแก๊ส ขอเหรียญทดสอบจาก Sepolia faucet ก่อน', {blocked: true});
+    return me;
+  }
+  // อ่านสถานะจากสัญญาก่อนส่ง เพื่อบอกสาเหตุที่ชัดเจน (สัญญายังบังคับสิทธิ์เองเสมอ)
+  async function precheck(E, method, args, me) {
+    const reader = new E.Contract(address, ABI, provider);
+    const no = n => { const err = new Error(REVERT_TH[n] || n); err.reverted = n; err.shortMessage = err.message; return err; };
+    if (method === 'createCourse') {
+      if (String(await reader.admin()).toLowerCase() !== me.toLowerCase()) throw no('NotAdmin');
+      if ((await reader.getCourse(args[0])).exists) throw no('CourseExists');
+    } else if (method === 'setIssuer') {
+      if (String(await reader.admin()).toLowerCase() !== me.toLowerCase()) throw no('NotAdmin');
+    } else if (method === 'issueCertificate') {
+      if (!(await reader.isIssuer(me))) throw no('NotIssuer');
+      if (!(await reader.getCourse(args[1])).exists) throw no('CourseNotFound');
+    } else if (method === 'revokeCertificate') {
+      if (!(await reader.isIssuer(me)) && String(await reader.admin()).toLowerCase() !== me.toLowerCase()) throw no('NotAllowedToRevoke');
+    }
+  }
+  async function sendTx(E, method, args, onSent) {
+    const me = await preflight(E);
+    await precheck(E, method, args, me);
+    const contract = new E.Contract(address, ABI, signer);
+    let tx;
+    try { tx = await contract[method](...args); }
+    catch (e) {
+      const n = revertName(E, e);
+      if (n) { const err = new Error(REVERT_TH[n] || n); err.reverted = n; err.shortMessage = err.message; throw err; }
+      const msg = String((e && (e.shortMessage || e.message)) || '');
+      if ((e && e.code === 'INSUFFICIENT_FUNDS') || /insufficient funds/i.test(msg)) throw coded('NO_FUNDS', 'Sepolia ETH ไม่พอสำหรับค่าแก๊ส ขอเหรียญทดสอบจาก Sepolia faucet ก่อน', {blocked: true});
+      if (e && e.code === 'CALL_EXCEPTION') throw coded('REJECTED', 'สัญญาปฏิเสธรายการนี้ ตรวจว่าบัญชีมีสิทธิ์ และแอดเดรส Contract ถูกต้อง', {reverted: 'UNKNOWN'});
+      throw e;
+    }
+    if (onSent) onSent(tx.hash);
+    // รอ receipt จากบล็อกเชนก่อนเสมอ ถ้า status ไม่ใช่สำเร็จ ถือว่าล้มเหลว
+    const receipt = await tx.wait(1, 180000);
+    if (!receipt || receipt.status !== 1) throw coded('TX_FAILED', 'ธุรกรรมถูกบันทึกในบล็อกแต่ทำงานไม่สำเร็จ');
+    const fee = receipt.fee ?? (receipt.gasUsed * (receipt.gasPrice ?? 0n));
+    return {txHash: receipt.hash, blockNumber: receipt.blockNumber, gasUsed: receipt.gasUsed.toString(), feeEth: E.formatEther(fee)};
+  }
+  const api = {
+    onChange: null,
+    hasWallet: () => typeof window !== 'undefined' && !!window.ethereum,
+    isConfigured: () => ADDR_RE.test(address) && !/^0x0{40}$/i.test(address),
+    isConnected: () => !!signer,
+    address: () => address,
+    setAddress(a) { address = a && ADDR_RE.test(a) ? a : DEFAULT_ADDRESS; },
+    loadEthers() {
+      if (window.ethers) return Promise.resolve(window.ethers);
+      if (!ethersPromise) ethersPromise = new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js';
+        s.onload = () => res(window.ethers);
+        s.onerror = () => { ethersPromise = null; rej(new Error('โหลดไลบรารี ethers ไม่สำเร็จ')); };
+        document.head.appendChild(s);
+      });
+      return ethersPromise;
+    },
+    listen() {
+      if (listening || !api.hasWallet() || !window.ethereum.on) return;
+      listening = true;
+      window.ethereum.on('accountsChanged', accs => { signer = null; if (api.onChange) api.onChange((accs && accs[0]) || ''); });
+    },
+    async currentAccount() {
+      if (!api.hasWallet()) return '';
+      const acc = await window.ethereum.request({method: 'eth_accounts'});
+      return (acc && acc[0]) || '';
+    },
+    // ตอนเปิดหน้า: ถ้าเคยอนุญาตไว้และอยู่ที่ Sepolia จะต่อให้เงียบๆ โดยไม่เด้งหน้าต่างขอสิทธิ์
+    async restore() {
+      if (!api.hasWallet()) return '';
+      const acc = await window.ethereum.request({method: 'eth_accounts'});
+      if (!acc || !acc.length) return '';
+      const E = await api.loadEthers();
+      provider = new E.BrowserProvider(window.ethereum);
+      let net = await provider.getNetwork();
+      if (net.chainId !== SEPOLIA_CHAIN_ID) {
+        // บัญชีเชื่อมอยู่แล้วแต่เครือข่ายไม่ใช่ Sepolia: ขอสลับให้อัตโนมัติ ถ้าไม่ยอมจึงรอในคิว
+        try { await switchToSepolia(); }
+        catch (e) { return ''; }
+        provider = new E.BrowserProvider(window.ethereum);
+        net = await provider.getNetwork();
+        if (net.chainId !== SEPOLIA_CHAIN_ID) return '';
+      }
+      signer = await provider.getSigner();
+      api.listen();
+      return signer.getAddress();
+    },
+    async connect() {
+      if (!api.hasWallet()) throw new Error('ไม่พบ MetaMask ในเบราว์เซอร์นี้');
+      const E = await api.loadEthers();
+      provider = new E.BrowserProvider(window.ethereum);
+      await provider.send('eth_requestAccounts', []);
+      const net = await provider.getNetwork();
+      if (net.chainId !== SEPOLIA_CHAIN_ID) {
+        await switchToSepolia();
+        provider = new E.BrowserProvider(window.ethereum);
+        if ((await provider.getNetwork()).chainId !== SEPOLIA_CHAIN_ID) throw new Error('ยังอยู่คนละเครือข่าย กรุณาเลือก Sepolia ใน MetaMask');
+      }
+      signer = await provider.getSigner();
+      api.listen();
+      return signer.getAddress();
+    },
+    // ส่งธุรกรรมตามชนิดของรายการ ไปยังฟังก์ชันของทะเบียนที่ตรงกับโจทย์
+    async send(kind, data, onSent) {
+      if (!signer) throw new Error('ยังไม่ได้เชื่อม MetaMask');
+      if (!api.isConfigured()) throw new Error('ยังไม่ได้ตั้งค่าที่อยู่ Contract');
+      const E = await api.loadEthers();
+      const k = String(kind).toUpperCase();
+      const key = s => E.keccak256(E.toUtf8Bytes(String(s)));
+      const unix = d => Math.floor(new Date(d + 'T00:00:00Z').getTime() / 1000);
+      const now = Math.floor(Date.now() / 1000);
+      if (k === 'COURSE_CREATE') return sendTx(E, 'createCourse', [data.code, data.name, Math.min(unix(data.start), now)], onSent);
+      if (k === 'ISSUE') {
+        if (!/^0x[0-9a-fA-F]{40}$/.test(data.wallet || '')) throw new Error('NO_RECIPIENT');
+        return sendTx(E, 'issueCertificate', [data.cert, data.course, data.wallet, data.fileHash, Math.min(unix(data.date), now)], onSent);
+      }
+      if (k === 'REVOKE') return sendTx(E, 'revokeCertificate', [data.cert], onSent);
+      if (k === 'ISSUER_SET') return sendTx(E, 'setIssuer', [data.issuer, !!data.allowed], onSent);
+      return sendTx(E, 'record', [key(k), E.keccak256(E.toUtf8Bytes(JSON.stringify(data)))], onSent);
+    },
+    // อ่านผลตรวจจาก chain โดยไม่เสียค่าแก๊สและไม่ต้องกดยืนยัน
+    async verify(certId, fileHash) {
+      const E = await api.loadEthers();
+      const provider = new E.BrowserProvider(window.ethereum);
+      const contract = new E.Contract(address, ABI, provider);
+      const r = await contract.verifyCertificate(certId, fileHash);
+      return {valid: r.valid, hashMatches: r.hashMatches, recipient: r.recipient, issuer: r.issuer, issuedAt: Number(r.issuedAt)};
+    },
+    // อ่านใบรับรองจาก chain แบบสาธารณะ ไม่ต้องมี MetaMask ไม่เสียแก๊ส (ใช้ตอนสแกน QR บนมือถือ)
+    async readCertificate(certId) {
+      const E = await api.loadEthers();
+      const RPCS = ['https://ethereum-sepolia-rpc.publicnode.com', 'https://sepolia.drpc.org', 'https://rpc.sepolia.org'];
+      let lastErr = null;
+      for (const url of RPCS) {
+        try {
+          const p = new E.JsonRpcProvider(url, 11155111, {staticNetwork: E.Network.from(11155111)});
+          const code = await p.getCode(address);
+          if (!code || code === '0x') { const er = new Error('ไม่พบสัญญาที่แอดเดรสนี้บน Sepolia'); er.final = true; throw er; }
+          const c = new E.Contract(address, ABI, p);
+          const r = await c.getCertificate(certId);
+          let courseName = '';
+          try { const co = await c.getCourse(r.courseCode); if (co.exists) courseName = co.name; } catch (e) {}
+          return {status: Number(r.status), courseCode: r.courseCode, courseName, fileHash: r.fileHash, recipient: r.recipient, issuer: r.issuer, issuedAt: Number(r.issuedAt), contract: address};
+        } catch (e) { lastErr = e; if (e.final) throw e; }
+      }
+      throw lastErr || new Error('เชื่อมต่อ Sepolia ไม่สำเร็จ');
+    },
+    // อ่าน receipt ของธุรกรรมที่เคยส่ง (กรณีปิดหน้าไปก่อนรู้ผล)
+    async receipt(hash) {
+      const E = await api.loadEthers();
+      const p = provider || new E.BrowserProvider(window.ethereum);
+      const r = await p.getTransactionReceipt(hash);
+      if (!r) return null;
+      const fee = r.fee ?? (r.gasUsed * (r.gasPrice ?? 0n));
+      return {ok: r.status === 1, txHash: r.hash, blockNumber: r.blockNumber, gasUsed: r.gasUsed.toString(), feeEth: E.formatEther(fee)};
+    },
+    // ตรวจว่า MetaMask อยู่ที่ Sepolia และมี Contract จริงที่แอดเดรสนี้
+    async checkContract() {
+      if (!api.hasWallet()) return {ok: false, reason: 'ไม่พบ MetaMask ในเบราว์เซอร์นี้'};
+      const E = await api.loadEthers();
+      const p = new E.BrowserProvider(window.ethereum);
+      const net = await p.getNetwork();
+      if (net.chainId !== SEPOLIA_CHAIN_ID) return {ok: false, reason: 'MetaMask ไม่ได้อยู่ที่ Sepolia (Chain ID 11155111)'};
+      const code = await p.getCode(address);
+      return code && code !== '0x' ? {ok: true} : {ok: false, reason: 'ไม่พบ Contract ที่แอดเดรสนี้บนเครือข่าย Sepolia'};
+    },
+    async isIssuer(a) {
+      const E = await api.loadEthers();
+      const provider = new E.BrowserProvider(window.ethereum);
+      const contract = new E.Contract(address, ABI, provider);
+      return !!(await contract.isIssuer(a));
+    },
+    async adminAddress() {
+      const E = await api.loadEthers();
+      const provider = new E.BrowserProvider(window.ethereum);
+      const contract = new E.Contract(address, ABI, provider);
+      return String(await contract.admin()).toLowerCase();
+    },
+    async idsOf(recipient) {
+      const E = await api.loadEthers();
+      const provider = new E.BrowserProvider(window.ethereum);
+      const contract = new E.Contract(address, ABI, provider);
+      return [...(await contract.getCertificateIdsOf(recipient))];
+    },
+    // ตรวจว่าข้อมูลชุดนี้ตรงกับ hash ที่บันทึกไว้บน chain หรือไม่
+    async matches(data, dataHash) {
+      const E = await api.loadEthers();
+      return E.keccak256(E.toUtf8Bytes(JSON.stringify(data))) === dataHash;
+    },
+  };
+  return api;
+})();
+</script>
+<script>
+/* ---------- ไอคอน ---------- */
+const IC = {
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
+  home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  book:'<path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/>',
+  shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+  award:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/>',
+  list:'<path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/>',
+  check:'<path d="M5 12l5 5L20 7"/>',
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  alert:'<circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/>',
+  wallet:'<path d="M3 7h15a3 3 0 0 1 3 3v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7V6a2 2 0 0 1 2-2h11"/><circle cx="17" cy="14" r="1"/>',
+  upload:'<path d="M12 16V4M7 9l5-5 5 5M4 20h16"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+  qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 20h1M17 17h4"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  pulse:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+  cap:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/>',
+  ban:'<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>',
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  lock:'<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'
+};
+const I = (n, s = 18) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`;
+
+/* ---------- ยูทิลิตี้ ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = d => new Date(d + 'T00:00:00').toLocaleDateString('th-TH', {day:'numeric', month:'short', year:'numeric'});
+const todayISO = () => new Date().toISOString().slice(0, 10);
+const enc = s => new TextEncoder().encode(s);
+async function sha(data) {
+  const buf = await crypto.subtle.digest('SHA-256', data instanceof ArrayBuffer || ArrayBuffer.isView(data) ? data : enc(data));
+  return '0x' + [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function toast(msg, tone) {
+  const t = $('#toast'); t.textContent = msg; t.dataset.tone = tone || ''; t.hidden = false;
+  clearTimeout(window._t); window._t = setTimeout(() => t.hidden = true, 2800);
+}
+
+/* ---------- ข้อมูลตัวอย่างและการตั้งค่า ---------- */
+const ROLES = {
+  admin:   {label:'ผู้ดูแลระบบ', name:'', wallet:null, pages:['issuers','courses','newcourse','contract','txs'], desc:'สร้างหลักสูตร กำหนดสิทธิ์ผู้ออกใบรับรอง และเชื่อมสัญญา'},
+  issuer:  {label:'ผู้ออกใบรับรอง', name:'', wallet:null, pages:['overview','enroll','issue','certs','verify','attend','quizadmin','txs'], desc:'ยืนยันผลการเรียนและออกใบรับรอง'},
+  trainee: {label:'ผู้เข้าอบรม', name:'', wallet:null, pages:['dash','catalog','my','verify','checkin','quiz','settings','txs'], desc:'ดูแดชบอร์ด สมัครเรียน และใบรับรอง'}
+};
+const NAV = {
+  overview:{label:'ภาพรวม', icon:'home'},
+  attend:{label:'เช็กชื่อคาบเรียน', icon:'check'},
+  quizadmin:{label:'สร้างแบบทดสอบ', icon:'list'},
+  quiz:{label:'ทำแบบทดสอบ', icon:'award'},
+  settings:{label:'ตั้งค่า', icon:'gear'},
+  checkin:{label:'เช็กชื่อเข้าเรียน', icon:'check'},
+  dash:{label:'แดชบอร์ด', icon:'home'},
+  catalog:{label:'หลักสูตรเปิดรับสมัคร', icon:'book'},
+  courses:{label:'หลักสูตร', icon:'book'},
+  coursedetail:{label:'รายละเอียดหลักสูตร', icon:'book'},
+  newcourse:{label:'สร้างหลักสูตร', icon:'plus'},
+  issuers:{label:'สิทธิ์ผู้ออกใบรับรอง', icon:'shield'},
+  enroll:{label:'การลงทะเบียนและผลการเรียน', icon:'list'},
+  issue:{label:'ออกใบรับรอง', icon:'award'},
+  certs:{label:'ใบรับรอง', icon:'list'},
+  my:{label:'ใบรับรองของฉัน', icon:'user'},
+  contract:{label:'Smart Contract', icon:'lock'},
+  verify:{label:'ตรวจสอบใบรับรอง', icon:'search'},
+  txs:{label:'ธุรกรรมบน Chain', icon:'lock'}
+};
+const TONES = ['#2563eb','#0f766e','#7c3aed','#ea580c','#be185d'];
+const WALLET_ADMIN = ROLES.admin.wallet, WALLET_ISSUER = ROLES.issuer.wallet, WALLET_TRAINEE = ROLES.trainee.wallet;
+const ADMIN_ADDRESSES = []; // สำรองไว้เฉพาะกรณีอ่านจากสัญญาไม่ได้ ปกติผู้ดูแลระบบคือกระเป๋าที่ deploy สัญญา (อ่านจาก admin())
+const ACCOUNTS_KEY = 'skilltrust_accounts_v1';
+function saveAccounts() { try { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(S.accounts)); } catch (e) { /* เบราว์เซอร์ไม่อนุญาตให้เก็บ */ } }
+function loadAccounts() { try { const a = JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || 'null'); if (Array.isArray(a) && a.length) S.accounts = a; } catch (e) { /* ใช้ค่าเริ่มต้น */ } }
+// บทบาทที่ได้จากที่อยู่ MetaMask: ผู้ดูแลระบบ > ผู้ออกใบรับรองที่ได้รับสิทธิ์ > ผู้เข้าอบรม
+let CHAIN_ROLE_ERR = ''; // เหตุผลที่อ่านบทบาทจากสัญญาไม่ได้ (ว่าง = อ่านได้)
+async function chainAdminOf() {
+  if (!SKILLTRUST_CHAIN.isConfigured()) { CHAIN_ROLE_ERR = 'ยังไม่ได้ตั้งค่าที่อยู่ Contract'; return ''; }
+  try { const a = await SKILLTRUST_CHAIN.adminAddress(); CHAIN_ROLE_ERR = ''; return a; }
+  catch (e) { CHAIN_ROLE_ERR = 'อ่านผู้ดูแลระบบจากสัญญาไม่ได้: ' + (e.shortMessage || e.message || e); return ''; }
+}
+async function chainIssuerOf(w) {
+  if (!w || !SKILLTRUST_CHAIN.isConfigured() || CHAIN_ROLE_ERR) return null;
+  try { return !!(await SKILLTRUST_CHAIN.isIssuer(w)); }
+  catch (e) { CHAIN_ROLE_ERR = 'อ่านสิทธิ์ผู้ออกใบจากสัญญาไม่ได้: ' + (e.shortMessage || e.message || e); return null; }
+}
+// บทบาทตามสัญญา: ผู้ที่ deploy (admin) = ผู้ดูแลระบบ, ผู้ที่ผู้ดูแลมอบสิทธิ์บน chain = ผู้ออกใบ, ที่เหลือ = ผู้เข้าอบรม
+// ถ้าอ่านจากสัญญาไม่ได้ จึงใช้รายการสำรองในเครื่องแทน
+function roleForAddress(addr, onchainAdmin, onchainIssuer) {
+  const w = (addr || '').toLowerCase();
+  if (w && (w === onchainAdmin || (!onchainAdmin && ADMIN_ADDRESSES.includes(w)))) return 'admin';
+  if (onchainIssuer === true) return 'issuer';
+  if (onchainIssuer === false) return 'trainee';
+  const a = S.accounts.find(x => (x.wallet || '').toLowerCase() === w);
+  return a && a.active ? 'issuer' : 'trainee';
+}
+
+const S = {
+  role:'trainee', page:'dash', traineeConnected:false, walletMode:false, liveWallet:null,
+  courses:[], accounts:[], enrollments:[], certs:[], log:[],
+    certFilter:'all', issueFile:null, vMode:'id', vId:'', vResult:'', vFile:null, vFileName:'',
+  contract:{network:'sepolia', rpc:'', address:'', tx:'', saved:false}
+};
+const chain = new Map(); // fileHash -> certId (จำลองบันทึกบน blockchain)
+
+const cname = code => (S.courses.find(c => c.code === code) || {}).name || code;
+const courseOf = code => S.courses.find(c => c.code === code) || {};
+const crit = code => { const c = courseOf(code); return {att: c.minAtt ?? 80, score: c.passScore ?? 60}; };
+const passes = en => { const k = crit(en.course); return en.att >= k.att && en.score >= k.score; };
+const me = () => ROLES[S.role];
+const walletOf = () => S.walletMode ? (S.liveWallet || null) : null;
+// สิทธิ์ออก/เพิกถอนใบรับรองเป็นของผู้ออกใบรับรองเท่านั้น (บทบาทมาจากสัญญา) ผู้ดูแลระบบไม่ออกใบรับรอง
+const isAuthorizedIssuer = () => !!walletOf() && S.role === 'issuer';
+const scopeCerts = () => S.role === 'admin' ? S.certs : S.certs.filter(c => c.issuer === walletOf());
+const myCerts = () => S.certs.filter(c => c.wallet === walletOf());
+const myEnr = () => S.enrollments.filter(e => e.wallet === walletOf());
+const certText = c => ['SkillTrust Academy - Certificate', 'Certificate ID: ' + c.id, 'Recipient: ' + c.name, 'Recipient wallet: ' + c.wallet, 'Course: ' + c.course, 'Issued: ' + c.date].join('\n');
+function nextId() {
+  const y = new Date().getFullYear();
+  const max = Math.max(0, ...S.certs.map(c => parseInt(c.id.slice(-5), 10) || 0));
+  return `STA-${y}-${String(max + 1).padStart(5, '0')}`;
+}
+function addLog(text) { S.log.unshift({t:'เมื่อสักครู่', text}); S.log = S.log.slice(0, 12); }
+
+/* ---------- การ์ดใบรับรองและสถานะ ---------- */
+function paper(c) {
+  const rev = c.status === 'revoked';
+  return `<div class="paper ${rev ? 'rev' : ''}">
+    <div class="top">${I('cap', 18)} SkillTrust Academy</div>
+    <div class="kicker">Certificate of Completion</div>
+    <h4>${esc(c.name)}</h4>
+    <div class="course">${esc(cname(c.course))}</div>
+    <div class="meta">
+      <div>รหัสใบรับรอง<b>${esc(c.id)}</b></div>
+      <div>วันที่ออก<b>${fmt(c.date)}</b></div>
+      <div>หลักสูตร<b>${esc(c.course)}</b></div>
+      <div>Wallet ผู้รับ<b>${esc(certWallet(c))}</b></div>
+    </div>
+    <div class="seal">${rev ? I('x', 24) : I('check', 26)}</div>
+  </div>`;
+}
+function previewPaper(d) {
+  return paper({id:d.id, name:d.name || 'ชื่อผู้รับ', course:d.course, date:d.date || todayISO(), wallet:d.wallet || '0x...', status:'valid'});
+}
+const statusTag = c => c.status === 'valid' ? '<span class="tag ok">Valid</span>' : '<span class="tag bad">Revoked</span>';
+const enrStatus = en => ({pending:'<span class="tag warn">รอยืนยัน</span>', enrolled:'<span class="tag info">กำลังเรียน</span>', certified:'<span class="tag ok">ออกใบแล้ว</span>'})[en.status];
+const resBox = (kind, icon, title, body) => `<div class="res ${kind}"><span class="tag ${kind === 'ok' ? 'ok' : kind === 'bad' ? 'bad' : 'warn'}">${I(icon, 14)} ${esc(title)}</span>${body}</div>`;
+const gateNote = (title, text) => `<div class="card gate"><div class="sico" style="background:var(--badbg);color:var(--bad)">${I('ban', 26)}</div><h3>${esc(title)}</h3><p>${esc(text)}</p></div>`;
+const walletGate = (title, text) => `<div class="card gate"><div class="sico">${I('wallet', 26)}</div><h3>${esc(title)}</h3><p>${esc(text)}</p><button class="btn" data-act="wallet">${I('wallet', 18)} เชื่อมต่อ Wallet</button></div>`;
+
+/* ---------- การตรวจสอบ (ตรรกะเดียวกับ verifyCertificate ในสัญญา) ---------- */
+function qrModeHtml() {
+  const list = S.certs.filter(c => c.status === 'valid');
+  if (!list.length) return '<p class="sub">ยังไม่มีใบรับรองที่ยังมีผลให้สร้าง QR</p>';
+  const cur = list.find(c => c.id === S.vId) || list[0];
+  const url = verifyLink(cur.id);
+  let svg = '';
+  try { svg = url ? SKILLTRUST_QR.svg(url, 200) : ''; } catch (e) { svg = ''; }
+  return `<p class="sub">เลือกใบรับรอง แล้วสแกน QR ด้วยมือถือเพื่อเปิดหน้าตรวจสอบที่อ่านจากบล็อกเชน</p>
+    <select class="inp" id="qrSel" style="width:100%;margin-bottom:12px">${list.map(c => `<option value="${esc(c.id)}"${c.id === cur.id ? ' selected' : ''}>${esc(c.id)} · ${esc(c.name)}</option>`).join('')}</select>
+    <div style="display:grid;place-items:center;margin:6px 0">${svg || '<div class="empty">ไม่มีที่อยู่เว็บสำหรับสร้างลิงก์</div>'}</div>
+    <p class="sub" style="word-break:break-all;font-size:12px;margin:8px 0 0">${esc(url)}</p>
+    ${url && isLocalUrl(url) ? '<p class="sub" style="font-size:12.5px;color:var(--bad)">ลิงก์นี้เป็นที่อยู่ในเครื่องนี้ มือถือเปิดไม่ได้ ต้องตั้ง PUBLIC_VERIFY_URL เป็นที่อยู่เว็บสาธารณะก่อน</p>' : ''}
+    ${url ? `<div style="margin-top:12px"><button class="btn sm" data-act="qrOpen" data-arg="${esc(cur.id)}">เปิดหน้าตรวจสอบสาธารณะ</button></div>` : ''}`;
+}
+function verifyById(raw) {
+  const q = (raw || '').trim().toLowerCase();
+  if (!q) return resBox('warn', 'alert', 'กรุณากรอกรหัสใบรับรอง', '');
+  const rec = S.certs.find(c => c.id.toLowerCase() === q);
+  if (!rec) return resBox('warn', 'alert', 'ไม่พบใบรับรองรหัสนี้', `<p>ตรวจสอบรหัสอีกครั้ง หรือใช้การอัปโหลดไฟล์ PDF แทน</p>`);
+  const onChain = chain.get(rec.fileHash) === rec.id;
+  const ok = rec.status === 'valid' && onChain;
+  const body = `<h4>${ok ? 'ใบรับรองถูกต้อง ยังมีผลใช้งาน' : rec.status === 'revoked' ? 'ใบรับรองถูกเพิกถอนแล้ว' : 'Hash ไม่ตรงกับบล็อกเชน'}</h4>
+    <dl><div><dt>ผู้รับ</dt><dd>${esc(rec.name)}</dd></div><div><dt>หลักสูตร</dt><dd>${esc(cname(rec.course))}</dd></div>
+    <div><dt>วันที่ออก</dt><dd>${fmt(rec.date)}</dd></div><div><dt>Hash บนบล็อกเชน</dt><dd>${esc((rec.fileHash || '').slice(0, 12))}...${esc((rec.fileHash || '').slice(-6))}</dd></div></dl>
+    <div style="margin-top:12px"><button class="btn sm" data-act="chainVerify" data-arg="${esc(rec.id)}">ตรวจสถานะบน chain</button></div>
+    <div style="margin-top:16px">${paper(rec)}</div>`;
+  return resBox(ok ? 'ok' : rec.status === 'revoked' ? 'bad' : 'warn', ok ? 'check' : rec.status === 'revoked' ? 'x' : 'alert', ok ? 'Valid' : rec.status === 'revoked' ? 'Revoked' : 'Mismatch', body);
+}
+function verifyByHash(hash, typedId) {
+  const matchId = chain.get(hash);
+  if (!matchId) return resBox('bad', 'x', 'ไม่พบ Hash นี้ในบันทึก', `<p>ไฟล์อาจถูกแก้ไข หรือไม่ได้ออกโดยระบบนี้ Hash: <b>${esc(hash.slice(0, 14))}...</b></p>`);
+  const rec = S.certs.find(c => c.id === matchId);
+  if (typedId && typedId.trim() && typedId.trim().toLowerCase() !== matchId.toLowerCase())
+    return resBox('warn', 'alert', 'ไฟล์ตรงกับใบรับรองอีกรหัสหนึ่ง', `<p>ไฟล์นี้ตรงกับ ${esc(matchId)} ไม่ใช่รหัสที่กรอก</p>`);
+  if (rec.status === 'revoked') return resBox('bad', 'x', 'ไฟล์ตรงกับใบรับรองที่ถูกเพิกถอนแล้ว', `<div style="margin-top:12px">${paper(rec)}</div>`);
+  return resBox('ok', 'check', 'ไฟล์ตรงกับบันทึกบนบล็อกเชน', `<h4>เอกสารไม่ถูกแก้ไข และยังมีผลใช้งาน</h4><div style="margin-top:12px">${paper(rec)}</div>`);
+}
+
+/* ---------- หน้าผู้เข้าอบรม ---------- */
+function pDash() {
+  const w = walletOf();
+  if (!w) return walletGate('เชื่อมต่อ Wallet เพื่อดูแดชบอร์ดของคุณ', 'แดชบอร์ดแสดงหลักสูตรที่กำลังเรียนและใบรับรองที่ผูกกับบัญชีนี้');
+  const certs = myCerts(), enr = myEnr();
+  const valid = certs.filter(c => c.status === 'valid').length;
+  const rev = certs.filter(c => c.status === 'revoked').length;
+  const active = enr.filter(e => e.status !== 'certified').length;
+  return `
+    <div class="hero">
+      <div class="deco"></div><div class="deco2"></div>
+      <div style="position:relative;z-index:1">
+        <h2>สวัสดี, ${esc(me().name)}<br><em>ติดตามการเรียนและใบรับรองของคุณ</em></h2>
+        <p>ใบรับรองทุกใบผูกกับ Wallet ของคุณ และตรวจสอบความถูกต้องได้ตลอดเวลา</p>
+        <button class="btn white" data-act="nav" data-arg="catalog">${I('book', 18)} เลือกหลักสูตรเรียน</button>
+      </div>
+    </div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="stat"><div class="sico" style="background:#eee9ff;color:#6d4ddb">${I('award', 26)}</div><div><strong>${certs.length}</strong><small>ใบรับรองทั้งหมด</small></div></div>
+      <div class="stat"><div class="sico" style="background:var(--okbg);color:var(--ok)">${I('check', 26)}</div><div><strong>${valid}</strong><small>ยังใช้ได้</small></div></div>
+      <div class="stat"><div class="sico" style="background:#e6efff;color:var(--blue)">${I('pulse', 26)}</div><div><strong>${active}</strong><small>กำลังเรียนหรือรอยืนยัน</small></div></div>
+      <div class="stat"><div class="sico" style="background:var(--badbg);color:var(--bad)">${I('ban', 26)}</div><div><strong>${rev}</strong><small>ถูกเพิกถอน</small></div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="ch"><h3>หลักสูตรของฉัน</h3><button class="btn ghost sm" data-act="nav" data-arg="catalog">ดูทั้งหมด ${I('arrow', 14)}</button></div>
+        ${enr.length ? enr.map(e => {
+          const c = courseOf(e.course), k = crit(e.course);
+          return `<div class="row">
+            <div class="t"><b>${esc(cname(e.course))}</b><small>${esc(e.course)} · ${c.hours || 0} ชม.</small></div>
+            ${enrStatus(e)}
+          </div>
+          <div class="progress-l"><span>การเข้าเรียน ${e.att}% (เกณฑ์ ${k.att}%)</span><span>คะแนน ${e.score} (เกณฑ์ ${k.score})</span></div>
+          <div class="bar"><i style="width:${Math.min(100, e.att)}%"></i></div>`;
+        }).join('') : '<div class="empty">ยังไม่ได้ลงทะเบียนหลักสูตรใด</div>'}
+      </div>
+      <div class="card">
+        <div class="ch"><h3>ใบรับรองล่าสุด</h3><button class="btn ghost sm" data-act="nav" data-arg="my">ดูทั้งหมด ${I('arrow', 14)}</button></div>
+        ${certs.length ? certs.slice(0, 3).map(c => `
+          <div class="row">
+            <div class="ico-sq" style="background:${c.status === 'valid' ? '#e5f6ec' : '#fdeaea'};color:${c.status === 'valid' ? 'var(--ok)' : 'var(--bad)'}">${I(c.status === 'valid' ? 'check' : 'x', 18)}</div>
+            <div class="t"><b>${esc(cname(c.course))}</b><small>${esc(c.id)} · ${fmt(c.date)}</small></div>
+            ${statusTag(c)}
+          </div>`).join('') : '<div class="empty">ยังไม่มีใบรับรอง</div>'}
+      </div>
+    </div>`;
+}
+
+function pSettings() {
+  attEnsure();
+  const cur = ATT.myName || loadNameLocal() || '';
+  return `
+    <div class="ph"><div><h1>ตั้งค่า</h1><p>ชื่อที่กรอกที่นี่จะแสดงในระบบ และพิมพ์บนใบรับรองที่ออกให้คุณ</p></div></div>
+    <div id="attNotice"></div>
+    <div class="card" style="max-width:560px">
+      <div class="ch"><h3>ข้อมูลผู้เรียน</h3></div>
+      <form data-form="learnerName">
+        <label style="display:block;margin-bottom:6px"><b>ชื่อ-นามสกุล</b></label>
+        <input class="inp" name="lnName" maxlength="80" value="${esc(cur)}" placeholder="เช่น สมชาย ใจดี" style="width:100%">
+        <div id="lnErr" style="color:var(--bad);font-size:13px;min-height:18px;margin-top:6px"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn" type="submit">${I('check', 18)} บันทึกชื่อ</button></div>
+      </form>
+    </div>
+    ${chainCardHtml()}`;
+}
+
+function pCatalog() {
+  attEnsure();
+  return `
+    <div class="ph"><div><h1>หลักสูตรเปิดรับสมัคร</h1><p>กดลงทะเบียนได้ทันที แล้วจะเห็นคาบเช็กชื่อและแบบทดสอบของหลักสูตรนั้น</p></div></div>
+    <div id="attNotice"></div>
+    <div class="grid g3">
+      ${S.courses.map((c, i) => {
+        const k = crit(c.code);
+        let action;
+        if (ATT.enrolled[c.code]) action = `<span class="tag info">ลงทะเบียนแล้ว</span>`;
+        else if (ATT.pending[c.code]) action = `<button class="btn sm" disabled>กำลังลงทะเบียน…</button>`;
+        else action = `<button class="btn sm" data-act="enroll" data-arg="${esc(c.code)}">${I('plus', 15)} ลงทะเบียน</button>`;
+        return `<div class="ccard">
+          <div class="head" style="background:linear-gradient(135deg,${TONES[i % TONES.length]},#0b2a6f)"><span>${esc(c.code)}</span>${c.open ? '<span class="tag ok" style="font-size:11px">เปิดรับ</span>' : ''}</div>
+          <div class="body">
+            <b style="font-size:15px">${esc(c.name)}</b>
+            <div style="margin-top:4px"><small>เริ่ม ${fmt(c.start)} · ${c.hours} ชั่วโมง</small></div>
+            <div style="margin-top:8px"><small>เกณฑ์ผ่าน: เข้าเรียน ≥ ${k.att}% และคะแนน ≥ ${k.score}</small></div>
+            <div style="margin-top:14px;display:flex;justify-content:flex-end">${action}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function myIssuedHtml() {
+  const list = Object.values(ATT.myIssued || {}).sort((a, b) => ((b.issuedAt || 0) - (a.issuedAt || 0)) || String(b.id).localeCompare(String(a.id)));
+  if (!list.length) return '<div class="empty">ยังไม่มีใบรับรอง เมื่อผู้ออกใบรับรองออกใบให้คุณ ใบจะขึ้นที่นี่</div>';
+  return `<div class="muted" style="margin-bottom:14px">ใบรับรองทั้งหมด ${list.length} ใบ</div>` + list.map(c => `<div style="margin-bottom:22px">
+      ${visualCert({id: c.id, name: c.name, course: c.course, date: c.date, wallet: certWallet(c) || ATT.me || ''})}
+      <div style="margin-top:8px"><span class="tag ${c.status === 'revoked' ? 'warn' : 'ok'}">${c.status === 'revoked' ? 'ถูกเพิกถอน' : 'ยังมีผล'}</span></div>
+    </div>`).join('');
+}
+
+function pMy() {
+  if (S.role === 'trainee' && ATT.me) {
+    return `
+    <div class="ph"><div><h1>ใบรับรองของฉัน</h1><p>ใบรับรองที่ผู้ออกใบรับรองออกให้บัญชีของคุณ</p></div></div>
+    <div class="card"><div id="myIssued">${myIssuedHtml()}</div></div>`;
+  }
+  const w = walletOf();
+  if (!w) return walletGate('เชื่อมต่อ Wallet เพื่อดูใบรับรองของคุณ', 'ใบรับรองจะผูกกับบัญชี Wallet ของผู้เข้าอบรม');
+  const mine = myCerts();
+  return `
+    <div class="ph"><div><h1>ใบรับรองของฉัน</h1><p>รายการใบรับรองทั้งหมดที่ผูกกับ ${esc(w)}</p></div></div>
+    ${mine.length ? `<div class="certgrid">${mine.map(c => `
+      <div class="certitem">
+        ${c.image ? `<img src="${c.image}" alt="ใบรับรอง ${esc(c.id)}" style="width:100%;border-radius:14px;border:1px solid var(--line)">` : paper(c)}
+        <div><span>${statusTag(c)} <small style="color:var(--muted);margin-left:6px">${fmt(c.date)}</small></span></div>
+        <div class="acts">
+          <button class="btn sm" data-act="openVerify" data-arg="${esc(c.id)}">${I('search', 15)} ตรวจสอบ</button>
+        </div>
+      </div>`).join('')}</div>`
+    : '<div class="card empty">ยังไม่มีใบรับรองที่ผูกกับบัญชีนี้</div>'}`;
+}
+
+/* ---------- หน้าผู้ดูแลและผู้ออก ---------- */
+function pOverview() {
+  const certs = scopeCerts();
+  const valid = certs.filter(c => c.status === 'valid').length;
+  const rev = certs.length - valid;
+  const issuers = S.accounts.filter(a => a.active).length;
+  const pending = S.enrollments.filter(e => e.status === 'pending').length;
+  const isAdmin = S.role === 'admin';
+  const perCourse = S.courses.map(c => ({c, n: certs.filter(x => x.course === c.code).length}));
+  const max = Math.max(1, ...perCourse.map(x => x.n));
+  return `
+    <div class="hero">
+      <div class="deco"></div><div class="deco2"></div>
+      <div style="position:relative;z-index:1">
+        <h2>สวัสดี, ${esc(me().name)}<br><em>ระบบใบรับรองดิจิทัลที่ตรวจสอบได้</em></h2>
+        <p>ยืนยันผลการเรียนก่อนออกใบรับรอง บันทึก Hash บน Ethereum และตรวจสอบสถานะได้ทันที</p>
+        ${isAuthorizedIssuer()
+          ? `<button class="btn white" data-act="nav" data-arg="enroll">${I('list', 18)} ตรวจการลงทะเบียน</button>`
+          : `<button class="btn white" data-act="nav" data-arg="verify">${I('search', 18)} ตรวจสอบใบรับรอง</button>`}
+      </div>
+    </div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="stat"><div class="sico" style="background:#e6efff;color:var(--blue)">${I('book', 26)}</div><div><strong>${S.courses.length}</strong><small>หลักสูตร</small></div></div>
+      <div class="stat"><div class="sico" style="background:#eee9ff;color:#6d4ddb">${I('award', 26)}</div><div><strong>${certs.length}</strong><small>ใบรับรองที่ออก</small></div></div>
+      <div class="stat"><div class="sico" style="background:var(--okbg);color:var(--ok)">${I('check', 26)}</div><div><strong>${valid}</strong><small>ยังมีผลใช้งาน</small></div></div>
+      ${isAdmin
+        ? `<div class="stat"><div class="sico" style="background:#fdf3dc;color:var(--warn)">${I('shield', 26)}</div><div><strong>${issuers}</strong><small>ผู้ออกที่ได้รับสิทธิ์</small></div></div>`
+        : `<div class="stat"><div class="sico" style="background:#fdf3dc;color:var(--warn)">${I('list', 26)}</div><div><strong>${pending}</strong><small>รอยืนยันการลงทะเบียน</small></div></div>`}
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="ch"><div><h3>ใบรับรองแยกตามหลักสูตร</h3><p class="sub" style="margin:0">จำนวนใบรับรองที่ออกในแต่ละหลักสูตร${isAdmin ? '' : ' ที่คุณออก'}</p></div></div>
+        ${perCourse.map(({c, n}) => `
+          <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px"><span>${esc(c.name)}</span><b>${n}</b></div>
+            <div class="bar"><i style="width:${Math.round(n / max * 100)}%"></i></div>
+          </div>`).join('')}
+      </div>
+      <div class="card">
+        <div class="ch"><h3>กิจกรรมล่าสุด</h3><span class="tag info">${I('pulse', 14)} Live</span></div>
+        ${S.log.slice(0, 6).map(l => `
+          <div class="row"><div class="ico-sq" style="background:#e6efff;color:var(--blue)">${I('file', 18)}</div>
+          <div class="t"><b style="font-weight:500">${esc(l.text)}</b><small>${esc(l.t)}</small></div></div>`).join('') || '<div class="empty">ยังไม่มีกิจกรรม</div>'}
+      </div>
+    </div>`;
+}
+
+function pCoursesOld() {
+  const isAdmin = S.role === 'admin';
+  return `
+    <div class="ph"><div><h1>หลักสูตร</h1><p>ผู้ดูแลระบบสร้างหลักสูตรและเปิดหรือปิดรับสมัครได้</p></div></div>
+    <div class="grid g2">
+      <div class="grid g3">
+        ${S.courses.map((c, i) => `
+          <div class="ccard">
+            <div class="head" style="background:linear-gradient(135deg,${TONES[i % TONES.length]},#0b2a6f)"><span>${esc(c.code)}</span></div>
+            <div class="body">
+              <b style="font-size:15px">${esc(c.name)}</b>
+              <div style="margin-top:4px"><small>เริ่ม ${fmt(c.start)} · ${c.hours} ชม.</small></div>
+              <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+                <span class="tag ${c.open ? 'ok' : 'off'}">${c.open ? 'เปิดรับสมัคร' : 'ปิดรับสมัคร'}</span>
+                ${isAdmin ? `<button class="btn ghost sm" data-act="toggleCourse" data-arg="${esc(c.code)}">${c.open ? 'ปิดรับ' : 'เปิดรับ'}</button>` : ''}
+              </div>
+              <div style="margin-top:8px"><small style="color:var(--muted)">${S.certs.filter(x => x.course === c.code).length} ใบรับรองที่ออกแล้ว</small></div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function pIssuers() {
+  return `
+    <div class="ph"><div><h1>สิทธิ์ผู้ออกใบรับรอง</h1><p>เฉพาะบัญชีที่ได้รับสิทธิ์เท่านั้นที่ยืนยันผลและออกหรือเพิกถอนใบรับรองได้</p></div></div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="stat"><div class="sico" style="background:var(--okbg);color:var(--ok)">${I('shield', 26)}</div><div><strong>${S.accounts.filter(a => a.active).length}</strong><small>ผู้ออกที่มีสิทธิ์</small></div></div>
+      <div class="stat"><div class="sico" style="background:#eee9ff;color:#6d4ddb">${I('award', 26)}</div><div><strong>${S.certs.length}</strong><small>ใบรับรองที่ออกทั้งหมด</small></div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>บัญชีที่มีสิทธิ์</h3>
+        <p class="sub">กดเพื่อเปิดหรือปิดสิทธิ์ของแต่ละ Wallet</p>
+        ${S.accounts.map(a => `
+          <div class="row">
+            <div class="ico-sq" style="background:${a.admin ? '#eee9ff' : '#e6efff'};color:${a.admin ? '#6d4ddb' : 'var(--blue)'}">${I(a.admin ? 'shield' : 'user', 18)}</div>
+            <div class="t"><b>${esc(a.name)} ${a.admin ? '<span class="tag info" style="margin-left:6px">Admin</span>' : ''}</b><small>${esc(a.wallet)}</small></div>
+            ${a.admin ? '<span class="tag ok">Active</span>'
+              : `<span class="tag ${a.active ? 'ok' : 'off'}">${a.active ? 'Active' : 'Disabled'}</span>
+                 <button class="btn ${a.active ? 'danger' : ''} sm" data-act="toggleIssuer" data-arg="${esc(a.wallet)}">${a.active ? 'ยกเลิกสิทธิ์' : 'ให้สิทธิ์'}</button>`}
+          </div>`).join('')}
+      </div>
+      <div class="card">
+        <h3>เพิ่มผู้ออกใบรับรอง</h3>
+        <p class="sub">ระบุ Wallet ที่ต้องการให้สิทธิ์</p>
+        <form data-form="issuer">
+          <div class="field" style="margin-bottom:14px"><label for="aWallet">Wallet address</label><input class="inp" id="aWallet" placeholder="0x..."></div>
+          <div class="field" style="margin-bottom:14px"><label for="aName">ชื่อหน่วยงาน</label><input class="inp" id="aName" placeholder="เช่น ฝ่ายทรัพยากรบุคคล"></div>
+          <div class="err" id="aErr"></div>
+          <button class="btn" type="submit">${I('plus', 18)} มอบสิทธิ์</button>
+        </form>
+      </div>
+    </div>`;
+}
+
+function pEnroll() {
+  if (!isAuthorizedIssuer()) return gateNote('บัญชีนี้ไม่มีสิทธิ์จัดการการลงทะเบียน', 'สิทธิ์ของบัญชีนี้ถูกยกเลิกหรือยังไม่ได้รับมอบ');
+  LRN.unseen = 0;
+  const list = []; // ข้อมูลตัวอย่างถูกลบแล้ว ใช้ผลจากระบบในการ์ดด้านบนแทน
+  return `
+    <div class="ph"><div><h1>การลงทะเบียนและผลการเรียน</h1><p>ยืนยันผู้สมัคร บันทึกการเข้าเรียนและคะแนน ผู้ที่ผ่านเกณฑ์จึงจะออกใบรับรองได้</p></div></div>
+    <div class="card"><div class="ch"><h3>ผลจากระบบ · ผู้เรียนที่ลงทะเบียนจริง</h3></div><div id="lrnResults"></div></div>
+    `;
+}
+
+function pIssueOld() {
+  if (!isAuthorizedIssuer()) return gateNote('บัญชีนี้ไม่มีสิทธิ์ออกใบรับรอง', 'สิทธิ์ของบัญชีนี้ถูกยกเลิกหรือยังไม่ได้รับมอบ ติดต่อผู้ดูแลระบบ');
+  const eligible = S.enrollments.filter(e => e.status === 'enrolled' && passes(e));
+  if (!eligible.length) return `
+    <div class="ph"><div><h1>ออกใบรับรอง</h1><p>ออกได้เฉพาะผู้เรียนที่ผ่านเกณฑ์การเข้าเรียนและคะแนน</p></div></div>
+    <div class="card gate"><div class="sico">${I('award', 26)}</div><h3>ยังไม่มีผู้เรียนที่พร้อมรับใบรับรอง</h3><p>ไปที่หน้าการลงทะเบียนเพื่อยืนยันผู้สมัครและบันทึกผล</p><button class="btn" data-act="nav" data-arg="enroll">${I('list', 18)} ไปที่การลงทะเบียน</button></div>`;
+  const first = eligible[0];
+  return `
+    <div class="ph"><div><h1>ออกใบรับรอง</h1><p>เลือกผู้เรียนที่ผ่านเกณฑ์ ระบบสร้างรหัสอ้างอิงและบันทึก Hash ของไฟล์ไว้บนบล็อกเชน</p></div></div>
+    <div class="grid g2">
+      <form class="card" data-form="issue" data-live="issue" style="margin:0">
+        <h3>ข้อมูลผู้รับ</h3>
+        <p class="sub">ข้อมูลส่วนบุคคลเก็บในระบบภายในเท่านั้น ไม่นำขึ้นบล็อกเชน</p>
+        <div class="fgrid">
+          <div class="field full"><label for="iEnr">ผู้เรียนที่ผ่านเกณฑ์</label><select class="inp" id="iEnr">${eligible.map(e => `<option value="${esc(e.id)}">${esc(e.name)} · ${esc(cname(e.course))}</option>`).join('')}</select></div>
+          <div class="field"><label for="iDate">วันที่ออก</label><input class="inp" type="date" id="iDate" max="${todayISO()}" value="${todayISO()}"></div>
+          <div class="field full">
+            <label>ไฟล์ PDF (ไม่บังคับ)</label>
+            <label class="dropzone">${I('upload', 26)}<div>${S.issueFile ? esc(S.issueFile.name) : 'ลากไฟล์มาวาง หรือกดเลือกไฟล์'}</div><b>เลือกไฟล์</b><input type="file" accept="application/pdf" data-file="issue"></label>
+            <small style="color:var(--muted)">ถ้าไม่แนบไฟล์ ระบบจะคำนวณ Hash จากข้อมูลใบรับรอง</small>
+          </div>
+        </div>
+        <div class="err" id="iErr"></div>
+        <button class="btn" style="margin-top:10px" type="submit">${I('award', 18)} ออกใบรับรองและบันทึก Hash</button>
+      </form>
+      <div>
+        <div class="card" style="margin:0 0 14px"><h3 style="margin-bottom:14px">ตัวอย่างใบรับรอง</h3><div id="livePreview">${previewPaper(previewData(first))}</div></div>
+        <div class="card" style="margin:0"><h3>ขั้นตอนการบันทึกบนบล็อกเชน</h3>
+          <div class="row"><span class="tag info">1</span><div class="t">คำนวณ SHA-256 ของไฟล์ PDF</div></div>
+          <div class="row"><span class="tag info">2</span><div class="t">เรียกฟังก์ชันออกใบรับรองเพื่อเก็บ Hash รหัส วันที่ และ Wallet ผู้รับ</div></div>
+          <div class="row"><span class="tag info">3</span><div class="t">ผู้ตรวจยืนยันได้โดยคำนวณ Hash ของไฟล์ที่ได้รับแล้วเทียบกัน</div></div>
+        </div>
+      </div>
+    </div>`;
+}
+function visualCert(d) {
+  const idx = Math.max(0, S.courses.findIndex(c => c.code === d.course));
+  const tone = TONES[idx % TONES.length];
+  const course = courseOf(d.course);
+  return `<div class="vcert" style="--tone:${tone}">
+    <div class="vband"><span>${I('cap', 20)} SkillTrust Academy</span><b>${esc(d.course)}</b></div>
+    <div class="vbody">
+      <div class="vkick">Certificate of Completion</div>
+      <h4>${esc(d.name || 'ชื่อผู้รับ')}</h4>
+      <div class="vcourse">${esc(course.name || d.course || '')}</div>
+      <div class="vmeta">
+        <div>รหัสอ้างอิง<b>${esc(d.id)}</b></div>
+        <div>วันที่ออก<b>${d.date ? fmt(d.date) : '-'}</b></div>
+        <div>จำนวนชั่วโมง<b>${course.hours || 0} ชม.</b></div>
+        <div>Wallet ผู้รับ<b>${esc(d.wallet || '-')}</b></div>
+      </div>
+    </div>
+    ${cardQrHtml(d.id)}
+  </div>`;
+}
+// QR ของใบรับรองใบนี้ แทนไอคอนติ๊กถูกบนการ์ด (ถ้าสร้างลิงก์ไม่ได้ จะใช้ไอคอนเดิม)
+function cardQrHtml(id) {
+  let svg = '';
+  try { const u = id ? verifyLink(id) : ''; svg = u ? SKILLTRUST_QR.svg(u, 92) : ''; } catch (e) { svg = ''; }
+  if (!svg) return `<div class="seal" style="background:radial-gradient(circle at 30% 30%,var(--tone),#0b2a6f)">${I('check', 26)}</div>`;
+  return `<div class="seal" title="สแกนเพื่อตรวจสอบใบรับรองนี้บนบล็อกเชน" style="width:92px;height:92px;background:#fff;border-radius:8px;border:1px solid #eadfc3;overflow:hidden;line-height:0">${svg}</div>`;
+}
+function sysPassedHtml(code) {
+  const list = lrnRows().filter(r => r.done && r.code === code);
+  if (!list.length) return '<div class="empty">ยังไม่มีผู้เรียนที่ผ่านเกณฑ์ในหลักสูตรนี้ในระบบ</div>';
+  return list.map(r => {
+    const c = S.certs.find(x => x.lrnUid === r.uid && x.course === r.code);
+    return `<div class="row">
+      <div class="t"><b>${esc(attName(r.uid))}</b><small>เช็กชื่อ ${r.attended}/${r.total} คาบ · แบบทดสอบเฉลี่ย ${r.score} / 100</small></div>
+      ${c ? `<span class="tag ok">ออกใบแล้ว ${esc(c.id)}</span>` : '<span class="tag warn">รอออกใบ</span>'}
+    </div>`;
+  }).join('');
+}
+
+function pIssue() {
+  if (!isAuthorizedIssuer()) return gateNote('บัญชีนี้ไม่มีสิทธิ์ออกใบรับรอง', 'สิทธิ์ของบัญชีนี้ถูกยกเลิกหรือยังไม่ได้รับมอบ ติดต่อผู้ดูแลระบบ');
+  const pick = S.courses.find(c => c.code === S.issueCourse) ? S.issueCourse : S.courses[0].code;
+  S.issueCourse = pick;
+  const eligible = lrnRows().filter(r => r.done && r.code === pick);
+  const firstEn = eligible[0] ? sysEnrOf(eligible[0].uid + '|' + eligible[0].code) : null;
+  const previewFor = firstEn ? {id: firstEn.cert ? firstEn.cert.id : nextId(), name: firstEn.name, course: firstEn.course, date: todayISO(), wallet: firstEn.wallet} : {id: nextId(), name: '', course: pick, date: todayISO(), wallet: '-'};
+  return `
+    <div class="ph"><div><h1>ออกใบรับรอง</h1><p>เลือกหลักสูตรก่อน แล้วเลือกผู้เรียนที่ผ่านเกณฑ์ ตัวอย่างใบรับรองจะเปลี่ยนตามที่เลือก</p></div></div>
+    ${readyBanner()}
+    <div class="card" style="margin-bottom:16px">
+      <div class="ch"><h3>ผู้เรียนที่ผ่านเกณฑ์จากระบบ · ${esc(pick)}</h3><span class="tag info">รอออกใบ</span></div>
+      <p class="sub" style="margin-bottom:8px">ผู้เรียนที่ผ่านเกณฑ์จะรอให้ผู้ออกใบกดออกใบรับรอง ใช้ชื่อจากหน้าตั้งค่า และถ้าผู้เรียนเปลี่ยนชื่อภายหลัง ระบบจะปรับชื่อบนใบที่ออกแล้วให้ตรง</p>
+      <div id="sysPassed">${sysPassedHtml(pick)}</div>
+    </div>
+    <div class="grid g2">
+      <form class="card" data-form="issue" data-live="issue" data-live="issue" style="margin:0">
+        <h3>1. เลือกหลักสูตร</h3>
+        <p class="sub" style="margin-bottom:16px">แต่ละหลักสูตรมีสีของใบรับรองเป็นของตัวเอง</p>
+        <div class="fgrid">
+          <div class="field full"><label for="iCourseSel">หลักสูตร</label><select class="inp" id="iCourseSel">${S.courses.map(c => `<option value="${esc(c.code)}" ${c.code === pick ? 'selected' : ''}>${esc(c.code)} · ${esc(c.name)}</option>`).join('')}</select></div>
+          <div class="field full"><label for="iEnr">2. เลือกผู้เรียนที่ผ่านเกณฑ์</label>${eligible.length
+            ? `<select class="inp" id="iEnr">${eligible.map(r => { const x = sysEnrOf(r.uid + '|' + r.code); return `<option value="${esc(r.uid + '|' + r.code)}">${esc(x.name)} · รหัสอ้างอิง ${esc(x.id)}</option>`; }).join('')}</select>`
+            : `<div class="inp" style="color:var(--muted)">ยังไม่มีผู้เรียนที่ผ่านเกณฑ์ในหลักสูตรนี้</div>`}</div>
+          <div class="field"><label for="iDate">วันที่ออก</label><input class="inp" type="date" id="iDate" max="${todayISO()}" value="${todayISO()}"></div>
+        </div>
+        <div class="sub" id="issueState" style="margin-top:10px"></div>
+        <div class="err" id="iErr"></div>
+        <button class="btn" id="issueBtn" style="margin-top:10px" type="submit" disabled>${I('award', 18)} ออกใบรับรองและบันทึก Hash</button>
+      </form>
+      <div class="card" style="margin:0">
+        <div class="ch"><h3>ตัวอย่างใบรับรอง</h3><span class="tag info">${I('eye', 14)} Preview</span></div>
+        <div id="livePreview">${visualCert(previewFor)}</div>
+        <button class="btn ghost sm" type="button" data-act="genCert" style="margin-top:14px">${I('file', 16)} สร้างภาพใบรับรอง</button>
+        ${qrNoteHtml()}
+        <div id="genOut"></div>
+      </div>
+    </div>`;
+}
+function readyCount(code) { return S.enrollments.filter(e => e.status === 'enrolled' && passes(e) && e.course === code).length; }
+function readyTotal() { return S.courses.reduce((s, c) => s + readyCount(c.code), 0); }
+function issuePaint() {
+  const f = document.querySelector('form[data-form="issue"]');
+  if (!f) return;
+  const st = document.getElementById('issueState'), btn = document.getElementById('issueBtn');
+  const canIssue = !!ATT.canEdit && isAuthorizedIssuer();
+  const en = f.iEnr ? sysEnrOf(f.iEnr.value) : null;
+  let text = '', disable = true;
+  if (!canIssue) text = 'เฉพาะผู้ออกใบรับรองที่ได้รับสิทธิ์เท่านั้นที่ออกใบรับรองและบันทึก Hash ได้';
+  else if (!en) text = 'ยังไม่มีผู้เรียนที่ผ่านเกณฑ์ในหลักสูตรนี้';
+  else if (en.cert) text = 'ผู้เรียนรายนี้ออกใบรับรองแล้ว รหัสอ้างอิง ' + en.cert.id + ' (ออกจากผลการเรียนที่ผ่านเกณฑ์)';
+  else { text = 'พร้อมออกใบรับรองและบันทึก Hash'; disable = false; }
+  if (st) st.textContent = text;
+  if (btn) btn.disabled = disable;
+}
+
+// Wallet ผู้รับ: ใช้แอดเดรส 0x ที่ผู้เรียนเชื่อมไว้ ถ้ายังไม่มีจึงใช้รหัสผู้เรียนภายในระบบ (local-…) ชั่วคราว
+const isEthAddr = a => /^0x[0-9a-fA-F]{40}$/.test(a || '');
+function learnerWalletOf(uid) { const w = (ATT.learnerWallets || {})[uid]; return isEthAddr(w) ? w : uid; }
+function certWallet(c) { return isEthAddr(c.wallet) ? c.wallet : (c.lrnUid ? learnerWalletOf(c.lrnUid) : c.wallet); }
+function sysEnrOf(value) {
+  const [uid, code] = String(value || '').split('|');
+  if (!uid || !code) return null;
+  const cert = S.certs.find(c => c.lrnUid === uid && c.course === code);
+  return {uid, code, name: attName(uid), course: code, wallet: learnerWalletOf(uid), id: cert ? cert.id : 'รอออกใบ', cert};
+}
+function readyBanner() {
+  const rows = S.courses.map(c => ({c, n: lrnRows().filter(r => r.done && r.code === c.code).length})).filter(x => x.n > 0);
+  if (!rows.length) return '';
+  return `<div class="card" style="background:#f2f8ff;border-color:#cfe2ff">
+    <div class="ch"><h3 style="display:flex;gap:8px;align-items:center;color:var(--blue)">${I('pulse', 18)} มีผู้เรียนพร้อมออกใบรับรอง</h3></div>
+    ${rows.map(({c, n}) => `<div class="row">
+      <div class="ico-sq" style="background:#e6efff;color:var(--blue)">${I('award', 18)}</div>
+      <div class="t"><b>${esc(c.name)}</b><small>${esc(c.code)} · ${n} คนผ่านเกณฑ์แล้ว</small></div>
+      <button class="btn ghost sm" type="button" data-act="pickCourse" data-arg="${esc(c.code)}">เลือกหลักสูตรนี้</button>
+    </div>`).join('')}
+  </div>`;
+}
+function dataUrlToBytes(dataUrl) {
+  const bin = atob(dataUrl.split(',')[1]);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+/* ตัวสร้าง QR Code (โหมดไบต์ ระดับแก้ไขข้อผิดพลาด M เวอร์ชัน 1-12) เขียนเอง ไม่ใช้ไลบรารีภายนอก */
+const SKILLTRUST_QR = (() => {
+  const ECC_PER_BLOCK = [-1, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22];
+  const NUM_BLOCKS    = [-1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8];
+  const MAX_VER = 12;
+  const rawModules = v => { let r = (16 * v + 128) * v + 64; if (v >= 2) { const n = Math.floor(v / 7) + 2; r -= (25 * n - 10) * n - 55; if (v >= 7) r -= 36; } return r; };
+  const dataCodewords = v => Math.floor(rawModules(v) / 8) - ECC_PER_BLOCK[v] * NUM_BLOCKS[v];
+  // GF(256)
+  const EXP = new Array(512), LOG = new Array(256);
+  (() => { let x = 1; for (let i = 0; i < 255; i++) { EXP[i] = x; LOG[x] = i; x <<= 1; if (x & 0x100) x ^= 0x11D; } for (let i = 255; i < 512; i++) EXP[i] = EXP[i - 255]; })();
+  const gmul = (a, b) => (a === 0 || b === 0) ? 0 : EXP[LOG[a] + LOG[b]];
+  function divisor(deg) {
+    const r = new Array(deg).fill(0); r[deg - 1] = 1;
+    let root = 1;
+    for (let i = 0; i < deg; i++) {
+      for (let j = 0; j < r.length; j++) { r[j] = gmul(r[j], root); if (j + 1 < r.length) r[j] ^= r[j + 1]; }
+      root = gmul(root, 2);
+    }
+    return r;
+  }
+  function remainder(data, div) {
+    const r = div.map(() => 0);
+    for (const b of data) { const f = b ^ r.shift(); r.push(0); div.forEach((c, i) => { r[i] ^= gmul(c, f); }); }
+    return r;
+  }
+  function utf8(str) { return Array.from(new TextEncoder().encode(str)); }
+  function make(text) {
+    const bytes = utf8(text);
+    let ver = 1;
+    for (; ver <= MAX_VER; ver++) {
+      const cc = ver < 10 ? 8 : 16;
+      if (4 + cc + bytes.length * 8 <= dataCodewords(ver) * 8) break;
+    }
+    if (ver > MAX_VER) throw new Error('ข้อความยาวเกินไปสำหรับ QR');
+    const bits = [];
+    const put = (val, len) => { for (let i = len - 1; i >= 0; i--) bits.push((val >>> i) & 1); };
+    put(4, 4); put(bytes.length, ver < 10 ? 8 : 16); bytes.forEach(b => put(b, 8));
+    const cap = dataCodewords(ver) * 8;
+    put(0, Math.min(4, cap - bits.length));
+    while (bits.length % 8) bits.push(0);
+    for (let pad = 0xEC; bits.length < cap; pad ^= 0xEC ^ 0x11) put(pad, 8);
+    const data = []; for (let i = 0; i < bits.length; i += 8) { let b = 0; for (let j = 0; j < 8; j++) b = (b << 1) | bits[i + j]; data.push(b); }
+    // ECC + interleave
+    const nb = NUM_BLOCKS[ver], el = ECC_PER_BLOCK[ver], raw = Math.floor(rawModules(ver) / 8);
+    const nShort = nb - raw % nb, shortLen = Math.floor(raw / nb);
+    const div = divisor(el), blocks = [];
+    for (let i = 0, k = 0; i < nb; i++) {
+      const dat = data.slice(k, k + shortLen - el + (i < nShort ? 0 : 1)); k += dat.length;
+      const ecc = remainder(dat, div);
+      if (i < nShort) dat.push(0);
+      blocks.push(dat.concat(ecc));
+    }
+    const all = [];
+    for (let i = 0; i < blocks[0].length; i++) blocks.forEach((b, j) => { if (i !== shortLen - el || j >= nShort) all.push(b[i]); });
+    // matrix
+    const size = ver * 4 + 17;
+    const mod = Array.from({length: size}, () => new Array(size).fill(false));
+    const fn = Array.from({length: size}, () => new Array(size).fill(false));
+    const setF = (x, y, d) => { mod[y][x] = d; fn[y][x] = true; };
+    for (let i = 0; i < size; i++) { setF(6, i, i % 2 === 0); setF(i, 6, i % 2 === 0); }
+    const finder = (cx, cy) => { for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { const d = Math.max(Math.abs(dx), Math.abs(dy)), x = cx + dx, y = cy + dy; if (x >= 0 && x < size && y >= 0 && y < size) setF(x, y, d !== 2 && d !== 4); } };
+    finder(3, 3); finder(size - 4, 3); finder(3, size - 4);
+    const pos = (() => { if (ver === 1) return []; const n = Math.floor(ver / 7) + 2; const step = Math.ceil((ver * 4 + 4) / (n * 2 - 2)) * 2; const r = [6]; for (let p = size - 7; r.length < n; p -= step) r.splice(1, 0, p); return r; })();
+    pos.forEach((px, i) => pos.forEach((py, j) => {
+      if ((i === 0 && j === 0) || (i === 0 && j === pos.length - 1) || (i === pos.length - 1 && j === 0)) return;
+      for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) setF(px + dx, py + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1);
+    }));
+    const formatBits = mask => {
+      const d = (0 << 3) | mask; // ระดับ M = 0
+      let rem = d; for (let i = 0; i < 10; i++) rem = (rem << 1) ^ ((rem >>> 9) * 0x537);
+      const b = ((d << 10) | rem) ^ 0x5412, bit = i => ((b >>> i) & 1) !== 0;
+      for (let i = 0; i <= 5; i++) setF(8, i, bit(i)); setF(8, 7, bit(6)); setF(8, 8, bit(7)); setF(7, 8, bit(8));
+      for (let i = 9; i < 15; i++) setF(14 - i, 8, bit(i));
+      for (let i = 0; i < 8; i++) setF(size - 1 - i, 8, bit(i));
+      for (let i = 8; i < 15; i++) setF(8, size - 15 + i, bit(i));
+      setF(8, size - 8, true);
+    };
+    formatBits(0);
+    if (ver >= 7) {
+      let rem = ver; for (let i = 0; i < 12; i++) rem = (rem << 1) ^ ((rem >>> 11) * 0x1F25);
+      const b = (ver << 12) | rem;
+      for (let i = 0; i < 18; i++) { const bt = ((b >>> i) & 1) !== 0, a = size - 11 + i % 3, c = Math.floor(i / 3); setF(a, c, bt); setF(c, a, bt); }
+    }
+    // codewords
+    let bi = 0;
+    for (let right = size - 1; right >= 1; right -= 2) {
+      if (right === 6) right = 5;
+      for (let vert = 0; vert < size; vert++) for (let j = 0; j < 2; j++) {
+        const x = right - j, up = ((right + 1) & 2) === 0, y = up ? size - 1 - vert : vert;
+        if (!fn[y][x] && bi < all.length * 8) { mod[y][x] = ((all[bi >>> 3] >>> (7 - (bi & 7))) & 1) !== 0; bi++; }
+      }
+    }
+    const MASKS = [(x, y) => (x + y) % 2 === 0, (x, y) => y % 2 === 0, (x, y) => x % 3 === 0, (x, y) => (x + y) % 3 === 0,
+      (x, y) => (Math.floor(x / 3) + Math.floor(y / 2)) % 2 === 0, (x, y) => x * y % 2 + x * y % 3 === 0,
+      (x, y) => (x * y % 2 + x * y % 3) % 2 === 0, (x, y) => ((x + y) % 2 + x * y % 3) % 2 === 0];
+    const toggle = m => { for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) if (!fn[y][x] && MASKS[m](x, y)) mod[y][x] = !mod[y][x]; };
+    const penalty = () => {
+      let p = 0, dark = 0;
+      const lines = [];
+      for (let y = 0; y < size; y++) lines.push(mod[y].slice());
+      for (let x = 0; x < size; x++) lines.push(mod.map(r => r[x]));
+      lines.forEach(l => {
+        let run = 1;
+        for (let i = 1; i <= l.length; i++) { if (i < l.length && l[i] === l[i - 1]) run++; else { if (run >= 5) p += 3 + run - 5; run = 1; } }
+        const s = l.map(v => v ? 1 : 0).join('');
+        for (const pat of ['10111010000', '00001011101']) { let k = -1; while ((k = s.indexOf(pat, k + 1)) !== -1) p += 40; }
+      });
+      for (let y = 0; y < size - 1; y++) for (let x = 0; x < size - 1; x++) { const c = mod[y][x]; if (c === mod[y][x + 1] && c === mod[y + 1][x] && c === mod[y + 1][x + 1]) p += 3; }
+      mod.forEach(r => r.forEach(v => { if (v) dark++; }));
+      const total = size * size; p += (Math.ceil(Math.abs(dark * 20 - total * 10) / total) - 1) * 10;
+      return p;
+    };
+    let best = 0, bestP = Infinity;
+    for (let m = 0; m < 8; m++) { toggle(m); formatBits(m); const p = penalty(); if (p < bestP) { best = m; bestP = p; } toggle(m); }
+    toggle(best); formatBits(best);
+    return {size, modules: mod, version: ver, mask: best};
+  }
+  // SVG ที่เป็นสี่เหลี่ยมเดียวต่อโมดูลมืด (ขอบขาว 4 โมดูลตามมาตรฐาน)
+  function svg(text, px) {
+    const q = make(text), b = 4, n = q.size + b * 2;
+    let d = '';
+    q.modules.forEach((row, y) => row.forEach((v, x) => { if (v) d += `M${x + b} ${y + b}h1v1h-1z`; }));
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n} ${n}" width="${px}" height="${px}" shape-rendering="crispEdges" role="img" aria-label="QR Code ตรวจสอบใบรับรอง"><rect width="${n}" height="${n}" fill="#fff"/><path d="${d}" fill="#000"/></svg>`;
+  }
+  function draw(ctx, x, y, px, text) {
+    const q = make(text), b = 4, n = q.size + b * 2, s = px / n;
+    ctx.fillStyle = '#fff'; ctx.fillRect(x, y, px, px);
+    ctx.fillStyle = '#000';
+    q.modules.forEach((row, my) => row.forEach((v, mx) => { if (v) ctx.fillRect(x + (mx + b) * s, y + (my + b) * s, Math.ceil(s), Math.ceil(s)); }));
+  }
+  return {make, svg, draw};
+})();
+
+/* ---------- ลิงก์ตรวจสอบสำหรับ QR ---------- */
+// ใส่ที่อยู่เว็บที่มือถือเปิดได้ (เช่น https://ชื่อ.github.io/skilltrust/index.html) เพื่อให้ QR บนใบรับรองสแกนได้จากทุกที่
+const PUBLIC_VERIFY_URL = 'https://9822535869che.github.io/skilltrust/';
+const isLocalUrl = u => /^https?:\/\/(localhost|127\.|0\.0\.0\.0|\[::1\]|192\.168\.|10\.)/i.test(u);
+function verifyBase() {
+  const u = String(PUBLIC_VERIFY_URL || '').trim();
+  if (u) return u.split('#')[0];
+  return /^https?:$/.test(location.protocol) ? location.href.split('#')[0].split('?')[0] : '';
+}
+const verifyLink = id => { const b = verifyBase(); return b ? b + '#verify=' + encodeURIComponent(id) : ''; };
+// QR ที่พิมพ์ลงใบรับรองต้องชี้ไปที่เว็บสาธารณะเท่านั้น (ถ้าเป็นเครื่องตัวเอง สแกนจากมือถือไม่ได้)
+const certQrUrl = id => { const b = verifyBase(); return b && !isLocalUrl(b) ? verifyLink(id) : ''; };
+const qrNoteHtml = () => certQrUrl('X') ? '' : `<div class="muted" style="margin:10px 0 0;font-size:12.5px;line-height:1.6">ใบรับรองที่ออกตอนนี้จะยังไม่มี QR เพราะยังไม่ได้ตั้งที่อยู่เว็บสาธารณะ ให้ใส่ค่า <b>PUBLIC_VERIFY_URL</b> ในไฟล์ index.html แล้วออกใบใหม่</div>`;
+
+async function renderCertPNG(d) {
+  try {
+    await document.fonts.load('700 64px "Noto Serif Thai"');
+    await document.fonts.load('600 32px "Noto Sans Thai"');
+    await document.fonts.load('400 24px "Noto Sans Thai"');
+  } catch (e) {}
+  const idx = Math.max(0, S.courses.findIndex(c => c.code === d.course));
+  const tone = TONES[idx % TONES.length];
+  const course = courseOf(d.course);
+  const cv = document.createElement('canvas');
+  cv.width = 1200; cv.height = 850;
+  const g = cv.getContext('2d');
+  const SANS = '"Noto Sans Thai", sans-serif', SERIF = '"Noto Serif Thai", serif';
+  g.fillStyle = '#fffdf8'; g.fillRect(0, 0, 1200, 850);
+  const grad = g.createLinearGradient(0, 0, 1200, 0);
+  grad.addColorStop(0, tone); grad.addColorStop(1, '#0b2a6f');
+  g.fillStyle = grad; g.fillRect(0, 0, 1200, 120);
+  g.fillStyle = '#ffffff'; g.font = '600 34px ' + SANS; g.textBaseline = 'middle'; g.textAlign = 'left';
+  g.fillText('SkillTrust Academy', 60, 60);
+  g.textAlign = 'right'; g.font = '600 30px ' + SANS; g.fillText(d.course, 1140, 60);
+  g.strokeStyle = '#d9c58f'; g.lineWidth = 3; g.strokeRect(36, 156, 1128, 658);
+  g.lineWidth = 1; g.strokeRect(46, 166, 1108, 638);
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+  g.fillStyle = '#8a7440'; g.font = '500 26px ' + SANS; g.fillText('CERTIFICATE OF COMPLETION', 600, 230);
+  g.fillStyle = '#0b2a6f'; g.font = '700 80px ' + SERIF; g.fillText('ใบรับรองการอบรม', 600, 330);
+  g.fillStyle = '#5b6785'; g.font = '400 26px ' + SANS; g.fillText('มอบให้ไว้แก่', 600, 390);
+  g.fillStyle = '#0f1b3d'; g.font = '700 64px ' + SERIF; g.fillText(d.name || 'ชื่อผู้รับ', 600, 470);
+  g.strokeStyle = '#b9902f'; g.lineWidth = 2; g.beginPath(); g.moveTo(300, 490); g.lineTo(900, 490); g.stroke();
+  g.fillStyle = '#5b6785'; g.font = '400 26px ' + SANS; g.fillText('ผ่านการอบรมหลักสูตร', 600, 540);
+  g.fillStyle = '#0f1b3d'; g.font = '600 36px ' + SANS; g.fillText(course.name || d.course, 600, 590);
+  g.fillStyle = '#5b6785'; g.font = '400 24px ' + SANS;
+  g.fillText('จำนวน ' + (course.hours || 0) + ' ชั่วโมง · ออกให้ ' + (d.date ? fmt(d.date) : '-'), 600, 640);
+  g.textAlign = 'left';
+  g.fillStyle = '#5b6785'; g.font = '400 20px ' + SANS; g.fillText('รหัสอ้างอิง', 80, 730);
+  g.fillStyle = '#0f1b3d'; g.font = '600 24px ' + SANS; g.fillText(d.id, 80, 762);
+  g.fillStyle = '#5b6785'; g.font = '400 20px ' + SANS; g.fillText('Wallet ผู้รับ', 420, 730);
+  g.fillStyle = '#0f1b3d'; g.font = '600 21px ' + SANS; g.fillText(d.wallet || '-', 420, 762);
+  // ตราประทับย้ายขึ้นมุมขวาบน เพื่อเว้นที่ด้านล่างขวาให้ QR
+  g.beginPath(); g.arc(1090, 236, 48, 0, Math.PI * 2); g.fillStyle = tone; g.fill();
+  g.lineWidth = 5; g.strokeStyle = '#d9c58f'; g.stroke();
+  g.strokeStyle = '#ffffff'; g.lineWidth = 8; g.lineCap = 'round'; g.lineJoin = 'round';
+  g.beginPath(); g.moveTo(1066, 236); g.lineTo(1084, 254); g.lineTo(1116, 218); g.stroke();
+  const qrUrl = certQrUrl(d.id);
+  if (qrUrl) {
+    try {
+      SKILLTRUST_QR.draw(g, 998, 628, 152, qrUrl);
+      g.textAlign = 'center'; g.fillStyle = '#5b6785'; g.font = '400 16px ' + SANS;
+      g.fillText('สแกนเพื่อตรวจสอบ', 1074, 800);
+    } catch (e) { console.warn('[SkillTrust] สร้าง QR ไม่สำเร็จ', e); }
+  }
+  return cv.toDataURL('image/png');
+}
+function previewData(en) {
+  const id = document.querySelector('#iId') ? $('#iId').value : nextId();
+  const date = document.querySelector('#iDate') ? $('#iDate').value : todayISO();
+  return {id, name:en.name, course:en.course, date, wallet:en.wallet};
+}
+
+function certsNewestFirst(list) {
+  const num = c => parseInt(String(c.id).slice(-5), 10) || 0;
+  return list.slice().sort((a, b) => ((b.issuedAt || 0) - (a.issuedAt || 0)) || (num(b) - num(a)));
+}
+
+function pCerts() {
+  const certs = certsNewestFirst(scopeCerts());
+  const f = S.certFilter;
+  const list = certs.filter(c => f === 'all' || c.status === f);
+  return `
+    <div class="ph"><div><h1>${S.role === 'admin' ? 'ใบรับรองทั้งหมด' : 'ใบรับรองที่ฉันออก'}</h1><p>เพิกถอนได้เมื่อออกผิดพลาดหรือมีการทุจริต ประวัติการออกจะยังคงอยู่</p></div></div>
+    <div class="card">
+      <div class="seg" style="margin-bottom:16px">
+        ${[['all','ทั้งหมด'],['valid','ยังมีผล'],['revoked','ถูกเพิกถอน']].map(([k,l]) => `<button class="${f === k ? 'on' : ''}" data-act="certFilter" data-arg="${k}">${l}</button>`).join('')}
+      </div>
+      <div class="scroll"><table class="tbl">
+        <thead><tr><th>รหัส</th><th>ผู้รับ</th><th>หลักสูตร</th><th>วันที่ออก</th><th>สถานะ</th><th class="r">จัดการ</th></tr></thead>
+        <tbody>${list.length ? list.map(c => `
+          <tr>
+            <td><b>${esc(c.id)}</b></td><td>${esc(c.name)}</td><td>${esc(cname(c.course))}</td><td>${fmt(c.date)}</td><td>${statusTag(c)}</td>
+            <td class="r">${c.status === 'valid' && isAuthorizedIssuer()
+              ? `<button class="btn danger sm" data-act="revoke" data-arg="${esc(c.id)}">${I('ban', 15)} เพิกถอน</button>`
+              : `<span style="color:var(--muted);font-size:12.5px">${c.status === 'valid' ? 'ไม่มีสิทธิ์' : '—'}</span>`}</td>
+          </tr>`).join('') : '<tr><td colspan="6" class="empty">ไม่มีใบรับรองในหมวดนี้</td></tr>'}
+        </tbody>
+      </table></div>
+    </div>`;
+}
+
+function pVerify() {
+  const mode = S.vMode;
+  return `
+    <div class="ph"><div><h1>ตรวจสอบใบรับรอง</h1><p>ตรวจได้ทุกคน ไม่ต้องเข้าสู่ระบบ ด้วยรหัส ไฟล์ PDF หรือ QR Code</p></div></div>
+    <div class="grid g2">
+      <div class="card" style="margin:0">
+        <div class="tabs">
+          <button class="${mode === 'id' ? 'on' : ''}" data-act="vmode" data-arg="id">${I('search', 16)} รหัสใบรับรอง</button>
+          <button class="${mode === 'file' ? 'on' : ''}" data-act="vmode" data-arg="file">${I('file', 16)} ไฟล์ PDF</button>
+          <button class="${mode === 'qr' ? 'on' : ''}" data-act="vmode" data-arg="qr">${I('qr', 16)} QR Code</button>
+        </div>
+        ${mode === 'id' ? `
+          <form data-form="verifyId">
+            <div class="field"><label for="vId">รหัสใบรับรอง</label><input class="inp" id="vId" value="${esc(S.vId)}" placeholder="เช่น STA-2026-00421" data-input="vId"></div>
+            <button class="btn" style="margin-top:14px;width:100%;justify-content:center" type="submit">${I('search', 18)} ตรวจสอบ</button>
+          </form>` : ''}
+        ${mode === 'file' ? `
+          <form data-form="verifyFile">
+            <div class="field" style="margin-bottom:14px"><label for="vId2">รหัสใบรับรอง (ไม่บังคับ)</label><input class="inp" id="vId2" value="${esc(S.vId)}" placeholder="ใส่เพื่อตรวจว่าตรงกับรหัสนี้" data-input="vId"></div>
+            <label class="dropzone">${I('upload', 26)}<div>${S.vFileName ? esc(S.vFileName) : 'เลือกไฟล์ PDF ที่ได้รับ'}</div><b>เลือกไฟล์</b><input type="file" accept="application/pdf" data-file="verify"></label>
+            <button class="btn" style="margin-top:14px;width:100%;justify-content:center" type="submit">${I('check', 18)} ตรวจ Hash ของไฟล์</button>
+            <div style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)">
+              <p class="sub" style="margin:0 0 10px">ทดลองโดยไม่ต้องใช้ไฟล์จริง</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+              </div>
+            </div>
+          </form>` : ''}
+        ${mode === 'qr' ? qrModeHtml() : ''}
+      </div>
+      <div>
+        ${S.vResult || `<div class="card" style="margin:0"><h3>ผลการตรวจสอบ</h3><p class="sub" style="margin:0">ผลจะแสดงที่นี่หลังจากตรวจสอบ</p></div>`}
+      </div>
+    </div>`;
+}
+
+function pCourseDetail() {
+  if (S.role !== 'admin') return gateNote('บัญชีนี้ไม่มีสิทธิ์จัดการหลักสูตร', 'เฉพาะผู้ดูแลระบบเท่านั้น');
+  const dv = S.courseView ? courseOf(S.courseView) : null;
+  if (!dv || !dv.code) return `<div class="empty">ไม่พบหลักสูตรนี้</div><button class="btn ghost" type="button" data-act="closeCourseView">← กลับหน้าหลักสูตร</button>`;
+  const enrCount = S.enrollments.filter(e => e.course === dv.code).length;
+  const cs = S.certs.filter(c => c.course === dv.code);
+  const k = crit(dv.code);
+  return `
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+      <button type="button" data-act="closeCourseView" style="display:inline-flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border-radius:999px;border:1px solid #cfe2ff;background:#fff;color:var(--navy);font-weight:600;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(15,27,61,.06)">
+        <span style="width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#e6efff;color:var(--blue)"><span style="display:grid;transform:scaleX(-1)">${I('arrow', 16)}</span></span>
+        กลับไปหน้าหลักสูตร
+      </button>
+      <button type="button" data-act="editCourse" data-arg="${esc(dv.code)}" style="display:inline-flex;align-items:center;gap:10px;padding:11px 22px;border-radius:999px;border:0;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 10px 22px rgba(15,118,110,.28)">
+        ${I('check', 16)} แก้ไขหลักสูตรนี้
+      </button>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+    <div style="padding:26px 28px;color:#fff;background:linear-gradient(135deg,${TONES[0]},#0b2a6f);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end">
+      <div>
+        <div><span style="display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.18);font-size:13px;font-weight:600;letter-spacing:.04em">${esc(dv.code)}</span></div>
+        <h1 style="margin:12px 0 6px;color:#fff;font-size:30px">${esc(dv.name)}</h1>
+      </div>
+      <div style="text-align:right;font-size:14px;opacity:.9;align-self:flex-end">
+        <div>เริ่ม ${fmt(dv.start)} · ${dv.hours} ชั่วโมง</div>
+        <span class="tag ${dv.open ? 'ok' : 'off'}" style="margin-top:8px">${dv.open ? 'เปิดรับสมัคร' : 'ปิดรับสมัคร'}</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)">
+      <div style="padding:20px 28px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--line)"><div style="width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#eee9ff;color:#6d4ddb">${I('user', 22)}</div><div><b style="font-size:22px;display:block;line-height:1.1">${enrCount}</b><small style="color:var(--muted)">ผู้ลงทะเบียน</small></div></div>
+      <div style="padding:20px 28px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--line)"><div style="width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--okbg);color:var(--ok)">${I('award', 22)}</div><div><b style="font-size:22px;display:block;line-height:1.1">${cs.length}</b><small style="color:var(--muted)">ใบรับรองที่ออกแล้ว</small></div></div>
+      <div style="padding:20px 28px;display:flex;align-items:center;gap:14px"><div style="width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#e6efff;color:var(--blue)">${I('book', 22)}</div><div><b style="font-size:22px;display:block;line-height:1.1">${dv.hours}</b><small style="color:var(--muted)">ชั่วโมงการอบรม</small></div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;align-items:start">
+      <div style="padding:24px 28px;border-right:1px solid var(--line)">
+        <div class="ch"><h3>ข้อมูลหลักสูตร</h3></div>
+        ${[
+          ['รหัสหลักสูตร', esc(dv.code)],
+          ['ชื่อหลักสูตร', esc(dv.name)],
+          ['วันที่เริ่ม', fmt(dv.start)],
+          ['ระยะเวลา', dv.hours + ' ชั่วโมง'],
+          ['สถานะการรับสมัคร', dv.open ? 'เปิดรับสมัคร' : 'ปิดรับสมัคร']
+        ].map(([l, v]) => `<div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px dashed var(--line)"><span style="color:var(--muted);font-size:14px">${l}</span><b style="font-size:14px;text-align:right">${v}</b></div>`).join('')}
+      </div>
+
+      <div style="padding:24px 28px">
+        <div class="ch"><h3>เกณฑ์การผ่าน</h3></div>
+        <div style="margin-bottom:20px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:14px">การเข้าเรียนขั้นต่ำ</span><b style="color:var(--blue)">${k.att}%</b></div>
+          <div style="height:12px;border-radius:999px;background:#e8eef9;overflow:hidden"><div style="height:100%;width:${k.att}%;border-radius:999px;background:linear-gradient(90deg,#2563eb,#0f766e)"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:14px">คะแนนขั้นต่ำ</span><b style="color:var(--blue)">${k.score} / 100</b></div>
+          <div style="height:12px;border-radius:999px;background:#e8eef9;overflow:hidden"><div style="height:100%;width:${k.score}%;border-radius:999px;background:linear-gradient(90deg,#7c3aed,#be185d)"></div></div>
+        </div>
+        <p style="margin:18px 0 0;color:var(--muted);font-size:13px">ผู้เรียนต้องผ่านทั้งสองเกณฑ์จึงจะออกใบรับรองได้</p>
+      </div>
+    </div>
+
+    <div style="padding:24px 28px;border-top:1px solid var(--line)">
+      <div class="ch"><h3>ใบรับรองที่ออกแล้ว</h3><span class="tag">${cs.length} รายการ</span></div>
+      ${cs.length ? cs.map(c => `<div class="row"><div class="t"><b>${esc(c.name)}</b><small>${esc(c.id)} · ${fmt(c.date)}</small></div>${statusTag(c)}</div>`).join('') : '<div class="empty">ยังไม่มีใบรับรองในหลักสูตรนี้</div>'}
+    </div>
+    </div>
+    ${S.courseEdit === dv.code ? pCourseEditForm(dv) : ''}`;
+}
+function pCourseEditForm(ev) {
+  return `<div class="card" id="courseEditForm" style="margin-top:18px;border-color:#cfe2ff">
+      <div class="ch"><h3>แก้ไขหลักสูตร ${esc(ev.code)}</h3><button class="btn ghost sm" type="button" data-act="closeCourseEdit">ยกเลิก</button></div>
+      <form data-form="editCourse" data-code="${esc(ev.code)}">
+        <div class="fgrid">
+          <div class="field full"><label for="ecName">ชื่อหลักสูตร</label><input class="inp" id="ecName" value="${esc(ev.name)}"></div>
+          <div class="field"><label for="ecStart">วันที่เริ่ม</label><input class="inp" type="date" id="ecStart" value="${esc(ev.start)}"></div>
+          <div class="field"><label for="ecHours">จำนวนชั่วโมง</label><input class="inp" type="number" min="1" id="ecHours" value="${ev.hours}"></div>
+          <div class="field"><label for="ecAtt">เกณฑ์การเข้าเรียนขั้นต่ำ (%)</label><input class="inp" type="number" min="0" max="100" id="ecAtt" value="${ev.minAtt ?? 80}"></div>
+          <div class="field"><label for="ecScore">เกณฑ์คะแนนขั้นต่ำ</label><input class="inp" type="number" min="0" max="100" id="ecScore" value="${ev.passScore ?? 60}"></div>
+        </div>
+        <div class="err" id="ecErr"></div>
+        <button class="btn" style="margin-top:10px" type="submit">${I('check', 18)} บันทึกการแก้ไข</button>
+      </form>
+    </div>`;
+}
+function pCourses() {
+  if (S.role !== 'admin') return gateNote('บัญชีนี้ไม่มีสิทธิ์จัดการหลักสูตร', 'เฉพาะผู้ดูแลระบบเท่านั้น');
+  return `
+    <div class="ph"><div><h1>หลักสูตร</h1><p>ดูรายละเอียด แก้ไข เปิดหรือปิดรับสมัคร และลบหลักสูตรที่ยังไม่มีผู้เรียนหรือใบรับรอง</p></div></div>
+    <div class="grid g3">
+      ${S.courses.map((c, i) => `
+        <div class="ccard">
+          <div class="head" style="background:linear-gradient(135deg,${TONES[i % TONES.length]},#0b2a6f)"><span>${esc(c.code)}</span></div>
+          <div class="body">
+            <b style="font-size:15px">${esc(c.name)}</b>
+            <div style="margin-top:4px"><small>เริ่ม ${fmt(c.start)} · ${c.hours} ชม.</small></div>
+            <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+              <span class="tag ${c.open ? 'ok' : 'off'}">${c.open ? 'เปิดรับสมัคร' : 'ปิดรับสมัคร'}</span>
+              <small style="color:var(--muted)">${S.certs.filter(x => x.course === c.code).length} ใบรับรอง</small>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+              <button class="btn ghost sm" type="button" data-act="viewCourse" data-arg="${esc(c.code)}">${I('eye', 14)} ดู</button>
+              <button class="btn ghost sm" type="button" data-act="editCourse" data-arg="${esc(c.code)}">แก้ไข</button>
+              <button class="btn ghost sm" type="button" data-act="toggleCourse" data-arg="${esc(c.code)}">${c.open ? 'ปิดรับ' : 'เปิดรับ'}</button>
+            </div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+function pNewCourse() {
+  if (S.role !== 'admin') return gateNote('บัญชีนี้ไม่มีสิทธิ์สร้างหลักสูตร', 'เฉพาะผู้ดูแลระบบเท่านั้นที่สร้างหลักสูตรได้');
+  return `
+    <div class="ph"><div><h1>สร้างหลักสูตรใหม่</h1><p>รหัสหลักสูตรต้องไม่ซ้ำ เกณฑ์ผ่านเริ่มต้นคือเข้าเรียน 80% และคะแนน 60</p></div></div>
+    <div class="card" style="max-width:760px">
+      <form data-form="course">
+        <div class="fgrid">
+          <div class="field"><label for="cCode">รหัสหลักสูตร</label><input class="inp" id="cCode" placeholder="เช่น DA005"></div>
+          <div class="field"><label for="cStart">วันที่เริ่ม</label><input class="inp" type="date" id="cStart" value="${todayISO()}"></div>
+          <div class="field full"><label for="cName">ชื่อหลักสูตร</label><input class="inp" id="cName" placeholder="เช่น Data Analytics with Python"></div>
+          <div class="field"><label for="cHours">จำนวนชั่วโมง</label><input class="inp" type="number" min="1" id="cHours" value="20"></div>
+          <div class="field"><label for="cAtt">เกณฑ์การเข้าเรียนขั้นต่ำ (%)</label><input class="inp" type="number" min="0" max="100" id="cAtt" value="80"></div>
+          <div class="field full"><label for="cScore">เกณฑ์คะแนนขั้นต่ำ</label><input class="inp" type="number" min="0" max="100" id="cScore" value="60"></div>
+        </div>
+        <div class="err" id="cErr"></div>
+        <button class="btn" style="margin-top:8px" type="submit">${I('plus', 18)} สร้างหลักสูตร</button>
+      </form>
+    </div>`;
+}
+const netLabel = v => ({sepolia:'Sepolia Testnet (chain 11155111)', hardhat:'Localhost / Hardhat (chain 31337)', mainnet:'Ethereum Mainnet (chain 1)'})[v] || v;
+function pContract() {
+  const c = S.contract;
+  const linked = !!c.saved;
+  return `
+    <div class="ph"><div><h1>Smart Contract</h1><p>กำหนดที่อยู่สัญญา CertificateRegistry ที่ deploy แล้ว ระบบจะออกและตรวจสอบบนเครือข่ายนั้น</p></div></div>
+    <div class="grid">
+      <form class="card" data-form="contract" style="margin:0;max-width:720px">
+        <div class="ch"><h3>ตั้งค่าการเชื่อมต่อ</h3><span class="tag ${linked ? 'ok' : 'warn'}">${linked ? 'เชื่อมต่อแล้ว' : 'ยังไม่ได้ตั้งค่า'}</span></div>
+        <p class="sub">ค่าเหล่านี้ได้จากการ deploy ด้วย Hardhat หรือ Remix</p>
+        <div class="fgrid">
+          <div class="field full"><label for="ctAddr">Contract address</label><input class="inp" id="ctAddr" placeholder="0x..." value="${esc(c.address)}"></div>
+          <div class="field full"><label for="ctTx">Deploy transaction hash (ไม่บังคับ)</label><input class="inp" id="ctTx" placeholder="0x..." value="${esc(c.tx)}"></div>
+        </div>
+        <div class="err" id="ctErr"></div>
+        <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+          <button class="btn" type="submit">${I('check', 18)} บันทึกการตั้งค่า</button>
+          ${linked ? `<button class="btn danger" type="button" data-act="unlinkContract">${I('x', 16)} ยกเลิกการเชื่อมต่อ</button>` : ''}
+        </div>
+      </form>
+    </div>`;
+}
+
+/* ---------- เช็กชื่อคาบเรียน (ใช้ฐานข้อมูลของ artifact) ---------- */
+const withTimeout = (p, ms, msg) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error(msg)), ms))]);
+const ATT = {status:'กำลังเชื่อมต่อ…', db:null, user:null, me:null, canEdit:false, ready:false, booting:false, promise:null, sessions:[], myAtt:{}, enrolled:{}, confirmed:{}, pending:{}, allEnrolls:[], checkins:[], names:{}, learnerNames:{}, myName:'', myIssued:{}, timers:{}, tick:null, err:''};
+const attCap = async n => { try { return window.claude && claude.use ? await claude.use(n) : null; } catch (e) { return null; } };
+const attNewCode = () => String(Math.floor(100000 + Math.random() * 900000));
+const attNewSid = () => 's' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const attOpenNow = s => !!s.open && Date.now() <= s.closeAt;
+const attFmt = t => t ? new Date(t).toLocaleString('th-TH', {dateStyle:'medium', timeStyle:'short'}) : '-';
+const attName = uid => (uid === ATT.me && ATT.myName) || ATT.learnerNames[uid] || (ATT.names[uid] && ATT.names[uid].name) || ('ผู้เรียน ' + uid.slice(-6));
+const nameKey = () => 'skilltrust_name_' + (ATT.me || 'anon');
+function saveNameLocal(n) { try { localStorage.setItem(nameKey(), n); } catch (e) {} }
+function loadNameLocal() { try { return localStorage.getItem(nameKey()) || ''; } catch (e) { return ''; } }
+
+function attEnsure() {
+  if (!ATT.promise) ATT.promise = attBoot();
+  return ATT.promise;
+}
+// ฐานข้อมูลสำรองเมื่อเปิดไฟล์ในเครื่อง (ไม่ได้อยู่บน artifact): เก็บในเบราว์เซอร์นี้เท่านั้น ไม่ข้ามเครื่อง
+function localDbCreate() {
+  const KEY = 'skilltrust_localdb_v1';
+  const copy = v => JSON.parse(JSON.stringify(v));
+  const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } };
+  const write = d => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { throw new Error('บันทึกในเบราว์เซอร์ไม่ได้'); } };
+  return {
+    doc: path => ({
+      get: async () => { const v = read()[path]; return {id: path.split('/').pop(), exists: v !== undefined, data: () => (v === undefined ? undefined : copy(v))}; },
+      set: async obj => { const d = read(); d[path] = copy(obj); write(d); },
+      update: async obj => { const d = read(); d[path] = {...(d[path] || {}), ...copy(obj)}; write(d); },
+    }),
+    collection: name => ({
+      get: async () => {
+        const d = read(), prefix = name + '/';
+        return {docs: Object.keys(d).filter(k => k.startsWith(prefix) && !k.slice(prefix.length).includes('/')).map(k => ({id: k.slice(prefix.length), data: () => copy(d[k])}))};
+      },
+    }),
+  };
+}
+function localMeId() {
+  let id = null;
+  try { id = localStorage.getItem('skilltrust_local_me'); } catch (e) { /* ไม่อนุญาตให้เก็บ */ }
+  if (!id) { id = 'local-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); try { localStorage.setItem('skilltrust_local_me', id); } catch (e) { /* ใช้ค่าชั่วคราว */ } }
+  return id;
+}
+// ย้ายข้อมูลผู้เรียนรุ่นเก่า (ผูกกับรหัส local-…) มาผูกกับบัญชี MetaMask ของเจ้าของ ทำครั้งเดียว ข้อมูลเดิมยังอยู่
+const LEGACY_LEARNER_OWNER = '0x3ca8e520cc0e382a70873f62bd58a22f4deb312a';
+function migrateLegacyLocal(owner) {
+  if (owner !== LEGACY_LEARNER_OWNER) return;
+  try {
+    const legacy = localStorage.getItem('skilltrust_local_me');
+    if (!legacy || legacy === owner || localStorage.getItem('skilltrust_migrated_' + legacy)) return;
+    const KEY = 'skilltrust_localdb_v1';
+    const db = JSON.parse(localStorage.getItem(KEY) || '{}');
+    let moved = 0;
+    Object.keys(db).forEach(k => {
+      const parts = k.split('/');
+      if (parts.length === 2 && parts[1] === legacy) {
+        const nk = parts[0] + '/' + owner;
+        let v = JSON.parse(JSON.stringify(db[k]));
+        if (parts[0] === 'learners') v.wallet = owner;
+        if (parts[0] === 'issued' && v && v.certs) Object.values(v.certs).forEach(c => { if (c) { c.wallet = owner; } });
+        db[nk] = {...v, ...(db[nk] || {})};
+        if (parts[0] === 'issued') db[nk].certs = {...(v.certs || {}), ...((db[nk] || {}).certs || {})};
+        moved++;
+      } else if (parts[0] === 'certs' && db[k] && db[k].lrnUid === legacy) {
+        db[k] = {...db[k], lrnUid: owner, wallet: owner}; moved++;
+      }
+    });
+    localStorage.setItem(KEY, JSON.stringify(db));
+    ['skilltrust_enrolls_', 'skilltrust_checkins_'].forEach(pre => {
+      const v = localStorage.getItem(pre + legacy);
+      if (v !== null && localStorage.getItem(pre + owner) === null) localStorage.setItem(pre + owner, v);
+    });
+    localStorage.setItem('skilltrust_migrated_' + legacy, owner);
+    console.log('[SkillTrust] ย้ายข้อมูลผู้เรียนรุ่นเก่า', legacy, '→', owner, moved, 'รายการ');
+  } catch (e) { console.warn('[SkillTrust] ย้ายข้อมูลรุ่นเก่าไม่สำเร็จ', e); }
+}
+async function attBoot() {
+  ATT.booting = true;
+  attPaint();
+  ATT.db = await attCap('db');
+  ATT.user = await attCap('user');
+  if (!ATT.db) {
+    ATT.db = localDbCreate(); ATT.localMode = true; ATT.canEdit = true;
+    // โหมดเครื่องนี้: ใช้แอดเดรส MetaMask ที่เชื่อมอยู่เป็นตัวตนของผู้ใช้ ข้อมูลของแต่ละบัญชีจึงแยกกัน
+    let acc = ''; try { acc = (await SKILLTRUST_CHAIN.currentAccount() || '').toLowerCase(); } catch (e) { acc = ''; }
+    ATT.me = acc || localMeId();
+    migrateLegacyLocal(ATT.me);
+  }
+  try {
+    if (ATT.user) {
+      ATT.me = await withTimeout(ATT.user.id(), 8000, 'ตรวจสอบบัญชีนานเกินไป');
+      ATT.canEdit = !!(await withTimeout(ATT.user.canEdit(), 8000, 'ตรวจสอบสิทธิ์นานเกินไป'));
+    }
+  } catch (e) { ATT.err = 'ตรวจสอบบัญชีไม่สำเร็จ: ' + (e.message || e); }
+  ATT.ready = true;
+  // ถ้า MetaMask ต่ออยู่ตั้งแต่เปิดหน้า (ก่อนที่ฐานข้อมูลและรหัสผู้ใช้จะพร้อม) ให้บันทึกแอดเดรสผู้เรียนตอนนี้
+  if (S.walletMode && S.liveWallet && S.role === 'trainee') await saveLearnerWallet(S.liveWallet);
+  if (S.page === 'my') render();
+  ATT.status = (ATT.db ? (ATT.localMode ? 'ฐานข้อมูล: โหมดเครื่องนี้' : 'ฐานข้อมูล: เชื่อมแล้ว') : 'ฐานข้อมูล: ยังไม่เชื่อม') + ' · ลงทะเบียน ' + Object.keys(ATT.enrolled || {}).length + ' หลักสูตร · ' + (ATT.me ? 'บัญชี: เข้าสู่ระบบแล้ว' : 'บัญชี: ยังไม่ได้เข้าสู่ระบบ') + ' · สิทธิ์: ' + (ATT.canEdit ? 'ผู้แก้ไข' : 'ผู้ใช้ทั่วไป');
+  console.log('[SkillTrust]', ATT.status);
+  if (ATT.db) {
+    await attRefresh();
+    if (ATT.canEdit) ATT.sessions.filter(attOpenNow).forEach(s => attRotate(s.id));
+    ATT.tick = setInterval(attRefresh, 5000);
+  }
+  attPaint();
+}
+
+async function attRefresh() {
+  if (!ATT.db) return attPaint();
+  try {
+    ATT.sessions = (await withTimeout(ATT.db.collection('sessions').get(), 8000, 'อ่านคาบเรียนนานเกินไป')).docs.map(d => ({id: d.id, ...d.data()}));
+    if (ATT.me) {
+      const sn = await ATT.db.doc('checkins/' + ATT.me).get();
+      ATT.myAtt = {...loadAttLocal(), ...ATT.myAtt, ...((docDataOf(sn) || {}).attended || {})};
+      saveAttLocal();
+      const en = await ATT.db.doc('enrolls/' + ATT.me).get();
+      ATT.enrolled = {...loadEnrollLocal(), ...ATT.enrolled, ...enrollMapOf(en), ...ATT.confirmed};
+      saveEnrollLocal();
+      const ln = await ATT.db.doc('learners/' + ATT.me).get().catch(() => null);
+      ATT.myName = (docDataOf(ln) || {}).name || ATT.myName || loadNameLocal();
+      const iss = await ATT.db.doc('issued/' + ATT.me).get().catch(() => null);
+      ATT.myIssued = {...ATT.myIssued, ...((docDataOf(iss) || {}).certs || {})};
+    }
+    if (ATT.canEdit) {
+      ATT.checkins = (await ATT.db.collection('checkins').get()).docs.map(d => ({uid: d.id, ...d.data()}));
+      const uids = [...new Set(ATT.checkins.map(c => c.uid))];
+      if (uids.length && ATT.user && ATT.user.profiles) ATT.names = await ATT.user.profiles(uids);
+      ATT.allEnrolls = (await ATT.db.collection('enrolls').get()).docs.map(d => ({uid: d.id, ...d.data()}));
+      const lnDocs = await ATT.db.collection('learners').get().catch(() => ({docs: []}));
+      ATT.learnerNames = {}; ATT.learnerWallets = {};
+      lnDocs.docs.forEach(d => { const n = d.data() || {}; if (n.name) ATT.learnerNames[d.id] = n.name; if (n.wallet) ATT.learnerWallets[d.id] = n.wallet; });
+      const csDocs = await ATT.db.collection('courses').get().catch(() => null);
+      if (csDocs) S.courses = csDocs.docs.map(d => ({...(d.data() || {}), code: d.id}));
+      const ccDocs = await ATT.db.collection('certs').get().catch(() => null);
+      if (ccDocs) {
+        S.certs = ccDocs.docs.map(d => ({...(d.data() || {}), id: d.id}));
+        S.certs.forEach(c => { if (c.fileHash) chain.set(c.fileHash, c.id); });
+      }
+      await issuedSyncFromDb().catch(() => {});
+    }
+    ATT.err = '';
+  } catch (e) {
+    ATT.err = 'โหลดข้อมูลไม่สำเร็จ: ' + (e.message || e);
+  }
+  notifyNew();
+  attPaint();
+}
+
+function attPaint() {
+  const lr = document.getElementById('lrnResults');
+  if (lr) put(lr, lrnResultsHtml());
+  const mi = document.getElementById('myIssued');
+  if (mi) put(mi, myIssuedHtml());
+  const sp = document.getElementById('sysPassed');
+  if (sp) put(sp, sysPassedHtml(S.issueCourse));
+  issuePaint();
+  const notice = document.getElementById('attNotice');
+  if (notice) {
+    const problem = ATT.err || (!ATT.db ? 'ยังไม่ได้เชื่อมฐานข้อมูลของ artifact จึงบันทึกการลงทะเบียนและการเช็กชื่อไม่ได้' : (!ATT.me ? 'ยังไม่ได้เข้าสู่ระบบบัญชี จึงลงทะเบียนและเช็กชื่อไม่ได้' : ''));
+    put(notice, `<div class="muted" style="font-size:12px;margin-bottom:8px">${esc(ATT.status.replace(/ลงทะเบียน \d+ หลักสูตร/, 'ลงทะเบียน ' + Object.keys(ATT.enrolled || {}).length + ' หลักสูตร'))}</div>` +
+      (problem ? `<div style="padding:12px 14px;border-radius:12px;background:#fff7ed;color:#9a3412;font-size:14px;margin-bottom:12px">${esc(problem)}</div>` : ''));
+  }
+  const body = document.getElementById('attBody');
+  if (body) put(body, attInstructorHtml());
+  document.querySelectorAll('#enrolChips').forEach(el => put(el, enrolledChipsHtml()));
+  const open = document.getElementById('ckOpen');
+  if (open) put(open, attOpenHtml());
+  const mine = document.getElementById('ckMine');
+  if (mine) put(mine, attMineHtml());
+  navBadgePaint();
+}
+
+function attInstructorHtml() {
+  if (!ATT.sessions.length) return '<div class="empty">ยังไม่มีคาบเรียน</div>';
+  return ATT.sessions.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).map(s => {
+    const open = attOpenNow(s);
+    const people = ATT.checkins.filter(c => c.attended && c.attended[s.id]);
+    const reg = ATT.allEnrolls.filter(e => e.courses && e.courses[s.courseCode]).length;
+    const chips = people.map(c => `<span class="tag ok" style="margin:2px">${esc(attName(c.uid))}</span>`).join('');
+    return `<div class="row" style="align-items:flex-start">
+      <div style="flex:1;min-width:240px">
+        <b>${esc(s.title)}</b>
+        <div><small>${esc(s.course)} · สร้างเมื่อ ${attFmt(s.createdAt)}</small></div>
+        <div style="margin-top:4px"><small>${open ? 'ปิดเช็กชื่อ ' + attFmt(s.closeAt) : 'ปิดเช็กชื่อแล้ว'} · ลงทะเบียน <b>${ATT.canEdit ? reg : '-'}</b> คน · เข้าร่วม <b>${ATT.canEdit ? people.length : '-'}</b> คน</small></div>
+        <div style="margin-top:6px">${chips}</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        ${open
+          ? `<span style="font-size:20px;font-weight:700;letter-spacing:.15em;padding:6px 12px;border-radius:10px;background:#eef4ff;color:var(--navy)">${esc(s.code)}</span><span class="tag warn">กำลังเช็กชื่อ</span><button class="btn ghost sm" type="button" data-act="attClose" data-arg="${s.id}">ปิดเช็กชื่อ</button>`
+          : `<span class="tag off">ปิดแล้ว</span><button class="btn sm" type="button" data-act="attOpen" data-arg="${s.id}">เปิดเช็กชื่อ</button>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function attOpenHtml() {
+  const open = ATT.sessions.filter(s => attOpenNow(s) && ATT.enrolled[s.courseCode]);
+  if (!open.length) return '<div class="empty">ยังไม่มีคาบที่เปิดของหลักสูตรที่คุณลงทะเบียน</div>';
+  return open.map(s => `<div class="row">
+      <div><b>${esc(s.title)}</b><small>${esc(s.course)} · ปิดเช็กชื่อ ${attFmt(s.closeAt)}</small></div>
+      <span class="tag ${ATT.myAtt[s.id] ? 'ok' : 'warn'}">${ATT.myAtt[s.id] ? 'เช็กแล้ว' : 'เปิดอยู่'}</span>
+    </div>`).join('');
+}
+
+function attMineHtml() {
+  const mine = ATT.sessions.filter(s => ATT.myAtt[s.id]).sort((a, b) => ATT.myAtt[b.id] - ATT.myAtt[a.id]);
+  if (!mine.length) return '<div class="empty">ยังไม่มีประวัติการเช็กชื่อ</div>';
+  return mine.map((s, i) => `<div class="row">
+      <div><b>${esc(s.title)}</b>${i === 0 ? ' <span class="tag info" style="font-size:11px">ล่าสุด</span>' : ''}<div><small>${esc(s.courseCode || '')} · ${esc(s.course)}</small></div></div>
+      <span class="tag ok">เช็กเมื่อ ${attFmt(ATT.myAtt[s.id])}</span>
+    </div>`).join('');
+}
+
+const NOTIFY = {ready:false, sess:new Set(), quiz:new Set()};
+function notifyNew() {
+  lrnNotify();
+  if (ATT.canEdit) return;
+  const sessNow = ATT.sessions.filter(s => attOpenNow(s) && ATT.enrolled[s.courseCode]);
+  const quizNow = QZ.quizzes.filter(q => q.open && ATT.enrolled[q.courseCode]);
+  if (NOTIFY.ready) {
+    sessNow.filter(s => !NOTIFY.sess.has(s.id)).forEach(s => toast('มีการเช็กชื่อ: ' + s.title + ' (' + s.course + ')', 'ok'));
+    quizNow.filter(q => !NOTIFY.quiz.has(q.id)).forEach(q => toast('มีแบบทดสอบใหม่: ' + q.title, 'ok'));
+  }
+  sessNow.forEach(s => NOTIFY.sess.add(s.id));
+  quizNow.forEach(q => NOTIFY.quiz.add(q.id));
+  NOTIFY.ready = true;
+}
+
+function navBadgePaint() {
+  const need = {
+    enroll: ATT.canEdit ? LRN.unseen : 0,
+    checkin: ATT.canEdit ? 0 : ATT.sessions.filter(s => attOpenNow(s) && ATT.enrolled[s.courseCode] && !ATT.myAtt[s.id]).length,
+    quiz: ATT.canEdit ? 0 : QZ.quizzes.filter(q => q.open && ATT.enrolled[q.courseCode] && quizCanTake(q)).length
+  };
+  for (const [page, n] of Object.entries(need)) {
+    const btn = document.querySelector('button.nav[data-arg="' + page + '"]');
+    if (!btn) continue;
+    let badge = btn.querySelector('.nbadge');
+    if (!n) { if (badge) badge.remove(); continue; }
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'nbadge';
+      badge.style.cssText = 'margin-left:auto;background:#dc2626;color:#fff;font-size:11px;font-weight:700;min-width:22px;height:22px;border-radius:999px;display:inline-grid;place-items:center;padding:0 6px';
+      btn.appendChild(badge);
+    }
+    badge.textContent = n;
+  }
+}
+
+function enrolledChipsHtml() {
+  const codes = Object.keys(ATT.enrolled || {}).filter(code => ATT.enrolled[code]);
+  if (!codes.length) return '<span class="muted">ยังไม่ได้ลงทะเบียนหลักสูตรใด ไปที่เมนู "หลักสูตร" เพื่อลงทะเบียน</span>';
+  return codes.map(code => {
+    const c = courseOf(code);
+    return `<span class="tag ok" style="font-size:13px;padding:6px 12px">${esc(code)} · ${esc(c.name || code)}</span>`;
+  }).join('');
+}
+
+function attMsg(text, kind) {
+  const el = document.getElementById('ckMsg');
+  if (el) { el.textContent = text; el.style.color = kind === 'ok' ? 'var(--ok)' : kind === 'err' ? 'var(--bad)' : ''; }
+}
+
+async function attOpenSession(sid) {
+  const s = ATT.sessions.find(x => x.id === sid);
+  if (!s) return;
+  const now = Date.now();
+  try {
+    await ATT.db.doc('sessions/' + sid).update({open: true, closeAt: now + (s.openMin || 30) * 60000, code: attNewCode(), prevCode: ''});
+    attRotate(sid);
+    toast('เปิดเช็กชื่อแล้ว', 'ok');
+    await attRefresh();
+  } catch (e) { toast('เปิดเช็กชื่อไม่สำเร็จ: ' + (e.message || e), 'err'); }
+}
+
+async function attCloseSession(sid, silent) {
+  clearInterval(ATT.timers[sid]); delete ATT.timers[sid];
+  try {
+    await ATT.db.doc('sessions/' + sid).update({open: false});
+    if (!silent) { toast('ปิดเช็กชื่อแล้ว', 'ok'); await attRefresh(); }
+  } catch (e) { if (!silent) toast('ปิดเช็กชื่อไม่สำเร็จ: ' + (e.message || e), 'err'); }
+}
+
+function attRotate(sid) {
+  clearInterval(ATT.timers[sid]);
+  ATT.timers[sid] = setInterval(async () => {
+    try {
+      const cur = (await ATT.db.doc('sessions/' + sid).get()).data();
+      if (!cur || !cur.open || Date.now() > cur.closeAt) { await attCloseSession(sid, true); return; }
+      await ATT.db.doc('sessions/' + sid).update({prevCode: cur.code, code: attNewCode()});
+    } catch (e) { /* ลองใหม่รอบถัดไป */ }
+  }, 30000);
+}
+
+function pAttend() {
+  attEnsure();
+  return `
+    <div class="ph"><div><h1>เช็กชื่อคาบเรียน</h1><p>เปิดคาบแล้วแสดงรหัส 6 หลัก ผู้เรียนกรอกรหัสเพื่อเช็กชื่อ รหัสเปลี่ยนทุก 30 วินาที</p></div></div>
+    <div id="attNotice"></div>
+    <div class="card">
+      <div class="ch"><h3>สร้างคาบเรียนใหม่</h3></div>
+      <form data-form="attCreate">
+        <div class="fgrid">
+          <div class="field"><label for="attCourse">หลักสูตร</label><select class="inp" id="attCourse" required>${S.courses.length ? S.courses.map(c => `<option value="${esc(c.code)}">${esc(c.code)} · ${esc(c.name)}</option>`).join('') : '<option value="">ยังไม่มีหลักสูตร ให้ผู้ดูแลระบบสร้างก่อน</option>'}</select></div>
+          <div class="field"><label for="attTitle">ชื่อคาบ</label><input class="inp" id="attTitle" required placeholder="เช่น ครั้งที่ 3: การใช้ AI ในงานเอกสาร"></div>
+          <div class="field"><label for="attMins">เปิดเช็กชื่อกี่นาที</label><input class="inp" type="number" min="1" max="240" id="attMins" value="30"></div>
+        </div>
+        <button class="btn" style="margin-top:10px" type="submit">${I('plus', 18)} สร้างคาบ</button>
+      </form>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>คาบเรียนทั้งหมด</h3></div>
+      <div id="attBody"></div>
+    </div>`;
+}
+
+function pCheckin() {
+  attEnsure();
+  return `
+    <div class="ph"><div><h1>เช็กชื่อเข้าเรียน</h1><p>กรอกรหัส 6 หลักที่ผู้สอนแสดงในห้องเรียน</p></div></div>
+    <div id="attNotice"></div>
+    <div class="card">
+      <div class="ch"><h3>หลักสูตรที่ลงทะเบียน</h3></div>
+      <div id="enrolChips" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+    </div>
+    <div class="card" style="max-width:680px">
+      <div class="ch"><h3>กรอกรหัสเช็กชื่อ</h3></div>
+      <form data-form="attCheck" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <input class="inp" id="ckCode" inputmode="numeric" maxlength="6" placeholder="000000" style="max-width:240px;font-size:22px;letter-spacing:.2em">
+        <button class="btn" type="submit">${I('check', 18)} เช็กชื่อ</button>
+      </form>
+      <div id="ckMsg" style="margin-top:10px;font-size:14px"></div>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>คาบที่กำลังเปิดเช็กชื่อ (เฉพาะหลักสูตรที่ลงทะเบียน)</h3></div>
+      <div id="ckOpen"></div>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>ประวัติการเช็กชื่อของฉัน</h3></div>
+      <div class="ch" style="margin-top:14px"><h3>ประวัติการเช็กชื่อ</h3></div>
+      <div id="ckMine"></div>
+    </div>`;
+}
+
+/* ---------- แบบทดสอบ 5 ข้อ (ข้อละ 20 คะแนน) ---------- */
+function docDataOf(sn) {
+  if (!sn) return null;
+  const ex = typeof sn.exists === 'function' ? sn.exists() : sn.exists;
+  const raw = typeof sn.data === 'function' ? sn.data() : sn.data;
+  return ex === false || !raw || typeof raw !== 'object' ? null : raw;
+}
+const ATT_KEY = () => 'skilltrust_checkins_' + (ATT.me || 'anon');
+function saveAttLocal() { try { localStorage.setItem(ATT_KEY(), JSON.stringify(ATT.myAtt)); } catch (e) {} }
+function loadAttLocal() { try { return JSON.parse(localStorage.getItem(ATT_KEY()) || '{}') || {}; } catch (e) { return {}; } }
+function enrollMapOf(sn) {
+  if (!sn) return {};
+  const ex = typeof sn.exists === 'function' ? sn.exists() : sn.exists;
+  const raw = typeof sn.data === 'function' ? sn.data() : sn.data;
+  if (ex === false || !raw || typeof raw !== 'object') return {};
+  return raw.courses && typeof raw.courses === 'object' ? raw.courses : {};
+}
+const ENROLL_KEY = () => 'skilltrust_enrolls_' + (ATT.me || 'anon');
+function saveEnrollLocal() {
+  try { localStorage.setItem(ENROLL_KEY(), JSON.stringify(ATT.enrolled)); } catch (e) {}
+}
+function loadEnrollLocal() {
+  try { return JSON.parse(localStorage.getItem(ENROLL_KEY()) || '{}') || {}; } catch (e) { return {}; }
+}
+
+async function attEnrollDb(code) {
+  await withTimeout(attEnsure(), 12000, 'เชื่อมต่อฐานข้อมูลนานเกินไป').catch(() => {});
+  if (!ATT.db) { toast('ยังไม่ได้เชื่อมฐานข้อมูลของ artifact จึงลงทะเบียนไม่ได้', 'err'); return false; }
+  if (!ATT.me) { toast('ยังไม่ได้เข้าสู่ระบบด้วยบัญชี จึงลงทะเบียนไม่ได้', 'err'); return false; }
+  try {
+    const sn = await withTimeout(ATT.db.doc('enrolls/' + ATT.me).get(), 8000, 'อ่านข้อมูลการลงทะเบียนนานเกินไป').catch(() => null);
+    const courses = {...loadEnrollLocal(), ...ATT.enrolled, ...enrollMapOf(sn)};
+    courses[code] = Date.now();
+    await withTimeout(ATT.db.doc('enrolls/' + ATT.me).set({courses}), 8000, 'บันทึกการลงทะเบียนนานเกินไป');
+    ATT.confirmed = {...ATT.confirmed, ...courses};
+    ATT.enrolled = {...ATT.enrolled, ...courses};
+    saveEnrollLocal();
+    await withTimeout(attRefresh(), 8000, 'รีเฟรชข้อมูลนานเกินไป').catch(() => {});
+    return true;
+  } catch (e) {
+    toast('บันทึกการลงทะเบียนไม่สำเร็จ: ' + (e.message || e), 'err');
+    return false;
+  }
+}
+
+const QZ = {quizzes:[], keys:{}, mySubs:{}, allSubs:[], ready:false, booting:false, active:null, tick:null};
+const qzCourseOptions = () => S.courses.length ? S.courses.map(c => `<option value="${esc(c.code)}">${esc(c.code)} · ${esc(c.name)}</option>`).join('') : '<option value="">ยังไม่มีหลักสูตร ให้ผู้ดูแลระบบสร้างก่อน</option>';
+
+async function qzEnsure() {
+  if (QZ.ready || QZ.booting) return;
+  QZ.booting = true;
+  await attEnsure();
+  QZ.ready = true;
+  await qzRefresh();
+  QZ.tick = setInterval(qzRefresh, 5000);
+}
+
+async function qzRefresh() {
+  if (!ATT.db) return qzPaint();
+  try {
+    QZ.quizzes = (await ATT.db.collection('quizzes').get()).docs.map(d => ({id: d.id, ...d.data()}));
+    if (ATT.me) {
+      const sn = await ATT.db.doc('quizSubs/' + ATT.me).get();
+      QZ.mySubs = sn.exists ? (sn.data() || {}) : {};
+    }
+    if (ATT.canEdit) {
+      QZ.keys = Object.fromEntries((await ATT.db.collection('quizKeys').get()).docs.map(d => [d.id, d.data().answers]));
+      QZ.allSubs = (await ATT.db.collection('quizSubs').get()).docs.map(d => ({uid: d.id, ...d.data()}));
+      await qzGrade();
+    }
+  } catch (e) {
+    ATT.err = 'โหลดข้อมูลแบบทดสอบไม่สำเร็จ: ' + (e.message || e);
+  }
+  notifyNew();
+  qzPaint();
+}
+
+// ตรวจให้อัตโนมัติด้วยเฉลย เฉพาะผู้ที่มีสิทธิ์อ่านเฉลย (ผู้ออกใบรับรองที่เป็น Editor)
+async function qzGrade() {
+  for (const u of QZ.allSubs) {
+    for (const [qid, entry] of Object.entries(u)) {
+      if (qid === 'uid' || !entry || typeof entry !== 'object' || entry.score != null) continue;
+      const key = QZ.keys[qid];
+      if (!key || !Array.isArray(entry.answers)) continue;
+      const score = key.reduce((s, a, i) => s + (entry.answers[i] === a ? 20 : 0), 0);
+      try {
+        await ATT.db.doc('quizSubs/' + u.uid).update({[qid]: {...entry, score, gradedAt: Date.now()}});
+        entry.score = score;
+        // ผู้เรียนที่เป็นผู้ตรวจเอง (หรืออยู่ในโหมดเครื่องนี้) ต้องเห็นคะแนนของตัวเองทันที ไม่ต้องรอรอบดึงข้อมูลถัดไป
+        if (u.uid === ATT.me && QZ.mySubs && QZ.mySubs[qid]) QZ.mySubs[qid] = {...QZ.mySubs[qid], score, gradedAt: Date.now()};
+        const quiz = QZ.quizzes.find(q => q.id === qid);
+        chainLog('QUIZ_GRADED', {uid: u.uid, quiz: qid, score, passed: quiz ? score >= quizPassMark(quiz) : null, gradedBy: ATT.me});
+      } catch (e) { /* ลองตรวจใหม่รอบถัดไป */ }
+    }
+  }
+}
+
+function qzPaint() {
+  const a = document.getElementById('qzAdminList');
+  if (a) put(a, qzAdminHtml());
+  const o = document.getElementById('qzOpenList');
+  if (o) put(o, qzOpenHtml());
+  const m = document.getElementById('qzMine');
+  if (m) put(m, qzMineHtml());
+  attPaint();
+}
+
+function qzAdminHtml() {
+  if (!QZ.quizzes.length) return '<div class="empty">ยังไม่มีแบบทดสอบ</div>';
+  return QZ.quizzes.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).map(q => {
+    const subs = QZ.allSubs.filter(u => u[q.id] && typeof u[q.id] === 'object').map(u => ({uid: u.uid, e: u[q.id]}));
+    const rows = subs.length ? subs.map(x => `<div class="row" style="padding:8px 0">
+        <div><b style="font-size:14px">${esc(attName(x.uid))}</b><div><small>ส่งเมื่อ ${attFmt(x.e.submittedAt)}</small></div></div>
+        <span class="tag ${x.e.score == null ? 'warn' : 'ok'}">${x.e.score == null ? 'รอตรวจ' : x.e.score + ' / 100'}</span>
+      </div>`).join('') : '<div class="muted">ยังไม่มีผู้ส่งคำตอบ</div>';
+    return `<div style="border-top:1px solid var(--line);padding:14px 0">
+      <div class="row" style="border:0;padding:0">
+        <div><b>${esc(q.title)}</b><div><small>${esc(q.course)} · ${q.questions.length} ข้อ</small></div></div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="tag ${q.open ? 'warn' : 'off'}">${q.open ? 'เปิดให้ทำ' : 'ปิดแล้ว'}</span>
+          ${q.open
+            ? `<button class="btn ghost sm" type="button" data-act="qzClose" data-arg="${q.id}">ปิดแบบทดสอบ</button>`
+            : `<button class="btn sm" type="button" data-act="qzOpen" data-arg="${q.id}">เปิดให้ทำ</button>`}
+        </div>
+      </div>
+      ${rows}
+    </div>`;
+  }).join('');
+}
+
+function qzOpenHtml() {
+  const open = QZ.quizzes.filter(q => q.open && ATT.enrolled[q.courseCode]);
+  if (!open.length) return '<div class="empty">ยังไม่มีแบบทดสอบที่เปิดให้ทำ</div>';
+  return open.map(q => {
+    return `<div class="row">
+      <div><b>${esc(q.title)}</b><div><small>${esc(q.course)} · 5 ข้อ รวม 100 คะแนน · เกณฑ์ผ่าน ${quizPassMark(q)} / 100</small></div></div>
+      ${quizActionHtml(q)}
+    </div>`;
+  }).join('');
+}
+
+function qzMineHtml() {
+  const ids = Object.keys(QZ.mySubs);
+  if (!ids.length) return '<div class="empty">ยังไม่มีผลแบบทดสอบ</div>';
+  return ids.map(id => {
+    const q = QZ.quizzes.find(x => x.id === id);
+    const e = QZ.mySubs[id];
+    return `<div class="row">
+      <div><b>${esc(q ? q.title : 'แบบทดสอบ')}</b><div><small>${esc(q ? q.course : '')} · ส่งเมื่อ ${attFmt(e.submittedAt)}</small></div></div>
+      <span class="tag ${e.score == null ? 'warn' : e.score >= (q ? quizPassMark(q) : 0) ? 'ok' : 'warn'}">${e.score == null ? 'รอผลการตรวจ' : e.score + ' / 100 · ' + (e.score >= (q ? quizPassMark(q) : 0) ? 'ผ่าน' : 'ยังไม่ผ่าน ทำซ้ำได้')}</span>
+    </div>`;
+  }).join('');
+}
+
+function qzQuestionFields(i) {
+  return `<div style="border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px">
+    <b>ข้อ ${i + 1}</b>
+    <div class="field" style="margin-top:8px"><input class="inp" id="qq${i}" required placeholder="คำถามข้อ ${i + 1}"></div>
+    ${[0, 1, 2, 3].map(j => `<label style="display:flex;gap:10px;align-items:center;margin-top:8px;font-size:14px"><input type="radio" name="qa${i}" value="${j}" ${j === 0 ? 'required' : ''}><input class="inp" id="qc${i}_${j}" required placeholder="ตัวเลือก ${j + 1}" style="flex:1"></label>`).join('')}
+    <div class="muted" style="font-size:12px;margin-top:6px">เลือกวงกลมหน้าตัวเลือกที่เป็นคำตอบถูก</div>
+  </div>`;
+}
+
+function pQuizAdmin() {
+  qzEnsure();
+  return `
+    <div class="ph"><div><h1>สร้างแบบทดสอบ</h1><p>แบบทดสอบ 5 ข้อ ข้อละ 20 คะแนน รวม 100 คะแนน ผู้เรียนทำในระบบ และผลจะถูกตรวจอัตโนมัติ</p></div></div>
+    <div id="attNotice"></div>
+    <div class="card">
+      <div class="ch"><h3>สร้างแบบทดสอบใหม่</h3></div>
+      <form data-form="qzCreate">
+        <div class="fgrid">
+          <div class="field"><label for="qzCourse">หลักสูตร</label><select class="inp" id="qzCourse" required>${qzCourseOptions()}</select></div>
+          <div class="field"><label for="qzTitle">ชื่อแบบทดสอบ</label><input class="inp" id="qzTitle" required placeholder="เช่น Quick Quiz บทที่ 1"></div>
+        </div>
+        ${[0, 1, 2, 3, 4].map(qzQuestionFields).join('')}
+        <button class="btn" style="margin-top:14px" type="submit">${I('plus', 18)} สร้างแบบทดสอบ</button>
+      </form>
+    </div>
+    <div class="card">
+      <div class="ch"><h3>แบบทดสอบและผลคะแนน</h3></div>
+      <div id="qzAdminList"></div>
+    </div>`;
+}
+
+function pQuizTake() {
+  qzEnsure();
+  if (QZ.active) {
+    const q = QZ.quizzes.find(x => x.id === QZ.active);
+    if (q && quizCanTake(q) && ATT.enrolled[q.courseCode]) {
+      return `
+        <div class="ph"><div><h1>${esc(q.title)}</h1><p>${esc(q.course)} · 5 ข้อ ข้อละ 20 คะแนน</p></div></div>
+        <div class="card">
+          <form data-form="qzSubmit" data-id="${q.id}">
+            ${q.questions.map((qq, i) => `<div style="padding:14px 0;${i ? 'border-top:1px solid var(--line)' : ''}">
+              <b>${i + 1}. ${esc(qq.q)}</b>
+              ${qq.choices.map((c, j) => `<label style="display:flex;gap:10px;align-items:center;margin-top:8px;cursor:pointer"><input type="radio" name="q${i}" value="${j}"> ${esc(c)}</label>`).join('')}
+            </div>`).join('')}
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+              <button class="btn ghost" type="button" data-act="qzCancel">กลับ</button>
+              <button class="btn" type="submit">${I('check', 18)} ส่งคำตอบ</button>
+            </div>
+          </form>
+        </div>`;
+    }
+    QZ.active = null;
+  }
+  return `
+    <div class="ph"><div><h1>ทำแบบทดสอบ</h1><p>เลือกแบบทดสอบที่เปิดให้ทำ ตอบให้ครบ 5 ข้อแล้วส่ง ระบบจะบันทึกผลให้</p></div></div>
+    <div id="attNotice"></div>
+    <div class="card"><div class="ch"><h3>หลักสูตรที่ลงทะเบียน</h3></div><div id="enrolChips" style="display:flex;gap:8px;flex-wrap:wrap"></div></div>
+    <div class="card"><div class="ch"><h3>แบบทดสอบที่เปิดให้ทำ (เฉพาะหลักสูตรที่ลงทะเบียน)</h3></div><div id="qzOpenList"></div></div>
+    <div class="card"><div class="ch"><h3>ผลของฉัน</h3></div><div id="qzMine"></div></div>`;
+}
+
+const LRN = {seen:new Set(), ready:false, unseen:0, issued:new Set(), queue:Promise.resolve(), backfilled:new Set()};
+function put(el, html) { if (!el || el._last === html) return; el._last = html; el.innerHTML = html; }
+const quizPassMark = q => crit(q.courseCode).score;
+function quizState(q) {
+  const e = QZ.mySubs[q.id];
+  if (!e) return 'open';
+  if (e.score == null) return 'pending';
+  return e.score >= quizPassMark(q) ? 'passed' : 'retry';
+}
+const quizCanTake = q => { const s = quizState(q); return s === 'open' || s === 'retry'; };
+function quizActionHtml(q) {
+  const st = quizState(q), e = QZ.mySubs[q.id] || {};
+  if (st === 'open') return `<button class="btn sm" type="button" data-act="qzStart" data-arg="${q.id}">ทำแบบทดสอบ</button>`;
+  if (st === 'retry') return `<span class="tag warn">ยังไม่ผ่าน ${e.score} / 100</span> <button class="btn sm" type="button" data-act="qzStart" data-arg="${q.id}">ทำซ้ำ ครั้งที่ ${(e.attempts || 1) + 1}</button>`;
+  if (st === 'pending') return '<span class="tag warn">รอผลการตรวจ</span>';
+  return `<span class="tag ok">ผ่านแล้ว ${e.score} / 100</span>`;
+}
+setTimeout(() => { LRN.ready = true; }, 10000);
+function lrnRows() {
+  const rows = [];
+  (ATT.allEnrolls || []).forEach(en => {
+    Object.keys(en.courses || {}).forEach(code => {
+      const sess = ATT.sessions.filter(s => s.courseCode === code);
+      const quizzes = QZ.quizzes.filter(q => q.courseCode === code);
+      const ci = (ATT.checkins || []).find(c => c.uid === en.uid);
+      const attended = sess.filter(s => ci && ci.attended && ci.attended[s.id]).length;
+      const attPct = sess.length ? Math.round(attended / sess.length * 100) : 0;
+      const sub = QZ.allSubs.find(u => u.uid === en.uid) || {};
+      const graded = quizzes.map(q => sub[q.id] && typeof sub[q.id] === 'object' && typeof sub[q.id].score === 'number' ? sub[q.id].score : null).filter(v => v !== null);
+      const score = graded.length ? Math.round(graded.reduce((a, b) => a + b, 0) / graded.length) : null;
+      const k = crit(code);
+      const done = quizzes.length > 0 && graded.length === quizzes.length && attPct >= k.att && score !== null && score >= k.score;
+      rows.push({uid: en.uid, code, name: courseOf(code).name || code, attended, total: sess.length, attPct, quizDone: graded.length, quizTotal: quizzes.length, score, done});
+    });
+  });
+  return rows.sort((a, b) => Number(b.done) - Number(a.done));
+}
+function lrnResultsHtml() {
+  if (!ATT.canEdit) return '<div class="empty">ผลการเรียนจากระบบจะแสดงเมื่อเข้าสู่ระบบด้วยบัญชีผู้ออกใบรับรอง</div>';
+  const rows = lrnRows();
+  if (!rows.length) return '<div class="empty">ยังไม่มีผู้เรียนที่ลงทะเบียนหลักสูตรในระบบ</div>';
+  return `<div class="scroll"><table class="tbl"><thead><tr><th>ผู้เรียน</th><th>หลักสูตร</th><th>เช็กชื่อ</th><th>แบบทดสอบ</th><th>ผลการประเมิน</th><th>ใบรับรอง</th></tr></thead><tbody>${rows.map(r => `<tr>
+    <td><b>${esc(attName(r.uid))}</b></td>
+    <td>${esc(r.code)} · ${esc(r.name)}</td>
+    <td>${r.attended}/${r.total} คาบ (${r.attPct}%)</td>
+    <td>${r.quizDone}/${r.quizTotal} ชุด${r.score !== null ? ' · เฉลี่ย ' + r.score : ''}</td>
+    <td>${r.done ? '<span class="tag ok">ผ่านเกณฑ์ ออกใบได้</span>' : '<span class="tag warn">กำลังดำเนินการ</span>'}</td>
+    <td>${esc((S.certs.find(c => c.lrnUid === r.uid && c.course === r.code) || {}).id || '-')}</td>
+  </tr>`).join('')}</tbody></table></div>`;
+}
+async function issuedSyncFromDb() {
+  const all = await withTimeout(ATT.db.collection('issued').get(), 8000, 'อ่านใบรับรองนานเกินไป');
+  const byUid = {};
+  all.docs.forEach(d => { byUid[d.id] = ((d.data() || {}).certs) || {}; });
+  Object.keys(byUid).forEach(uid => {
+    Object.values(byUid[uid]).forEach(rec => {
+      const local = S.certs.find(x => x.id === rec.id);
+      if (!local) {
+        S.certs.push({id: rec.id, name: rec.name, course: rec.course, date: rec.date, wallet: rec.wallet || uid, issuedAt: rec.issuedAt || null, fileHash: rec.fileHash || null, status: rec.status || 'valid', lrnUid: uid, issuer: walletOf()});
+        if (rec.fileHash) chain.set(rec.fileHash, rec.id);
+      } else if (rec.status === 'revoked' && local.status !== 'revoked') {
+        local.status = 'revoked';
+      }
+    });
+  });
+  // certificates issued in this browser before publishing existed: publish them once
+  S.certs.filter(x => x.lrnUid && !((byUid[x.lrnUid] || {})[x.id])).forEach(x => {
+    if (LRN.backfilled.has(x.lrnUid)) return;
+    LRN.backfilled.add(x.lrnUid);
+    publishCertToLearner(x);
+  });
+}
+
+async function publishCertToLearner(c) {
+  if (!ATT.db || !c.lrnUid) return;
+  try {
+    const all = await withTimeout(ATT.db.collection('issued').get(), 8000, 'อ่านใบรับรองนานเกินไป');
+    const doc = all.docs.find(d => d.id === c.lrnUid);
+    const certs = {...(((doc && doc.data()) || {}).certs || {})};
+    S.certs.filter(x => x.lrnUid === c.lrnUid).forEach(x => {
+      certs[x.id] = {id: x.id, name: x.name, course: x.course, date: x.date, wallet: x.wallet || x.lrnUid, issuedAt: x.issuedAt || null, fileHash: x.fileHash || null, status: x.status || 'valid'};
+    });
+    await withTimeout(ATT.db.doc('issued/' + c.lrnUid).set({certs}), 8000, 'บันทึกใบรับรองนานเกินไป');
+  } catch (e) { toast('ส่งใบรับรองไปยังบัญชีผู้เรียนไม่สำเร็จ: ' + (e.message || e), 'err'); }
+}
+
+async function autoIssueCert(row) {
+  const name = attName(row.uid);
+  const sig = row.uid + '|' + row.code + '|' + name;
+  if (LRN.issued.has(sig)) return;
+  LRN.issued.add(sig);
+  try {
+    const existing = S.certs.find(c => c.lrnUid === row.uid && c.course === row.code);
+    if (existing) {
+      if (existing.name === name) return;
+      chain.delete(existing.fileHash);
+      existing.name = name;
+      existing.wallet = learnerWalletOf(row.uid); saveCertDb(existing);
+      existing.image = await renderCertPNG(existing);
+      existing.fileHash = await sha(dataUrlToBytes(existing.image));
+      chain.set(existing.fileHash, existing.id);
+      addLog('ปรับชื่อบนใบรับรอง ' + existing.id + ' เป็น ' + name);
+      publishCertToLearner(existing);
+      attPaint();
+      return;
+    }
+    LRN.issued.delete(sig); // ยังไม่ออกอัตโนมัติ: ผู้ออกใบต้องกดออกเองจากหน้าออกใบรับรอง
+    return;
+  } catch (e) { LRN.issued.delete(sig); }
+}
+function lrnNotify() {
+  if (!ATT.canEdit) return;
+  lrnRows().filter(r => r.done).forEach(r => { LRN.queue = LRN.queue.then(() => autoIssueCert(r)); });
+  const ev = [];
+  (ATT.checkins || []).forEach(ci => Object.keys(ci.attended || {}).forEach(sid => {
+    const s = ATT.sessions.find(x => x.id === sid);
+    ev.push({key: ci.uid + '|s|' + sid, text: attName(ci.uid) + ' เช็กชื่อ ' + (s ? s.title : sid) + (s ? ' (' + s.courseCode + ')' : '')});
+  }));
+  QZ.allSubs.forEach(u => Object.keys(u).forEach(qid => {
+    if (qid === 'uid' || !u[qid] || typeof u[qid] !== 'object' || !u[qid].submittedAt) return;
+    const q = QZ.quizzes.find(x => x.id === qid);
+    ev.push({key: u.uid + '|q|' + qid, text: attName(u.uid) + ' ส่งแบบทดสอบ ' + (q ? q.title : qid)});
+  }));
+  lrnRows().filter(r => r.done).forEach(r => ev.push({key: r.uid + '|d|' + r.code, text: attName(r.uid) + ' ผ่านเกณฑ์ ' + r.code + ' แล้ว'}));
+  const fresh = ev.filter(e => !LRN.seen.has(e.key));
+  fresh.forEach(e => LRN.seen.add(e.key));
+  if (LRN.ready && fresh.length) {
+    fresh.forEach(e => toast(e.text, 'ok'));
+    LRN.unseen += fresh.length;
+    navBadgePaint();
+  }
+}
+
+const PAGES = {settings:pSettings, attend:pAttend, quizadmin:pQuizAdmin, quiz:pQuizTake, checkin:pCheckin, overview:pOverview, dash:pDash, catalog:pCatalog, courses:pCourses, coursedetail:pCourseDetail, issuers:pIssuers, enroll:pEnroll, issue:pIssue, certs:pCerts, my:pMy, verify:pVerify, contract:pContract, newcourse:pNewCourse, txs:pTx};
+
+/* ---------- การ render ---------- */
+function renderShell() {
+  $('#roles').innerHTML = Object.entries(ROLES).map(([k, r]) => `
+    <button class="rbtn ${S.role === k ? 'on' : ''}" data-act="role" data-arg="${k}">
+      <span class="ri">${I(k === 'admin' ? 'shield' : k === 'issuer' ? 'award' : k === 'trainee' ? 'user' : 'search', 17)}</span>
+      <span><b style="font-weight:600">${r.label}</b><small>${r.desc}</small></span>
+    </button>`).join('');
+  $('#nav').innerHTML = me().pages.map(p => `
+    <button class="nav ${S.page === p ? 'on' : ''}" data-act="nav" data-arg="${p}">${I(NAV[p].icon, 18)}${NAV[p].label}${p === 'issue' && readyTotal() ? ` <span class="tag ok" style="margin-left:auto">${readyTotal()}</span>` : ''}</button>`).join('');
+  const w = walletOf();
+  $('#wlabel').textContent = w ? w : (S.role === 'trainee' ? 'เชื่อมต่อ Wallet' : 'ไม่ได้เชื่อมต่อ');
+  $('#wdot').classList.toggle('on', !!w);
+  $('#rolePill').innerHTML = `<i>${esc(me().label.charAt(0))}</i>${esc(me().label)}${S.liveWallet ? ' · ' + esc(S.liveWallet.slice(0, 6) + '…' + S.liveWallet.slice(-4)) : ''}`;
+  $('#crumb').textContent = `SkillTrust Academy / ${NAV[S.page].label}`;
+}
+function render() {
+  attEnsure();
+  renderShell();
+  $('#page').innerHTML = PAGES[S.page]();
+  attPaint(); qzPaint();
+}
+function go(page) {
+  if (!me().pages.includes(page)) return toast('บทบาทนี้เข้าถึงหน้านี้ไม่ได้', 'err');
+  S.page = page; if (page !== 'verify') S.vResult = ''; render(); window.scrollTo(0, 0);
+  if (page === 'issue' && readyTotal()) toast('มี ' + readyTotal() + ' คนพร้อมออกใบรับรอง', 'ok');
+}
+// เปลี่ยนบทบาทตามบัญชี MetaMask ที่เชื่อมอยู่ (ไม่มีบัญชีให้เป็นผู้เข้าอบรมที่ยังไม่เชื่อม)
+async function applyLiveWallet(addr, opts = {}) {
+  const w = (addr || '').toLowerCase();
+  const onchainAdmin = w ? await chainAdminOf() : '';
+  const onchainIssuer = w ? await chainIssuerOf(w) : null;
+  S.walletMode = true;
+  S.liveWallet = w || null;
+  S.role = w ? roleForAddress(w, onchainAdmin, onchainIssuer) : 'trainee';
+  S.traineeConnected = false; S.vResult = ''; S.issueFile = null;
+  ATT.myWallet = w;
+  if (w && S.role === 'trainee') saveLearnerWallet(w);
+  if (w && S.role === 'admin' && !S.accounts.some(a => a.wallet === w)) {
+    S.accounts.push({wallet: w, name: 'ผู้ดูแลระบบ', active: true, admin: true}); saveAccounts();
+  }
+  S.page = ROLES[S.role].pages[0];
+  render();
+  if (!opts.silent) toast(w ? 'สลับเป็น' + ROLES[S.role].label + 'ตามบัญชี MetaMask' : 'ไม่มีบัญชี MetaMask เชื่อมอยู่', w ? 'ok' : 'err');
+}
+function setRole(role) {
+  if (S.role !== 'admin' && role !== S.role) return toast('บทบาทนี้สลับไปบทบาทอื่นไม่ได้ ให้ผู้ดูแลระบบเป็นผู้เปลี่ยน', 'err');
+  S.role = role; S.page = ROLES[role].pages[0]; S.vResult = ''; S.issueFile = null;
+  render(); toast('เข้าสู่ระบบในฐานะ ' + ROLES[role].label, 'ok');
+}
+
+/* ---------- การกระทำ ---------- */
+/* ---------- คิวและประวัติธุรกรรมบน chain ---------- */
+const CHAIN_QUEUE_KEY = 'skilltrust_chain_queue_v1';
+const CHAIN_LOG_KEY = 'skilltrust_chain_log_v1';
+const CHN = {queue: [], log: [], busy: false, account: '', lastError: '', contractNote: ''};
+// ประวัติธุรกรรมแยกตามบัญชี: แต่ละบัญชีเห็นและส่งได้เฉพาะรายการของตัวเอง
+const chainAcct = () => String(CHN.account || walletOf() || '').toLowerCase();
+const chainMine = q => !q.account || q.account === chainAcct();
+const chainMyQueue = () => CHN.queue.filter(chainMine);
+const chainMyLog = () => CHN.log.filter(x => x.account && x.account === chainAcct());
+// การกระทำที่ไม่บันทึกแบบทั่วไป: การนำทาง/หน้าจอ และการกระทำที่มีรายการของตัวเองอยู่แล้ว
+// บันทึกลง chain เฉพาะการเปลี่ยนแปลงข้อมูลจริง ปุ่มที่แค่ดู/เปลี่ยนหน้า/พรีวิวจะไม่ส่งธุรกรรม
+const CHAIN_ACT_KIND = {toggleCourse:'COURSE_TOGGLE', attOpen:'SESSION_OPEN', attClose:'SESSION_CLOSE', qzOpen:'QUIZ_OPEN', qzClose:'QUIZ_CLOSE'};
+const CHAIN_FORM_KIND = {editCourse:'COURSE_EDIT', attCreate:'SESSION_CREATE', qzCreate:'QUIZ_CREATE'};
+const CHAIN_KIND_LABEL = {COURSE_TOGGLE:'เปิด/ปิดรับสมัคร', COURSE_EDIT:'แก้ไขหลักสูตร', SESSION_CREATE:'สร้างคาบเรียน', SESSION_OPEN:'เปิดเช็กชื่อ', SESSION_CLOSE:'ปิดเช็กชื่อ', QUIZ_CREATE:'สร้างแบบทดสอบ', QUIZ_OPEN:'เปิดแบบทดสอบ', QUIZ_CLOSE:'ปิดแบบทดสอบ', ENROLL:'ลงทะเบียน', CHECKIN:'เช็กชื่อ', QUIZ_SUBMIT:'ส่งแบบทดสอบ', QUIZ_GRADED:'ตรวจแบบทดสอบ', ISSUE:'ออกใบรับรอง', REVOKE:'เพิกถอนใบรับรอง', ISSUER_SET:'มอบ/ยกเลิกสิทธิ์ผู้ออกใบ', COURSE_CREATE:'สร้างหลักสูตร', ACTION:'การกระทำ', FORM:'บันทึกข้อมูล'};
+function chainLoadQueue() {
+  try { CHN.queue = JSON.parse(localStorage.getItem(CHAIN_QUEUE_KEY) || '[]'); } catch (e) { CHN.queue = []; }
+  CHN.queue = CHN.queue.filter(q => q && q.account !== undefined); // รายการรุ่นเก่าที่ไม่รู้ว่าเป็นของบัญชีไหน ตัดทิ้ง
+  // รายการเก่าที่เกิดจากการกดปุ่มทั่วไป (ACTION/FORM) ไม่ใช่ธุรกรรมทางธุรกิจ ตัดทิ้งเพื่อไม่ให้ MetaMask เด้งถามซ้ำ ๆ
+  const seen = new Set();
+  CHN.queue = CHN.queue.filter(q => {
+    if (!q || q.kind === 'ACTION' || q.kind === 'FORM') return false;
+    const sig = q.kind + '|' + JSON.stringify({...q.data, at: 0});
+    if (seen.has(sig)) return false;
+    seen.add(sig); return true;
+  });
+  chainSaveQueue();
+  try { CHN.log = JSON.parse(localStorage.getItem(CHAIN_LOG_KEY) || '[]'); } catch (e) { CHN.log = []; }
+  // ประวัติธุรกรรมรุ่นเก่าที่ยังไม่ระบุบัญชี ย้ายมาผูกกับบัญชีนี้ตามที่เจ้าของระบบกำหนด (ทำครั้งเดียว)
+  const LEGACY_LOG_OWNER = '0x3ca8e520cc0e382a70873f62bd58a22f4deb312a';
+  let moved = false;
+  CHN.log.forEach(x => { if (x && x.account === undefined) { x.account = LEGACY_LOG_OWNER; moved = true; } });
+  if (moved) chainSaveLog();
+}
+function chainSaveQueue() { try { localStorage.setItem(CHAIN_QUEUE_KEY, JSON.stringify(CHN.queue)); CHN.persisted = true; } catch (e) { /* เบราว์เซอร์ไม่อนุญาตให้เก็บ */ } }
+function chainSaveLog() { try { localStorage.setItem(CHAIN_LOG_KEY, JSON.stringify(CHN.log.slice(0, 200))); } catch (e) { /* เบราว์เซอร์ไม่อนุญาตให้เก็บ */ } }
+function chainRejected(e) { return !!e && (e.code === 4001 || e.code === 'ACTION_REJECTED' || /user rejected|rejected the request/i.test(e.message || '')); }
+function chainStatusHtml() {
+  const last = chainMyLog().find(x => x.txHash);
+  const rows = [
+    ['Contract', SKILLTRUST_CHAIN.isConfigured() ? `<a href="https://sepolia.etherscan.io/address/${esc(SKILLTRUST_CHAIN.address())}" target="_blank" rel="noopener">${esc(SKILLTRUST_CHAIN.address())}</a>` : 'ยังไม่ได้ตั้งค่า รายการจะรออยู่ในคิว'],
+    ['สถานะ Contract', CHN.contractNote ? esc(CHN.contractNote) : 'ยังไม่ได้ตรวจ (เชื่อม MetaMask ก่อน)'],
+    ['MetaMask', !SKILLTRUST_CHAIN.hasWallet() ? 'ไม่พบ MetaMask ในเบราว์เซอร์นี้' : SKILLTRUST_CHAIN.isConnected() ? 'เชื่อมแล้ว ' + esc(CHN.account) : 'ยังไม่ได้เชื่อม'],
+    ['รอส่ง', chainMyQueue().length + ' รายการ'],
+    ['บทบาทตามสัญญา', CHAIN_ROLE_ERR ? esc(CHAIN_ROLE_ERR) : 'อ่านจากสัญญาแล้ว (admin = ผู้ที่ deploy)'],
+    ['สาเหตุที่ยังไม่ส่ง', chainMyQueue().length && CHN.lastError ? esc(CHN.lastError) : '—'],
+    ['ล่าสุด', last ? `<a href="https://sepolia.etherscan.io/tx/${esc(last.txHash)}" target="_blank" rel="noopener">${esc(last.txHash.slice(0, 12))}…</a>` : 'ยังไม่มี'],
+  ];
+  return rows.map(([k, v]) => `<div class="row" style="padding:8px 0"><span class="muted">${k}</span><span>${v}</span></div>`).join('');
+}
+function chainCardHtml() {
+  return `<div class="card" style="max-width:560px;margin-top:16px">
+    <div class="ch"><h3>บันทึกลง Smart Contract</h3><a href="#" data-act="nav" data-arg="txs" style="font-size:13px">ดูธุรกรรมทั้งหมด</a></div>
+    <div id="chainStatus">${chainStatusHtml()}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button class="btn" type="button" data-act="chainConnect">${I('lock', 16)} เชื่อม MetaMask</button>
+      <button class="btn" type="button" data-act="chainFlush">ส่งรายการที่รออยู่</button>
+    </div>
+  </div>`;
+}
+function txListHtml() {
+  // รายการที่ยังไม่ได้ส่งหรือส่งไม่สำเร็จ แสดงก่อน แล้วตามด้วยประวัติที่ส่งแล้ว
+  const waiting = chainMyQueue().map(q => `<tr>
+      <td>${attFmt(q.data.at)}</td><td>${esc(CHAIN_KIND_LABEL[q.kind] || q.kind)}</td>
+      <td><span class="tag ${q.error ? 'off' : 'warn'}">${q.error ? 'ไม่สำเร็จ' : 'รอส่ง'}</span></td>
+      <td colspan="3"><small class="muted">${q.error ? esc(q.error) : 'ยังไม่ได้เชื่อม MetaMask หรือยังไม่ได้ตั้งค่า Contract'}</small></td></tr>`);
+  const done = chainMyLog().map(x => {
+    const tag = x.status === 'confirmed' ? '<span class="tag ok">ยืนยันแล้ว</span>' : x.status === 'failed' ? '<span class="tag off">ล้มเหลว</span>' : '<span class="tag warn">กำลังส่ง</span>';
+    const tx = x.txHash ? `<a href="https://sepolia.etherscan.io/tx/${esc(x.txHash)}" target="_blank" rel="noopener" title="ดูบน Sepolia Etherscan">${esc(x.txHash.slice(0, 12))}… ↗</a>${x.chainCheck ? '<br><small class="muted">' + esc(x.chainCheck) + '</small>' : ''}` : '—';
+    return `<tr><td>${attFmt(x.at)}</td><td>${esc(CHAIN_KIND_LABEL[x.kind] || x.kind)}</td><td>${tag}</td><td>${tx}</td><td>${x.feeEth ? esc(x.feeEth) + ' ETH' : (x.error ? '<small class="muted">' + esc(x.error) + '</small>' : '—')}</td><td>${x.block || '—'}</td></tr>`;
+  });
+  const rows = [...waiting, ...done];
+  if (!rows.length) return '<div class="empty">ยังไม่มีธุรกรรม กิจกรรมแต่ละอย่างจะขึ้นที่นี่เมื่อเกิดขึ้น</div>';
+  return `<div class="scroll"><table class="tbl"><thead><tr><th>เวลา</th><th>กิจกรรม</th><th>สถานะ</th><th>Transaction</th><th>ค่าแก๊ส</th><th>บล็อก</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+}
+function pTx() {
+  return `
+    <div class="ph"><div><h1>ธุรกรรมบน Chain</h1><p>ทุกกิจกรรมจะส่งขึ้น Smart Contract เมื่อคุณยืนยันใน MetaMask ค่าแก๊สจ่ายจากกระเป๋าของคุณเอง ต้องมี ETH บน Sepolia สำหรับค่าแก๊ส</p></div></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      <button class="btn" type="button" data-act="chainConnect">${I('lock', 16)} เชื่อม MetaMask</button>
+      <button class="btn" type="button" data-act="chainFlush">ส่งรายการที่รออยู่</button>
+      <button class="btn ghost" type="button" data-act="chainClear">ล้างรายการที่รออยู่</button>
+    </div>
+    <div class="card"><div id="chainStatus" style="margin-bottom:10px">${chainStatusHtml()}</div><div id="txList">${txListHtml()}</div></div>`;
+}
+function chainPaint() {
+  put(document.getElementById('chainStatus'), chainStatusHtml()); put(document.getElementById('txList'), txListHtml());
+  // ปุ่มที่หัวหน้าเว็บ: เห็นทันทีว่ามีกี่รายการที่ยังไม่ได้ขึ้น chain และกดส่งได้เลย
+  const pb = document.getElementById('chainPend');
+  if (pb) {
+    const n = chainMyQueue().length, txt = (CHN.busy ? 'กำลังส่ง… ' : 'ส่งขึ้น Chain ') + '(' + n + ')';
+    pb.style.display = n ? '' : 'none'; pb.disabled = !!CHN.busy;
+    if (pb.textContent !== txt) pb.textContent = txt;
+    pb.title = CHN.lastError || '';
+  }
+}
+// เรียกเมื่อมีกิจกรรม: เก็บเข้าคิวก่อนเสมอ แล้วส่งถ้าพร้อม จึงไม่หายแม้ยังไม่ได้เชื่อม
+function chainLog(kind, data) {
+  const item = {account: chainAcct(), id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind, data: {app: 'SkillTrust Academy', ...data, at: Date.now()}};
+  const hadBacklog = chainMyQueue().length > 0;
+  CHN.queue.push(item);
+  chainSaveQueue();
+  // ส่งอัตโนมัติเฉพาะเมื่อไม่มีรายการเก่าค้างอยู่ ถ้ามีค้างให้กดส่งเองในหน้าธุรกรรม จะได้ไม่เด้งยืนยันรัว
+  if (!hadBacklog) chainFlush(); else { chainPaint(); toast('มี ' + chainMyQueue().length + ' รายการรอส่งขึ้น chain กดปุ่ม ส่งขึ้น Chain ที่มุมขวาบน', 'ok'); }
+}
+const CHN_TAB = Math.random().toString(36).slice(2), CHN_LOCK_KEY = 'skilltrust_chain_lock_v1';
+function chainLockWrite() { try { localStorage.setItem(CHN_LOCK_KEY, JSON.stringify({id: CHN_TAB, t: Date.now()})); } catch (e) { /* ไม่มีที่เก็บ ข้ามไป */ } }
+function chainLockTry() {
+  try {
+    const l = JSON.parse(localStorage.getItem(CHN_LOCK_KEY) || 'null');
+    if (l && l.id !== CHN_TAB && Date.now() - l.t < 30000) return false;
+  } catch (e) { /* อ่านไม่ได้ถือว่าว่าง */ }
+  chainLockWrite(); return true;
+}
+function chainLockFree() { try { const l = JSON.parse(localStorage.getItem(CHN_LOCK_KEY) || 'null'); if (l && l.id === CHN_TAB) localStorage.removeItem(CHN_LOCK_KEY); } catch (e) { /* ข้าม */ } }
+// ตรวจว่าพร้อมส่งธุรกรรมจริงหรือยัง ถ้ายังจะบอกเหตุผลไว้ในหน้าธุรกรรม
+async function chainEnsureSigner() {
+  if (SKILLTRUST_CHAIN.isConnected()) { CHN.lastError = ''; return true; }
+  if (!SKILLTRUST_CHAIN.isConfigured()) { CHN.lastError = 'ยังไม่ได้ตั้งค่าที่อยู่ Contract'; return false; }
+  if (!SKILLTRUST_CHAIN.hasWallet()) { CHN.lastError = 'ไม่พบ MetaMask ในเบราว์เซอร์นี้'; return false; }
+  if (!CHN.account) { CHN.lastError = 'ยังไม่ได้เชื่อมบัญชี MetaMask'; return false; }
+  try { await SKILLTRUST_CHAIN.restore(); }
+  catch (e) { CHN.lastError = 'เชื่อม MetaMask ไม่สำเร็จ: ' + (e.shortMessage || e.message || e); return false; }
+  if (!SKILLTRUST_CHAIN.isConnected()) { CHN.lastError = 'MetaMask ยังไม่ได้อยู่ที่เครือข่าย Sepolia หรือยังไม่ได้อนุญาตบัญชี'; return false; }
+  CHN.lastError = ''; return true;
+}
+async function chainFlush() {
+  // จองสิทธิ์ส่งทันทีแบบไม่มี await คั่น กันสองคำสั่งวิ่งพร้อมกันแล้วส่งรายการเดียวกันซ้ำ
+  if (CHN.busy || !chainMyQueue().length || !SKILLTRUST_CHAIN.isConfigured()) { chainPaint(); return; }
+  CHN.busy = true;
+  let hb = null;
+  const drop = it => { CHN.queue = CHN.queue.filter(x => x !== it); };
+  try {
+    if (!(await chainEnsureSigner())) return;
+    if (!chainLockTry()) { CHN.lastError = 'มีอีกแท็บหนึ่งของเว็บนี้กำลังส่งธุรกรรมอยู่ ให้ปิดแท็บอื่นก่อน'; return; }
+    hb = setInterval(chainLockWrite, 5000);
+    // อ่านคิวล่าสุดจากที่เก็บ: ถ้าอีกแท็บส่งไปแล้วหรือผู้ใช้ล้างคิวแล้ว จะไม่ส่งซ้ำ
+    if (CHN.persisted) {
+      try {
+        const raw = localStorage.getItem(CHAIN_QUEUE_KEY);
+        CHN.queue = raw ? JSON.parse(raw).filter(q => q && q.kind !== 'ACTION' && q.kind !== 'FORM') : [];
+      } catch (e) { /* ใช้คิวในหน่วยความจำต่อ */ }
+    }
+    CHN.queue.filter(chainMine).forEach(q => { q.hold = false; }); chainPaint();
+    while (true) {
+      const item = CHN.queue.find(q => !q.hold && chainMine(q));
+      if (!item) break;
+      if (!item.account) item.account = chainAcct();
+      if (item.txHash) {
+        // เคยส่งแล้ว (ปิดหน้าไปก่อนรู้ผล): ถามผลจาก chain ไม่ส่งซ้ำ
+        let rc = null;
+        try { rc = await SKILLTRUST_CHAIN.receipt(item.txHash); } catch (e) { rc = null; }
+        if (rc) {
+          drop(item);
+          const en = CHN.log.find(x => x.id === item.id) || {account: item.account || chainAcct(), id: item.id, kind: item.kind, txHash: item.txHash, at: Date.now()};
+          Object.assign(en, rc.ok ? {status: 'confirmed', block: rc.blockNumber, gasUsed: rc.gasUsed, feeEth: rc.feeEth} : {status: 'failed', block: rc.blockNumber, error: 'ธุรกรรมอยู่ในบล็อกแต่ทำงานไม่สำเร็จ'});
+          if (!CHN.log.includes(en)) CHN.log.unshift(en);
+          chainSaveQueue(); chainSaveLog(); chainPaint(); continue;
+        }
+        item.hold = true; item.error = 'ส่งไปแล้ว รอ receipt ยืนยันจากเครือข่าย';
+        chainSaveQueue(); chainPaint(); continue;
+      }
+      if (item.kind === 'ISSUE') item.data.wallet = (ATT.learnerWallets || {})[item.data.uid] || item.data.wallet || '';
+      let logged = false;
+      try {
+        const r = await SKILLTRUST_CHAIN.send(item.kind, item.data, txHash => {
+          // ส่งแล้วและรอผล: บันทึกเป็นกำลังส่งทันทีที่ได้ hash
+          logged = true;
+          item.txHash = txHash;
+          CHN.log.unshift({account: item.account || chainAcct(), id: item.id, kind: item.kind, txHash, status: 'pending', at: Date.now()});
+          chainSaveLog(); chainSaveQueue(); chainPaint();
+        });
+        drop(item);
+        const entry = CHN.log.find(x => x.id === item.id) || {account: item.account || chainAcct(), id: item.id, kind: item.kind, at: Date.now()};
+        Object.assign(entry, {txHash: r.txHash, status: 'confirmed', block: r.blockNumber, gasUsed: r.gasUsed, feeEth: r.feeEth});
+        if (!CHN.log.includes(entry)) CHN.log.unshift(entry);
+        CHN.log = CHN.log.slice(0, 200);
+        if (item.kind === 'ISSUE' || item.kind === 'REVOKE') {
+          try {
+            const v = await SKILLTRUST_CHAIN.verify(item.data.cert, item.data.fileHash);
+            entry.chainCheck = item.kind === 'ISSUE'
+              ? (v.valid && v.hashMatches ? 'ตรวจจาก Contract แล้ว: ใบรับรองถูกต้อง แฮชตรงกัน' : 'ตรวจจาก Contract: ข้อมูลไม่ตรงกับที่ส่ง')
+              : (!v.valid ? 'ตรวจจาก Contract แล้ว: ใบรับรองถูกเพิกถอนแล้ว' : 'ตรวจจาก Contract: ยังไม่ถูกเพิกถอน');
+          } catch (e) { entry.chainCheck = 'อ่านผลจาก Contract ไม่สำเร็จ: ' + (e.shortMessage || e.message || e); }
+        }
+        toast('บันทึก ' + (CHAIN_KIND_LABEL[item.kind] || item.kind) + ' ลง chain แล้ว (มี receipt)', 'ok');
+      } catch (e) {
+        const name = CHAIN_KIND_LABEL[item.kind] || item.kind;
+        if (logged && e && e.code === 'TIMEOUT') {
+          // ส่งแล้วแต่ยังไม่มี receipt ภายในเวลาที่รอ: ไม่ถือว่าสำเร็จหรือล้มเหลว เก็บ hash ไว้ ตรวจผลซ้ำเมื่อกดส่งอีกครั้ง
+          item.hold = true; item.error = 'ส่งไปแล้ว ยังไม่มี receipt ยืนยัน (ตรวจผลซ้ำเมื่อกดส่งอีกครั้ง)';
+          toast(name + ': ยังไม่มี receipt ยืนยันจากเครือข่าย ตรวจ hash ใน Etherscan ได้', 'err');
+        } else if (logged) {
+          // ส่งไปแล้วแต่ล้มเหลวตอนรอผล: ตัดออกจากคิวเพื่อไม่ส่งซ้ำ
+          drop(item);
+          const entry = CHN.log.find(x => x.id === item.id);
+          if (entry) { entry.status = 'failed'; entry.error = e.shortMessage || e.message || 'ล้มเหลวบน chain'; }
+          toast('ธุรกรรม ' + name + ' ล้มเหลวบน chain: ' + (e.shortMessage || e.message || ''), 'err');
+        } else if (chainRejected(e)) {
+          item.error = 'ยกเลิกใน MetaMask';
+          toast('ยกเลิกการส่งรายการลง chain แล้ว รายการยังอยู่ในคิว', 'err');
+          break;
+        } else if (e.blocked) {
+          item.error = e.shortMessage || e.message; CHN.lastError = item.error;
+          toast(item.error, 'err');
+          break;
+        } else if (String(e.message || '') === 'NO_RECIPIENT') {
+          // ผู้เรียนยังไม่ได้เชื่อม MetaMask: รอไว้ ไม่นับเป็นความล้มเหลว และไม่บล็อกรายการอื่น
+          item.hold = true; item.error = 'ผู้เรียนยังไม่ได้เชื่อม MetaMask';
+        } else {
+          item.error = e.shortMessage || e.message || String(e);
+          item.tries = (item.tries || 0) + 1;
+          if (e.reverted) {
+            // สัญญาปฏิเสธแน่นอน ส่งซ้ำก็ไม่ผ่าน จึงนำออกจากคิวและบันทึกเหตุผล
+            drop(item);
+            CHN.log.unshift({account: item.account || chainAcct(), id: item.id, kind: item.kind, status: 'failed', at: Date.now(), error: item.error});
+            toast(name + ' ไม่ผ่านบน chain: ' + item.error, 'err');
+          } else if (item.tries >= 3) {
+            drop(item);
+            CHN.log.unshift({account: item.account || chainAcct(), id: item.id, kind: item.kind, status: 'failed', at: Date.now(), error: item.error});
+            toast('ส่ง ' + name + ' ไม่ผ่านสามครั้ง นำออกจากคิวแล้ว', 'err');
+          } else {
+            item.hold = true;
+            toast('บันทึก ' + name + ' ลง chain ไม่สำเร็จ: ' + item.error, 'err');
+          }
+        }
+      } finally { chainSaveQueue(); chainSaveLog(); chainPaint(); }
+    }
+  } finally { if (hb) clearInterval(hb); chainLockFree(); CHN.busy = false; chainPaint(); }
+}
+// ธุรกรรมที่ค้างสถานะ "กำลังส่ง" จากรอบก่อน: ถามผลจาก chain แล้วอัปเดต
+async function chainResolvePending() {
+  if (!SKILLTRUST_CHAIN.hasWallet() || !SKILLTRUST_CHAIN.isConfigured()) return;
+  for (const x of CHN.log.filter(l => l.status === 'pending' && l.txHash)) {
+    try {
+      const rc = await SKILLTRUST_CHAIN.receipt(x.txHash);
+      if (!rc) continue;
+      Object.assign(x, rc.ok ? {status: 'confirmed', block: rc.blockNumber, gasUsed: rc.gasUsed, feeEth: rc.feeEth} : {status: 'failed', block: rc.blockNumber, error: 'ธุรกรรมอยู่ในบล็อกแต่ทำงานไม่สำเร็จ'});
+      CHN.queue = CHN.queue.filter(q => q.id !== x.id);
+    } catch (e) { /* ลองใหม่รอบหน้า */ }
+  }
+  chainSaveQueue(); chainSaveLog(); chainPaint();
+}
+async function chainCheckContract() {
+  if (!SKILLTRUST_CHAIN.isConfigured()) { CHN.contractNote = 'ยังไม่ได้ตั้งค่าที่อยู่ Contract'; return chainPaint(); }
+  try { const r = await SKILLTRUST_CHAIN.checkContract(); CHN.contractNote = r.ok ? 'พบ Contract บน Sepolia' : r.reason; }
+  catch (e) { CHN.contractNote = 'ตรวจ Contract ไม่สำเร็จ: ' + (e.shortMessage || e.message || e); }
+  chainPaint();
+}
+async function saveLearnerWallet(addr) {
+  if (!ATT.db || !ATT.me || !addr) return;
+  try {
+    const sn = await withTimeout(ATT.db.doc('learners/' + ATT.me).get(), 8000, 'อ่านข้อมูลผู้เรียนนานเกินไป').catch(() => null);
+    const cur = docDataOf(sn) || {};
+    await withTimeout(ATT.db.doc('learners/' + ATT.me).set({...cur, wallet: addr}), 8000, 'บันทึก Wallet นานเกินไป');
+    ATT.learnerWallets = {...(ATT.learnerWallets || {}), [ATT.me]: addr};
+  } catch (e) { /* จะลองใหม่เมื่อเชื่อม MetaMask อีกครั้ง */ }
+}
+async function chainBoot() {
+  SKILLTRUST_CHAIN.onChange = async addr => {
+    CHN.account = addr || '';
+    if (ATT.localMode && addr && ATT.me !== addr.toLowerCase()) { location.reload(); return; }
+    await applyLiveWallet(addr || '');
+    if (addr) { try { await SKILLTRUST_CHAIN.restore(); } catch (e) { /* ต้องอยู่ที่ Sepolia จึงส่งได้ */ } }
+    chainPaint();
+  };
+  try {
+    const sc = JSON.parse(localStorage.getItem('skilltrust_contract_v1') || 'null');
+    if (sc && /^0x[0-9a-fA-F]{40}$/.test(sc.address || '')) S.contract = {network: 'sepolia', rpc: '', address: sc.address, tx: sc.tx || '', saved: true};
+  } catch (e) { /* ใช้ค่าในโค้ด */ }
+  if (S.contract && S.contract.saved && S.contract.address) SKILLTRUST_CHAIN.setAddress(S.contract.address);
+  let addr = '';
+  try { addr = await SKILLTRUST_CHAIN.currentAccount(); } catch (e) { addr = ''; }
+  if (addr) {
+    CHN.account = addr; await applyLiveWallet(addr, {silent: true});
+    SKILLTRUST_CHAIN.listen();
+    try { await SKILLTRUST_CHAIN.restore(); } catch (e) { /* ยังไม่ได้อยู่ที่ Sepolia */ }
+    chainCheckContract(); chainResolvePending();
+  }
+  chainPaint();
+}
+
+// บันทึกลงฐานข้อมูลของ artifact (ไม่เก็บรูปใบรับรองซึ่งสร้างใหม่ได้จากข้อมูล)
+const plain = o => JSON.parse(JSON.stringify(o));
+async function saveCourseDb(c) {
+  if (!ATT.db || !c || !c.code) return;
+  try { await withTimeout(ATT.db.doc('courses/' + c.code).set(plain({code: c.code, name: c.name, start: c.start, hours: c.hours, open: !!c.open, minAtt: c.minAtt, passScore: c.passScore})), 8000, 'บันทึกหลักสูตรนานเกินไป'); }
+  catch (e) { toast('บันทึกหลักสูตรไม่สำเร็จ: ' + (e.message || e), 'err'); }
+}
+async function saveCertDb(c) {
+  if (!ATT.db || !c || !c.id) return;
+  const {image, ...rest} = c;
+  try { await withTimeout(ATT.db.doc('certs/' + c.id).set(plain(rest)), 8000, 'บันทึกใบรับรองนานเกินไป'); }
+  catch (e) { toast('บันทึกใบรับรองไม่สำเร็จ: ' + (e.message || e), 'err'); }
+}
+const ACT = {
+  nav: p => go(p),
+  role: r => {
+    if (!S.walletMode) return toast('เชื่อม MetaMask ก่อนเข้าสู่ระบบ', 'err');
+    // ทุกบทบาทถูกล็อกตามบัญชี MetaMask รวมถึงผู้ดูแลระบบ (ผู้ดูแลระบบทำได้แค่กำหนดสิทธิ์ผู้ออกใบและสร้างหลักสูตร)
+    if (r !== S.role) return toast('บัญชีนี้ถูกล็อกเป็น' + ROLES[S.role].label + ' เปลี่ยนบทบาทไม่ได้ ต้องสลับบัญชีใน MetaMask', 'err');
+    setRole(r);
+  },
+  wallet: () => ACT.chainConnect(),
+  enroll: async code => {
+    const c = courseOf(code);
+    if (!c.code || ATT.enrolled[code] || ATT.pending[code]) return;
+    ATT.pending[code] = true;
+    render();
+    const ok = await attEnrollDb(code);
+    delete ATT.pending[code];
+    if (ok) {
+      ATT.enrolled[code] = ATT.enrolled[code] || Date.now();
+      addLog('ลงทะเบียน ' + c.name);
+      chainLog('ENROLL', {uid: ATT.me, course: code});
+      toast('ลงทะเบียน ' + c.name + ' แล้ว', 'ok');
+    }
+    render(); navBadgePaint();
+    if (ok) setTimeout(() => { render(); navBadgePaint(); }, 1500);
+  },
+  confirm: id => {
+    if (!isAuthorizedIssuer()) return toast('บัญชีนี้ไม่มีสิทธิ์ยืนยันการลงทะเบียน', 'err');
+    const en = S.enrollments.find(e => e.id === id);
+    if (!en || en.status !== 'pending') return;
+    en.status = 'enrolled'; addLog('ยืนยันการลงทะเบียนของ ' + en.name);
+    toast('ยืนยันการลงทะเบียนแล้ว', 'ok'); render();
+  },
+  toggleCourse: code => {
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบเปิดหรือปิดรับสมัครได้', 'err');
+    const c = courseOf(code); if (!c.code) return;
+    c.open = !c.open; addLog(`${c.open ? 'เปิด' : 'ปิด'}รับสมัคร ${c.name}`); saveCourseDb(c);
+    toast(c.open ? 'เปิดรับสมัครแล้ว' : 'ปิดรับสมัครแล้ว', c.open ? 'ok' : 'err'); render();
+  },
+  revoke: id => {
+    if (!isAuthorizedIssuer()) return toast('บัญชีนี้ไม่มีสิทธิ์เพิกถอนใบรับรอง', 'err');
+    const c = S.certs.find(x => x.id === id);
+    if (!c || c.status !== 'valid') return;
+    c.status = 'revoked'; addLog('เพิกถอนใบรับรอง ' + id); saveCertDb(c);
+    publishCertToLearner(c);
+    chainLog('REVOKE', {cert: id, fileHash: c.fileHash, issuer: walletOf()});
+    toast('เพิกถอนแล้ว ประวัติการออกยังอยู่', 'err'); render();
+  },
+  toggleIssuer: w => {
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบจัดการสิทธิ์ได้', 'err');
+    const a = S.accounts.find(x => x.wallet === w);
+    if (!a || a.admin) return;
+    a.active = !a.active; saveAccounts(); addLog(`${a.active ? 'มอบสิทธิ์' : 'ยกเลิกสิทธิ์'}ให้ ${a.name}`);
+    if (/^0x[0-9a-fA-F]{40}$/.test(a.wallet)) chainLog('ISSUER_SET', {issuer: a.wallet, allowed: a.active});
+    toast(a.active ? 'มอบสิทธิ์แล้ว' : 'ยกเลิกสิทธิ์แล้ว', a.active ? 'ok' : 'err'); render();
+  },
+  chainConnect: async () => {
+    try { CHN.account = await SKILLTRUST_CHAIN.connect(); if (ATT.localMode && ATT.me !== CHN.account.toLowerCase()) { location.reload(); return; } await applyLiveWallet(CHN.account); chainPaint(); chainCheckContract(); chainResolvePending(); if (CHN.queue.length) toast('มี ' + CHN.queue.length + ' รายการรอส่ง กดส่งได้ในหน้า ธุรกรรมบน Chain', 'ok'); }
+    catch (e) { toast('เชื่อม MetaMask ไม่สำเร็จ: ' + (e.shortMessage || e.message || e), 'err'); }
+  },
+  chainFlush: () => chainFlush(),
+  chainClear: () => { const n = chainMyQueue().length; CHN.queue = CHN.queue.filter(q => !chainMine(q)); chainSaveQueue(); chainPaint(); toast(n ? 'ล้างรายการที่รออยู่ ' + n + ' รายการแล้ว ข้อมูลในระบบยังอยู่ แต่จะไม่ถูกส่งขึ้น chain' : 'ไม่มีรายการที่รออยู่', 'ok'); },
+  pickCourse: code => { S.issueCourse = code; render(); },
+  attOpen: sid => attOpenSession(sid),
+  qzOpen: async id => {
+    try { await ATT.db.doc('quizzes/' + id).update({open: true, openedAt: Date.now()}); toast('เปิดให้ทำแบบทดสอบแล้ว', 'ok'); await qzRefresh(); }
+    catch (e) { toast('เปิดไม่สำเร็จ: ' + (e.message || e), 'err'); }
+  },
+  qzClose: async id => {
+    try { await ATT.db.doc('quizzes/' + id).update({open: false}); toast('ปิดแบบทดสอบแล้ว', 'ok'); await qzRefresh(); }
+    catch (e) { toast('ปิดไม่สำเร็จ: ' + (e.message || e), 'err'); }
+  },
+  qzStart: id => { QZ.active = id; render(); window.scrollTo(0, 0); },
+  qzCancel: () => { QZ.active = null; render(); },
+  attClose: sid => attCloseSession(sid),
+  viewCourse: code => { S.courseView = code; S.courseEdit = null; S.page = 'coursedetail'; render(); window.scrollTo(0, 0); },
+  editCourse: code => { S.courseView = code; S.courseEdit = code; S.page = 'coursedetail'; render(); document.getElementById('courseEditForm')?.scrollIntoView({behavior: 'smooth', block: 'start'}); },
+  closeCourseView: () => { S.courseView = null; S.courseEdit = null; S.page = 'courses'; render(); window.scrollTo(0, 0); },
+  closeCourseEdit: () => { S.courseEdit = null; render(); },
+  genCert: async () => {
+    const f = document.querySelector('form[data-live="issue"]');
+    if (!f || !f.iEnr) return toast('เลือกผู้เรียนที่ผ่านเกณฑ์ก่อน', 'err');
+    const en = sysEnrOf(f.iEnr.value);
+    if (!en) return;
+    const cid = en.cert ? en.cert.id : nextId();
+    const png = await renderCertPNG({id: cid, name: en.name, course: en.course, date: f.iDate.value, wallet: en.wallet});
+    $('#genOut').innerHTML = `<img src="${png}" alt="ภาพใบรับรอง ${esc(cid)}" style="width:100%;border-radius:14px;margin-top:14px;border:1px solid var(--line)">
+      <p class="sub" style="margin:10px 0 0">คลิกขวาที่รูปแล้วเลือกบันทึกรูปภาพ ภาพนี้สร้างจากข้อมูลชุดเดียวกับที่จะออกให้จริง ถ้าออกใบรับรองแล้ว ให้บันทึกไฟล์จากหน้าใบรับรองของผู้เข้าอบรมเพื่อให้ Hash ตรงกัน</p>`;
+    toast('สร้างภาพใบรับรองแล้ว', 'ok');
+  },
+  unlinkContract: () => {
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบ', 'err');
+    S.contract = {network:'sepolia', rpc:'', address:'', tx:'', saved:false};
+    try { localStorage.removeItem('skilltrust_contract_v1'); } catch (e) { /* ข้าม */ }
+    SKILLTRUST_CHAIN.setAddress('');
+    addLog('ยกเลิกการเชื่อมต่อ Smart Contract');
+    toast('ยกเลิกการเชื่อมต่อแล้ว', 'err'); render();
+  },
+  certFilter: f => { S.certFilter = f; render(); },
+  vmode: m => { S.vMode = m; S.vResult = ''; render(); },
+  openVerify: id => { S.page = 'verify'; S.vMode = 'id'; S.vId = id; S.vResult = verifyById(id); render(); window.scrollTo(0, 0); },
+  qrOpen: id => { const u = verifyLink(id); if (u) window.open(u, '_blank', 'noopener'); },
+  scanQR: () => {
+    const v = S.certs.find(c => c.status === 'valid');
+    if (!v) return toast('ไม่มีใบรับรองที่ยังมีผลให้สแกน', 'err');
+    S.vId = v.id; S.vResult = verifyById(v.id); render();
+  },
+  chainVerify: async id => {
+    const rec = S.certs.find(c => c.id === id);
+    if (!rec) return toast('ไม่พบใบรับรอง', 'err');
+    if (!SKILLTRUST_CHAIN.isConfigured()) return toast('ยังไม่ได้ตั้งค่าที่อยู่ Contract', 'err');
+    try {
+      const r = await SKILLTRUST_CHAIN.verify(id, rec.fileHash);
+      toast(r.valid ? 'บน chain: ยังมีผล' : 'บน chain: ถูกเพิกถอนหรือไม่พบ', r.valid ? 'ok' : 'err');
+    } catch (e) { toast('ตรวจบน chain ไม่สำเร็จ: ' + (e.shortMessage || e.message || e), 'err'); }
+  },
+};
+
+const FORM = {
+  course: f => {
+    const code = f.cCode.value.trim().toUpperCase(), name = f.cName.value.trim(), start = f.cStart.value, hours = parseInt(f.cHours.value, 10);
+    const err = $('#cErr'); err.textContent = '';
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบสร้างหลักสูตรได้', 'err');
+    if (!code || !name || !start) { err.textContent = 'กรอกรหัสหลักสูตร ชื่อ และวันที่เริ่มให้ครบ'; return; }
+    if (S.courses.some(c => c.code === code)) { err.textContent = 'รหัสหลักสูตรนี้มีอยู่แล้ว'; return; }
+    const att = parseInt(f.cAtt.value, 10), score = parseInt(f.cScore.value, 10);
+    if (isNaN(att) || att < 0 || att > 100 || isNaN(score) || score < 0 || score > 100) { err.textContent = 'เกณฑ์ต้องอยู่ระหว่าง 0 ถึง 100'; return; }
+    S.courses.push({code, name, start, hours: hours || 20, open:true, minAtt:att, passScore:score}); addLog('สร้างหลักสูตร ' + name); saveCourseDb(S.courses[S.courses.length - 1]);
+    chainLog('COURSE_CREATE', {code, name, start});
+    toast('สร้างหลักสูตรแล้ว', 'ok'); render();
+  },
+  issuer: f => {
+    const w = f.aWallet.value.trim(), n = f.aName.value.trim() || 'ผู้ออกใบรับรองใหม่';
+    const err = $('#aErr'); err.textContent = '';
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบมอบสิทธิ์ได้', 'err');
+    if (!/^0x[0-9a-fA-F]{40}$/.test(w) && !/^0x[0-9a-fA-F]{4}\.\.\.[0-9a-fA-F]{4}$/.test(w)) { err.textContent = 'Wallet address ต้องขึ้นต้นด้วย 0x ตามด้วยเลขฐาน 16 เช่น 0x71a3...9f2e หรือแบบเต็ม 40 ตัว'; return; }
+    const key = /^0x/.test(w) && w.length === 42 ? w.toLowerCase() : w;
+    if (S.accounts.some(a => a.wallet === key)) { err.textContent = 'Wallet นี้มีสิทธิ์อยู่แล้ว'; return; }
+    S.accounts.push({wallet:key, name:n, active:true, admin:false}); saveAccounts(); addLog('มอบสิทธิ์ให้ ' + n);
+    if (/^0x[0-9a-fA-F]{40}$/.test(key)) chainLog('ISSUER_SET', {issuer: key, allowed: true});
+    toast('มอบสิทธิ์แล้ว' + (S.contract.saved ? ' และบันทึกลงสัญญาที่ตั้งค่าไว้' : ' (ยังไม่ได้เชื่อมสัญญา)'), 'ok'); render();
+  },
+  grade: f => {
+    if (!isAuthorizedIssuer()) return toast('บัญชีนี้ไม่มีสิทธิ์บันทึกผล', 'err');
+    const en = S.enrollments.find(e => e.id === f.dataset.id);
+    if (!en || en.status !== 'enrolled') return;
+    const att = parseInt(f.elements.att.value, 10), score = parseInt(f.elements.score.value, 10);
+    if (isNaN(att) || isNaN(score) || att < 0 || att > 100 || score < 0 || score > 100) return toast('กรอกค่าระหว่าง 0 ถึง 100', 'err');
+    en.att = att; en.score = score; addLog(`บันทึกผลของ ${en.name} (${cname(en.course)})`);
+    toast(passes(en) ? 'ผ่านเกณฑ์ พร้อมออกใบรับรอง' : 'บันทึกผลแล้ว ยังไม่ผ่านเกณฑ์', passes(en) ? 'ok' : 'err'); render();
+  },
+  issue: async f => {
+    const err = $('#iErr'); err.textContent = '';
+    if (!isAuthorizedIssuer() || !ATT.canEdit) return toast('เฉพาะผู้ออกใบรับรองที่ได้รับสิทธิ์เท่านั้น', 'err');
+    if (!f.iEnr) { err.textContent = 'ยังไม่มีผู้เรียนที่ผ่านเกณฑ์ในหลักสูตรนี้'; return; }
+    const en = sysEnrOf(f.iEnr.value);
+    if (!en) { err.textContent = 'ไม่พบผู้เรียนในผลการเรียน'; return; }
+    if (en.cert) { err.textContent = 'ผู้เรียนรายนี้ออกใบรับรองแล้ว รหัสอ้างอิง ' + en.cert.id; return; }
+    const date = f.iDate.value;
+    if (!date) { err.textContent = 'เลือกวันที่ออกใบรับรอง'; return; }
+    if (date > todayISO()) { err.textContent = 'วันที่ออกห้ามเป็นวันในอนาคต'; return; }
+    const id = nextId();
+    const c = {id, name: en.name, course: en.course, date, wallet: en.wallet, issuer: walletOf(), status: 'valid', lrnUid: en.uid, issuedAt: Date.now()};
+    const image = await renderCertPNG(c);
+    const hash = await sha(dataUrlToBytes(image));
+    if (chain.has(hash)) { err.textContent = 'ไฟล์นี้เคยถูกบันทึกแล้ว (Hash ซ้ำ)'; return; }
+    c.image = image; c.fileHash = hash; chain.set(hash, id); S.certs.push(c); saveCertDb(c);
+    addLog(`ออกใบรับรอง ${id} ให้ ${en.name}`);
+    await publishCertToLearner(c);
+    chainLog('ISSUE', {cert: id, uid: en.uid, course: en.course, date, fileHash: hash, issuer: walletOf()});
+    toast('ออกใบรับรองและบันทึก Hash แล้ว', 'ok'); S.page = 'certs'; render();
+  },
+  contract: f => {
+    const err = $('#ctErr'); err.textContent = '';
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบตั้งค่าสัญญาได้', 'err');
+    const net = S.contract.network, rpc = '', addr = f.ctAddr.value.trim(), tx = f.ctTx.value.trim();
+    if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) { err.textContent = 'Contract address ต้องเป็น 0x ตามด้วยเลขฐาน 16 จำนวน 40 ตัว'; return; }
+    if (rpc && !/^https:\/\/.+/.test(rpc)) { err.textContent = 'RPC URL ต้องขึ้นต้นด้วย https://'; return; }
+    if (tx && !/^0x[0-9a-fA-F]{64}$/.test(tx)) { err.textContent = 'Transaction hash ต้องเป็น 0x ตามด้วยเลขฐาน 16 จำนวน 64 ตัว'; return; }
+    S.contract = {network:net, rpc, address:addr, tx, saved:true};
+    SKILLTRUST_CHAIN.setAddress(addr); chainPaint();
+    try { localStorage.setItem('skilltrust_contract_v1', JSON.stringify({address: addr, tx})); } catch (e) { /* เบราว์เซอร์ไม่ให้เก็บ */ }
+    chainCheckContract();
+    addLog('ตั้งค่า Smart Contract บน ' + netLabel(net));
+    toast('บันทึกการเชื่อมต่อสัญญาแล้ว', 'ok'); render();
+  },
+  qzCreate: async f => {
+    if (!ATT.db) return toast('ยังไม่ได้เชื่อมฐานข้อมูล', 'err');
+    const c = S.courses.find(x => x.code === f.qzCourse.value);
+    if (!c) return toast('เลือกหลักสูตรที่ผู้ดูแลระบบสร้างไว้ก่อน', 'err');
+    const title = f.qzTitle.value.trim();
+    const questions = [], answers = [];
+    for (let i = 0; i < 5; i++) {
+      const q = f.querySelector('#qq' + i).value.trim();
+      const choices = [0, 1, 2, 3].map(j => f.querySelector('#qc' + i + '_' + j).value.trim());
+      const a = f.querySelector('input[name="qa' + i + '"]:checked');
+      if (!q || choices.some(x => !x) || !a) return toast('กรอกคำถาม ตัวเลือก และเลือกคำตอบถูกให้ครบทุกข้อ', 'err');
+      questions.push({q, choices}); answers.push(parseInt(a.value, 10));
+    }
+    const qid = 'qz' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+    try {
+      await ATT.db.doc('quizKeys/' + qid).set({answers});
+      await ATT.db.doc('quizzes/' + qid).set({courseCode: c.code, course: c.name, title, questions, open: false, createdAt: Date.now(), createdBy: ATT.me});
+      f.reset();
+      toast('สร้างแบบทดสอบแล้ว', 'ok'); await qzRefresh();
+    } catch (e) { toast('สร้างไม่สำเร็จ: ' + (e.message || e), 'err'); }
+  },
+  qzSubmit: async f => {
+    const qid = f.dataset.id;
+    const quiz = QZ.quizzes.find(q => q.id === qid);
+    if (!quiz || !ATT.me) return toast('ไม่พบแบบทดสอบหรือยังไม่ได้เข้าสู่ระบบ', 'err');
+    if (!ATT.enrolled[quiz.courseCode]) return toast('สมัครหลักสูตรนี้ก่อนทำแบบทดสอบ', 'err');
+    if (!quizCanTake(quiz)) return toast(quizState(quiz) === 'passed' ? 'คุณผ่านแบบทดสอบนี้แล้ว' : 'รอผลการตรวจของครั้งก่อนก่อนทำซ้ำ', 'err');
+    const answers = quiz.questions.map((_, i) => { const r = f.querySelector('input[name="q' + i + '"]:checked'); return r ? parseInt(r.value, 10) : -1; });
+    if (answers.includes(-1)) return toast('ตอบให้ครบทุกข้อก่อนส่ง', 'err');
+    try {
+      const prev = QZ.mySubs[qid];
+      const attempts = ((prev && prev.attempts) || (prev ? 1 : 0)) + 1;
+      const history = [...((prev && prev.history) || []), ...(prev ? [{score: prev.score, submittedAt: prev.submittedAt}] : [])];
+      await ATT.db.doc('quizSubs/' + ATT.me).set({...QZ.mySubs, [qid]: {answers, submittedAt: Date.now(), score: null, attempts, history}});
+      QZ.active = null;
+      chainLog('QUIZ_SUBMIT', {uid: ATT.me, quiz: qid, attempt: attempts});
+      toast('ส่งคำตอบแล้ว', 'ok');
+      await qzRefresh(); render();
+    } catch (e) { toast('ส่งไม่สำเร็จ: ' + (e.message || e), 'err'); }
+  },
+  attCreate: async f => {
+    if (!ATT.db) return toast('ยังไม่ได้เชื่อมฐานข้อมูล', 'err');
+    const c = S.courses.find(x => x.code === f.attCourse.value);
+    const title = f.attTitle.value.trim();
+    const mins = Math.min(240, Math.max(1, parseInt(f.attMins.value, 10) || 30));
+    if (!c) return toast('เลือกหลักสูตรที่ผู้ดูแลระบบสร้างไว้ก่อน', 'err');
+    if (!title) return toast('กรอกชื่อคาบให้ครบ', 'err');
+    try {
+      await ATT.db.doc('sessions/' + attNewSid()).set({courseCode: c.code, course: c.name, title, openMin: mins, open: false, closeAt: 0, code: '', prevCode: '', createdAt: Date.now(), createdBy: ATT.me});
+      f.reset(); f.attMins.value = 30;
+      toast('สร้างคาบแล้ว', 'ok'); await attRefresh();
+    } catch (e) { toast('สร้างคาบไม่สำเร็จ: ' + (e.message || e), 'err'); }
+  },
+  learnerName: async f => {
+    const err = document.getElementById('lnErr');
+    const name = f.lnName.value.trim().replace(/\s+/g, ' ');
+    if (name.length < 2) { if (err) err.textContent = 'กรอกชื่อให้ครบอย่างน้อย 2 ตัวอักษร'; return; }
+    if (!ATT.me) return toast('ยังไม่ได้เข้าสู่ระบบบัญชี จึงบันทึกชื่อไม่ได้', 'err');
+    if (!ATT.db) return toast('ยังไม่ได้เชื่อมฐานข้อมูล จึงบันทึกชื่อไม่ได้', 'err');
+    try {
+      const cur = docDataOf(await withTimeout(ATT.db.doc('learners/' + ATT.me).get(), 8000, 'อ่านข้อมูลนานเกินไป').catch(() => null)) || {};
+      await withTimeout(ATT.db.doc('learners/' + ATT.me).set({...cur, name}), 8000, 'บันทึกชื่อนานเกินไป');
+      ATT.myName = name; saveNameLocal(name); ATT.learnerNames[ATT.me] = name;
+      toast('บันทึกชื่อแล้ว', 'ok'); render();
+    } catch (e) { toast('บันทึกชื่อไม่สำเร็จ: ' + (e.message || e), 'err'); }
+  },
+  attCheck: async f => {
+    const code = f.ckCode.value.trim();
+    if (!ATT.db || !ATT.me) return attMsg('ยังไม่ได้เข้าสู่ระบบหรือยังไม่ได้เชื่อมฐานข้อมูล', 'err');
+    if (!/^\d{6}$/.test(code)) return attMsg('รหัสต้องเป็นตัวเลข 6 หลัก', 'err');
+    try {
+      let target = null;
+      for (const s of ATT.sessions.filter(x => x.open && ATT.enrolled[x.courseCode])) {
+        const fresh = (await ATT.db.doc('sessions/' + s.id).get()).data();
+        if (fresh && fresh.open && Date.now() <= fresh.closeAt && (fresh.code === code || fresh.prevCode === code)) { target = s.id; break; }
+      }
+      if (!target) return attMsg('รหัสไม่ถูกต้อง หรือคาบนี้ปิดเช็กชื่อแล้ว', 'err');
+      const sn = await ATT.db.doc('checkins/' + ATT.me).get().catch(() => null);
+      const att = {...loadAttLocal(), ...ATT.myAtt, ...((docDataOf(sn) || {}).attended || {})};
+      if (att[target]) return attMsg('คุณเช็กชื่อคาบนี้ไปแล้ว', 'err');
+      att[target] = Date.now();
+      await ATT.db.doc('checkins/' + ATT.me).set({attended: att});
+      ATT.myAtt = {...ATT.myAtt, ...att};
+      saveAttLocal();
+      attPaint();
+      chainLog('CHECKIN', {uid: ATT.me, session: target, course: (ATT.sessions.find(s => s.id === target) || {}).courseCode || ''});
+      f.ckCode.value = '';
+      attMsg('เช็กชื่อสำเร็จ เวลา ' + attFmt(att[target]), 'ok');
+      await attRefresh();
+    } catch (e) {
+      attMsg('เช็กชื่อไม่สำเร็จ อาจยังไม่มีสิทธิ์เขียน (' + (e.message || e) + ')', 'err');
+    }
+  },
+  editCourse: f => {
+    const err = $('#ecErr'); err.textContent = '';
+    if (S.role !== 'admin') return toast('เฉพาะผู้ดูแลระบบแก้ไขหลักสูตรได้', 'err');
+    const c = courseOf(f.dataset.code);
+    if (!c.code) return;
+    const name = f.ecName.value.trim(), start = f.ecStart.value, hours = parseInt(f.ecHours.value, 10);
+    const att = parseInt(f.ecAtt.value, 10), score = parseInt(f.ecScore.value, 10);
+    if (!name || !start) { err.textContent = 'กรอกชื่อหลักสูตรและวันที่เริ่มให้ครบ'; return; }
+    if (!(hours >= 1)) { err.textContent = 'จำนวนชั่วโมงต้องมากกว่า 0'; return; }
+    if (isNaN(att) || att < 0 || att > 100 || isNaN(score) || score < 0 || score > 100) { err.textContent = 'เกณฑ์ต้องอยู่ระหว่าง 0 ถึง 100'; return; }
+    Object.assign(c, {name, start, hours, minAtt: att, passScore: score}); saveCourseDb(c);
+    addLog('แก้ไขหลักสูตร ' + name);
+    S.courseEdit = null;
+    toast('บันทึกการแก้ไขแล้ว', 'ok'); render();
+  },
+  verifyId: f => { S.vId = f.vId.value; S.vResult = verifyById(S.vId); render(); },
+  verifyFile: async f => {
+    if (!S.vFile) return toast('กรุณาเลือกไฟล์ PDF ก่อน', 'err');
+    const hash = await sha(await S.vFile.arrayBuffer());
+    S.vResult = verifyByHash(hash, f.vId2 ? f.vId2.value : '');
+    render();
+  }
+};
+
+/* ---------- การเชื่อมต่อเหตุการณ์ (event delegation) ---------- */
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const fn = ACT[el.dataset.act];
+  if (fn) {
+    e.preventDefault(); fn(el.dataset.arg);
+    if (CHAIN_ACT_KIND[el.dataset.act]) chainLog(CHAIN_ACT_KIND[el.dataset.act], {arg: el.dataset.arg || '', role: S.role, uid: ATT.me || walletOf() || ''});
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.closest('[data-act="scanQR"]')) ACT.scanQR();
+});
+document.addEventListener('submit', e => {
+  const f = e.target.closest('form[data-form]');
+  if (!f) return;
+  e.preventDefault();
+  const h = FORM[f.dataset.form];
+  if (h) {
+    h(f);
+    if (CHAIN_FORM_KIND[f.dataset.form]) chainLog(CHAIN_FORM_KIND[f.dataset.form], {role: S.role, uid: ATT.me || walletOf() || ''});
+  }
+});
+function livePreview() {
+  const f = document.querySelector('form[data-live="issue"]');
+  if (!f || !f.iEnr) return;
+  const en = sysEnrOf(f.iEnr.value);
+  if (!en) return;
+  $('#livePreview').innerHTML = visualCert({id: en.cert ? en.cert.id : nextId(), name: en.name, course: en.course, date: f.iDate.value, wallet: en.wallet});
+  issuePaint();
+}
+document.addEventListener('input', e => {
+  if (e.target.dataset.input === 'vId') S.vId = e.target.value;
+  if (e.target.closest('form[data-live="issue"]')) livePreview();
+});
+document.addEventListener('change', e => {
+  if (e.target.id === 'qrSel') { S.vId = e.target.value; render(); return; }
+  if (e.target.id === 'iCourseSel') { S.issueCourse = e.target.value; render(); return; }
+  if (e.target.closest('form[data-live="issue"]')) livePreview();
+  const k = e.target.dataset.file;
+  if (!k) return;
+  const file = e.target.files && e.target.files[0];
+  if (k === 'issue') { S.issueFile = file || null; render(); }
+  if (k === 'verify') { S.vFile = file || null; S.vFileName = file ? file.name : ''; render(); }
+});
+
+/* ---------- หน้าตรวจสอบสาธารณะ (เปิดจาก QR) ---------- */
+const pubVerifyId = () => { const m = /(?:^#|&)verify=([^&]+)/.exec(location.hash || ''); try { return m ? decodeURIComponent(m[1]).trim() : ''; } catch (e) { return ''; } };
+async function publicVerifyPage(id) {
+  document.querySelector('.shell').style.display = 'none';
+  document.querySelectorAll('.toast, #toast').forEach(x => { x.style.zIndex = 99; });
+  const box = document.createElement('main');
+  box.id = 'pubv'; box.style.cssText = 'max-width:640px;margin:0 auto;padding:28px 16px';
+  document.body.appendChild(box);
+  const head = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:18px"><div style="font-weight:700;font-size:20px;color:var(--navy)">SkillTrust Academy</div><span class="tag info">ตรวจสอบใบรับรอง</span></div>`;
+  box.innerHTML = head + `<div class="card"><h3>กำลังตรวจสอบ ${esc(id)}</h3><p class="sub" style="margin:0">กำลังอ่านข้อมูลจากบล็อกเชน Sepolia…</p></div>`;
+  try {
+    const r = await SKILLTRUST_CHAIN.readCertificate(id);
+    const ex = (path, v) => `<a href="https://sepolia.etherscan.io/${path}/${esc(v)}" target="_blank" rel="noopener">${esc(v)}</a>`;
+    const dl = `<dl><div><dt>รหัสใบรับรอง</dt><dd>${esc(id)}</dd></div>
+      <div><dt>หลักสูตร</dt><dd>${esc(r.courseName ? r.courseName + ' (' + r.courseCode + ')' : r.courseCode)}</dd></div>
+      <div><dt>Wallet ผู้รับ</dt><dd style="word-break:break-all">${ex('address', r.recipient)}</dd></div>
+      <div><dt>ผู้ออกใบรับรอง</dt><dd style="word-break:break-all">${ex('address', r.issuer)}</dd></div>
+      <div><dt>วันที่ออก</dt><dd>${new Date(r.issuedAt * 1000).toLocaleDateString('th-TH', {day: 'numeric', month: 'long', year: 'numeric'})}</dd></div>
+      <div><dt>Hash ไฟล์ที่บันทึกบน chain</dt><dd style="word-break:break-all">${esc(r.fileHash)}</dd></div>
+      <div><dt>Contract</dt><dd style="word-break:break-all">${ex('address', r.contract)}</dd></div></dl>`;
+    const note = `<p class="sub" style="font-size:12.5px;margin-top:14px">ข้อมูลนี้อ่านตรงจากสัญญาบน Sepolia ไม่ผ่านเซิร์ฟเวอร์ของเว็บนี้ บล็อกเชนเก็บเฉพาะ Hash ของไฟล์ ถ้าต้องการตรวจว่าไฟล์ใบรับรองที่ถืออยู่ไม่ถูกแก้ไข ให้นำ Hash ของไฟล์นั้นมาเทียบกับค่าด้านบน</p>`;
+    if (r.status === 1) box.innerHTML = head + resBox('ok', 'check', 'Valid · ใบรับรองถูกต้อง ยังมีผลใช้งาน', dl) + note;
+    else if (r.status === 2) box.innerHTML = head + resBox('bad', 'x', 'Revoked · ใบรับรองถูกเพิกถอนแล้ว', dl) + note;
+    else box.innerHTML = head + resBox('bad', 'x', 'ไม่พบใบรับรองรหัสนี้บนบล็อกเชน', `<p>รหัส ${esc(id)} ไม่มีบันทึกในสัญญา ${esc(r.contract)} ใบรับรองอาจเป็นของปลอม รหัสผิด หรือยังไม่ได้ส่งขึ้น chain</p>`) + note;
+  } catch (e) {
+    box.innerHTML = head + resBox('warn', 'alert', 'ตรวจสอบไม่สำเร็จ', `<p>${esc(e.shortMessage || e.message || String(e))}</p><p>นี่ไม่ได้แปลว่าใบรับรองปลอม เป็นเพียงอ่านข้อมูลจากบล็อกเชนไม่ได้ในตอนนี้ ลองสแกนใหม่อีกครั้ง</p>`);
+  }
+}
+
+/* ---------- เริ่มต้น ---------- */
+if (pubVerifyId()) {
+  publicVerifyPage(pubVerifyId());
+} else {
+  chainLoadQueue();
+  loadAccounts();
+  render();
+  chainBoot();
+}
+</script>
+</body>
+</html>
